@@ -1,0 +1,119 @@
+[gd_scene load_steps=14 format=3 uid="uid://buujfp45wbon5"]
+
+[ext_resource type="Script" path="res://addons/goventure/scripts/Dialogue.gd" id="1_r0swd"]
+[ext_resource type="Script" path="res://addons/goventure/scripts/DialogueQA.gd" id="2_uoq5k"]
+[ext_resource type="Script" path="res://addons/goventure/scripts/DialoguePath.gd" id="3_go5pk"]
+
+[sub_resource type="Resource" id="Resource_mf5ev"]
+script = ExtResource("2_uoq5k")
+question = "Hello"
+answer = "Hi"
+
+[sub_resource type="Resource" id="Resource_3volu"]
+script = ExtResource("2_uoq5k")
+question = "How's it going"
+answer = "[rainbow][wave amp=50.0 freq=5.0 connected=1]Shit[/wave][/rainbow]"
+
+[sub_resource type="Resource" id="Resource_3bl6j"]
+script = ExtResource("3_go5pk")
+is_looping = true
+path = Array[ExtResource("2_uoq5k")]([SubResource("Resource_mf5ev"), SubResource("Resource_3volu")])
+
+[sub_resource type="Resource" id="Resource_16rci"]
+script = ExtResource("2_uoq5k")
+question = "Test"
+answer = "TestTest"
+
+[sub_resource type="Resource" id="Resource_t8c6a"]
+script = ExtResource("2_uoq5k")
+question = "echo"
+answer = "echo!"
+
+[sub_resource type="Resource" id="Resource_lp46d"]
+script = ExtResource("3_go5pk")
+is_looping = true
+path = Array[ExtResource("2_uoq5k")]([SubResource("Resource_16rci"), SubResource("Resource_t8c6a")])
+
+[sub_resource type="Resource" id="Resource_o1gpy"]
+script = ExtResource("2_uoq5k")
+question = "1"
+answer = "2"
+
+[sub_resource type="Resource" id="Resource_ia31n"]
+script = ExtResource("2_uoq5k")
+question = "3"
+answer = "4"
+
+[sub_resource type="Resource" id="Resource_0ex7i"]
+script = ExtResource("2_uoq5k")
+question = "5"
+answer = "6"
+
+[sub_resource type="Resource" id="Resource_pawub"]
+script = ExtResource("3_go5pk")
+is_looping = false
+path = Array[ExtResource("2_uoq5k")]([SubResource("Resource_o1gpy"), SubResource("Resource_ia31n"), SubResource("Resource_0ex7i")])
+
+[node name="TestScene" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Dialogue" type="Node" parent="."]
+script = ExtResource("1_r0swd")
+paths = Array[ExtResource("3_go5pk")]([SubResource("Resource_3bl6j"), SubResource("Resource_lp46d"), SubResource("Resource_pawub")])
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 288.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/selection_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/table_odd_row_bg = Color(0, 0, 0, 1)
+theme_override_colors/table_even_row_bg = Color(0, 0, 0, 1)
+theme_override_colors/table_border = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/bold_font_size = 25
+theme_override_font_sizes/italics_font_size = 25
+theme_override_font_sizes/bold_italics_font_size = 25
+theme_override_font_sizes/mono_font_size = 25
+bbcode_enabled = true
+text = "[center]
+Placeholder Text [i]blablaba[/i]
+[/center]"
+fit_content = true
+text_direction = 1
+
+[node name="ColorRect" type="ColorRect" parent="RichTextLabel"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.54902, 0.54902, 0.54902, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(1151, 288)
+layout_mode = 0
+offset_left = 2.0
+offset_top = 292.0
+offset_right = 1153.0
+offset_bottom = 649.0
+theme_override_constants/separation = 7
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Who are you?"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Where am I?"
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "What's going on?"
