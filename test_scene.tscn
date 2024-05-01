@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://buujfp45wbon5"]
+[gd_scene load_steps=7 format=3 uid="uid://buujfp45wbon5"]
 
 [ext_resource type="Script" path="res://addons/goventure/scripts/Dialogue.gd" id="1_r0swd"]
 [ext_resource type="Script" path="res://addons/goventure/scripts/DialogueQA.gd" id="2_uoq5k"]
@@ -12,47 +12,12 @@ answer = "Hi"
 [sub_resource type="Resource" id="Resource_3volu"]
 script = ExtResource("2_uoq5k")
 question = "How's it going"
-answer = "[rainbow][wave amp=50.0 freq=5.0 connected=1]Shit[/wave][/rainbow]"
+answer = "[rainbow][wave amp=50.0 freq=5.0 connected=1]Meh[/wave][/rainbow]"
 
 [sub_resource type="Resource" id="Resource_3bl6j"]
 script = ExtResource("3_go5pk")
 is_looping = true
 path = Array[ExtResource("2_uoq5k")]([SubResource("Resource_mf5ev"), SubResource("Resource_3volu")])
-
-[sub_resource type="Resource" id="Resource_16rci"]
-script = ExtResource("2_uoq5k")
-question = "Test"
-answer = "TestTest"
-
-[sub_resource type="Resource" id="Resource_t8c6a"]
-script = ExtResource("2_uoq5k")
-question = "echo"
-answer = "echo!"
-
-[sub_resource type="Resource" id="Resource_lp46d"]
-script = ExtResource("3_go5pk")
-is_looping = true
-path = Array[ExtResource("2_uoq5k")]([SubResource("Resource_16rci"), SubResource("Resource_t8c6a")])
-
-[sub_resource type="Resource" id="Resource_o1gpy"]
-script = ExtResource("2_uoq5k")
-question = "1"
-answer = "2"
-
-[sub_resource type="Resource" id="Resource_ia31n"]
-script = ExtResource("2_uoq5k")
-question = "3"
-answer = "4"
-
-[sub_resource type="Resource" id="Resource_0ex7i"]
-script = ExtResource("2_uoq5k")
-question = "5"
-answer = "6"
-
-[sub_resource type="Resource" id="Resource_pawub"]
-script = ExtResource("3_go5pk")
-is_looping = false
-path = Array[ExtResource("2_uoq5k")]([SubResource("Resource_o1gpy"), SubResource("Resource_ia31n"), SubResource("Resource_0ex7i")])
 
 [node name="TestScene" type="Control"]
 layout_mode = 3
@@ -60,7 +25,7 @@ anchors_preset = 0
 
 [node name="Dialogue" type="Node" parent="."]
 script = ExtResource("1_r0swd")
-paths = Array[ExtResource("3_go5pk")]([SubResource("Resource_3bl6j"), SubResource("Resource_lp46d"), SubResource("Resource_pawub")])
+paths = Array[ExtResource("3_go5pk")]([SubResource("Resource_3bl6j")])
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 visible = false

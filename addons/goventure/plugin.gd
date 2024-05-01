@@ -2,10 +2,9 @@
 extends EditorPlugin
 
 
-const MainPanel = preload("res://addons/goventure/Editor/editor_main.tscn")
+const MainPanel = preload("res://addons/goventure/editor/editor_main.tscn")
 
 var main_panel_instance
-
 
 func _enter_tree():
 	main_panel_instance = MainPanel.instantiate()

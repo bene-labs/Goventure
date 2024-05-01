@@ -1,68 +1,54 @@
-extends TextEdit
+@tool
+extends RichTextLabel
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if Input.is_action_just_pressed("test"):
-		insert_text_at_caret("test")
-	
-	if not has_selection():
+func _input(event):
+	if event.is_action_pressed("ui_text_completion_query") and get_selection_from() != -1:
+		toggle_tag(get_selection_from(), get_selection_to(), "b")
 		return
 	
-	if Input.is_action_just_pressed("make_bold"):
-		print("Selection mode %s" % str(get_selection_mode()))
-		print('Selected text "%s" from %d-%d to %d-%d' % [
-			get_selected_text(), get_selection_from_line(), get_selection_from_column(),
-			get_selection_line(), get_selection_column()
-		])
+	if not event is InputEventKey or not event.is_pressed():
+		return
+	if event.is_action_pressed("ui_text_newline"):
+		text += "\n"
+	elif event.is_action_pressed("ui_text_backspace"):
+		text = text.substr(0, text.length() - 1)
+	else:
+		#print(event.unicode)
+		text += char(event.unicode)
 		
-		toggle_tag(get_selection_from_line(), get_selection_from_column(), \
-			get_selection_line(), get_selection_column(), "b")
-
-
-func is_previous(pos1 : Vector2i, pos2 : Vector2i):
-	return (pos1.x < pos2.x and pos1.y <= pos2.y) or pos1.y < pos2.y
-
-
-func toggle_tag(from_line, from_column, to_line, to_column, tag):
-	if from_line < 0 or from_column < 0 or to_line < 0 or to_column < 0:
-		return
 	
+		
+
+
+func toggle_tag(from, to, tag):
 	deselect()
 	
 	var open_tag = "[" + tag + "]"
-	var close_tag = "[\\" + tag + "]"
+	var close_tag = "[/" + tag + "]"
+	var prev_open_idx = text.rfind(open_tag, to)
+	var prev_close_idx = text.rfind(close_tag, from)
 	
-	var prev_open_pos = search(open_tag, SEARCH_MATCH_CASE, 0, 0)
-	var prev_close_pos = search(close_tag, SEARCH_MATCH_CASE, 0, 0)
-	
-	if (prev_open_pos.x == -1 and prev_open_pos.y == -1) or \
-		!is_previous(prev_open_pos, Vector2i(from_column, from_line)) or \
-		is_previous(prev_open_pos, prev_close_pos):
-			insert_tag(from_line, from_column, to_line, to_column, tag)
-	
-	select(from_line, from_column + open_tag.length(), to_line, to_column  + open_tag.length())
-	
+	if prev_open_idx != -1 and prev_open_idx > prev_close_idx:
+		remove_tag(from, prev_open_idx, tag)
+	else:
+		insert_tag(from, to, tag)
 
-func insert_tag(from_line, from_column, to_line, to_column, tag):
+
+func insert_tag(from, to, tag):
 	var open_tag = "[" + tag + "]"
-	var close_tag = "[\\" + tag + "]"
-
-	insert_text_at_caret(close_tag, add_caret(to_line, to_column))
-	remove_secondary_carets()
-	insert_text_at_caret(open_tag, add_caret(from_line, from_column))
-	remove_secondary_carets()
+	var close_tag = "[/" + tag + "]"
 	
-
-
-func _on_gutter_added():
-	print(get_gutter_count())
+	text = text.insert(from, open_tag)
+	text = text.insert(to + 1 + open_tag.length(), close_tag)
 	
-	for i in range(get_gutter_count()):
-		print("Gutter %d -> name: '%s', type: %s, width: %d." %
-		 [get_gutter_name(i), str(get_gutter_type(i)), get_gutter_width(i)])
+func remove_tag(from, open_pos, tag):
+	var open_tag = "[" + tag + "]"
+	var close_tag = "[/" + tag + "]"
+	
+	text = text.erase(open_pos, open_tag.length())
+	
+	var next_open_idx = text.find(open_tag, from)
+	var next_close_idx = text.find(close_tag, from)
+	if next_close_idx != -1 and (next_open_idx == -1 or next_close_idx < next_open_idx):
+		text = text.erase(next_close_idx, close_tag.length())
+	

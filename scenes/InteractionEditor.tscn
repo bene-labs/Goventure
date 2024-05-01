@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://cktpmsab71i1m"]
+
+[ext_resource type="PackedScene" uid="uid://5c0h6y1alh76" path="res://scenes/Background.tscn" id="2_r4s74"]
+[ext_resource type="PackedScene" uid="uid://b86inyphjxolg" path="res://scenes/Camera.tscn" id="3_5jaqv"]
+[ext_resource type="PackedScene" uid="uid://crca0b4if23s0" path="res://scenes/Cables.tscn" id="4_e00ap"]
+[ext_resource type="PackedScene" uid="uid://dkydwulkc34i0" path="res://scenes/gates/InteractibleGate.tscn" id="6_28pqu"]
+[ext_resource type="PackedScene" uid="uid://cr5x5uinj6cpv" path="res://scenes/nodes/InteractibleBaseNode.tscn" id="7_trnyt"]
+[ext_resource type="PackedScene" uid="uid://rnlqp6h5t4ig" path="res://scenes/Gates.tscn" id="7_ypjju"]
+
+[node name="InteractionEditor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" parent="." instance=ExtResource("2_r4s74")]
+scale = Vector2(1.25, 1.25)
+
+[node name="Camera3D" parent="." node_paths=PackedStringArray("button_container") instance=ExtResource("3_5jaqv")]
+limit_left = -6250
+limit_top = -4720
+limit_right = 6250
+limit_bottom = 4720
+button_container = NodePath("../CanvasLayer/Gates")
+
+[node name="Cables" parent="." instance=ExtResource("4_e00ap")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Gates" parent="CanvasLayer" instance=ExtResource("7_ypjju")]
+anchors_preset = -1
+anchor_top = 0.013
+offset_left = 9.0
+offset_top = -7.424
+offset_right = 100.0
+offset_bottom = -4.0
+
+[node name="InteractibleBaseNode" parent="." instance=ExtResource("7_trnyt")]
+offset_left = 157.0
+offset_top = 174.0
+offset_right = 157.0
+offset_bottom = 174.0
+
+[node name="LightBulb" parent="." instance=ExtResource("6_28pqu")]
+position = Vector2(617, 216)
+
+[connection signal="active_cable_state_changed" from="Cables" to="Camera3D" method="_on_Cables_active_cable_state_changed"]
+[connection signal="drag_toggled" from="CanvasLayer/Gates" to="Camera3D" method="_on_Gates_drag_toggled"]

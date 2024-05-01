@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://orv5ncqws73f"]
+
+[ext_resource type="FontFile" uid="uid://cfol7ig1l2b5" path="res://fonts/Ubuntu/Ubuntu-Bold.ttf" id="1_4m685"]
+
+[node name="ActionLabel" type="Label"]
+mouse_filter = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_4m685")
+theme_override_font_sizes/font_size = 21
+text = "Base Action"
+horizontal_alignment = 2

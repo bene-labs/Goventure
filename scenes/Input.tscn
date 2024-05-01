@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://de1m4sv5oavl7"]
+
+[ext_resource type="Texture2D" uid="uid://d2i02tnjucdwm" path="res://sprites/Pin_outline.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://m55uahd2db8t" path="res://sprites/Pin_under.png" id="2"]
+[ext_resource type="Script" path="res://scripts/Input.gd" id="3"]
+
+[node name="Input" type="TextureRect" groups=["Input"]]
+offset_top = -9.0
+offset_right = 48.0
+offset_bottom = 39.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1")
+script = ExtResource("3")
+
+[node name="InteractionPoint" type="TextureRect" parent="."]
+unique_name_in_owner = true
+self_modulate = Color(0.576471, 0.423529, 0.423529, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 53.0
+offset_bottom = 53.0
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2")
+
+[node name="Wire" type="Control" parent="InteractionPoint"]
+show_behind_parent = true
+anchors_preset = 0
+offset_left = 6.66667
+offset_top = 23.3333
+offset_right = 6.66667
+offset_bottom = 23.3333
+
+[node name="Wire" type="ColorRect" parent="InteractionPoint/Wire"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 16.6667
+offset_top = -13.3333
+offset_right = 116.667
+offset_bottom = 16.6667
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DelayTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true

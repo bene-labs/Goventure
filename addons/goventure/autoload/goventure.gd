@@ -1,5 +1,10 @@
 extends Node
 
+var configs = Configs.new()
+
+
+var actions : Array[String] = ["use", "combine", "examine"]
+var interactibles : Array[String] = ["Red Key", "Blue Lock", "Red Lock"]
 var path_depths : Dictionary
 
 var path_rid : String
