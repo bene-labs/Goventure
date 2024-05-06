@@ -3,9 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://03rdi1upb1cy" path="res://addons/goventure/visual_scripting/sprites/Pin_outline_thicc.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://m55uahd2db8t" path="res://addons/goventure/visual_scripting/sprites/Pin_under.png" id="2"]
 
-[node name="CableConnection" type="TextureRect"]
+[node name="CableConnection" type="Control"]
 self_modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.25, 0.25)
+layout_mode = 3
+anchors_preset = 0
+scale = Vector2(0.5, 0.5)
 
 [node name="InteractionPoint" type="TextureRect" parent="."]
 unique_name_in_owner = true
@@ -26,3 +28,7 @@ texture = ExtResource("1")
 [node name="DelayTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="AttachmentPoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(24, 22)

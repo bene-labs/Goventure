@@ -12,6 +12,7 @@ var hover_color = Color.LIGHT_BLUE
 
 var default_color
 
+@onready var gates : Gates = get_parent()
 @onready var collision_shape = $Area2D/CollisionPolygon2D
 @onready var image = $Sprite
 
@@ -25,6 +26,7 @@ var sprite_z_index = z_index
 
 func _ready():
 	CursorCollision.register(self)
+	gates._on_gate_spawned(self)
 	default_color = image.modulate
 
 	for output in %Outputs.get_children():
@@ -33,7 +35,6 @@ func _ready():
 		position_changed.connect(output._on_position_changed)
 		z_index_changed.connect(output._on_z_index_changed)
 		destroy.connect(output._on_destroy)
-	
 	if get_node_or_null("%Inputs") == null:
 		return
 	for input in %Inputs.get_children():

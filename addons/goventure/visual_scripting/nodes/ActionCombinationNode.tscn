@@ -65,6 +65,7 @@ text = "with"
 horizontal_alignment = 1
 
 [node name="Inputs" type="Node2D" parent="."]
+unique_name_in_owner = true
 show_behind_parent = true
 position = Vector2(-35, -8)
 scale = Vector2(2, 2)
@@ -80,7 +81,7 @@ rotation = -0.0121394
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(29, -31, 248, -30, 248, 59, 30, 57)
+polygon = PackedVector2Array(29, -31, 248, -30, 248, 59, 29, 59)
 
 [node name="Outputs" type="Control" parent="."]
 unique_name_in_owner = true

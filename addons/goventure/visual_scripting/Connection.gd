@@ -47,9 +47,15 @@ func set_state(value):
 	await $DelayTimer.timeout
 	state_changed.emit()
 
+
+func get_attachment_point():
+	return %AttachmentPoint.global_position
+
+
 func is_point_inside(point):
-	return interactionSprite.global_position.distance_to(point) <= collision_radius
-	
+	return get_attachment_point().distance_to(point) <= collision_radius
+
+
 func _on_mouse_entered():
 	interactionSprite.scale = base_scale * 1.25
 	is_hovered = true
@@ -96,6 +102,7 @@ func is_available():
 func _on_z_index_changed(new_index):
 	pass
 
+
 @warning_ignore("native_method_override")
 func set_z_index(value, wire_offset = 0):
 	z_index = value
@@ -103,9 +110,10 @@ func set_z_index(value, wire_offset = 0):
 		return
 	wire.z_index = wire_offset
 
-	
+
 func _on_position_changed():
-	emit_signal("position_changed", global_position)
+	position_changed.emit(get_attachment_point())
+
 
 func _exit_tree():
 	CursorCollision.unregister(self)

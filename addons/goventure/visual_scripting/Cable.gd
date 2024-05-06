@@ -78,14 +78,14 @@ func connect_input(input):
 	if connected_output == null:
 		has_started_from_input = true
 	connected_input = input
-	set_end_point(input.global_position)
+	set_end_point(input.get_attachment_point())
 	input.position_changed.connect(_on_input_position_changed)
 	
 func connect_output(output):
 	if connected_input == null:
 		has_started_from_input = false
 	connected_output = output
-	set_start_point(output.global_position)
+	set_start_point(output.get_attachment_point())
 	output.position_changed.connect(_on_output_position_changed)
 
 func _on_input_position_changed(new_pos):

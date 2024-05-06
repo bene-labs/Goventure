@@ -18,12 +18,11 @@ grow_vertical = 2
 [node name="Background" parent="." instance=ExtResource("2_r4s74")]
 scale = Vector2(1.25, 1.25)
 
-[node name="Camera3D" parent="." node_paths=PackedStringArray("button_container") instance=ExtResource("3_5jaqv")]
+[node name="Camera3D" parent="." instance=ExtResource("3_5jaqv")]
 limit_left = -6250
 limit_top = -4720
 limit_right = 6250
 limit_bottom = 4720
-button_container = NodePath("")
 
 [node name="Cables" parent="." instance=ExtResource("4_e00ap")]
 unique_name_in_owner = true
