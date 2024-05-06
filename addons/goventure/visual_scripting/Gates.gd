@@ -4,7 +4,7 @@ extends Control
 signal drag_toggled(new_state)
 
 @export var cables : Control
-#@onready var button_rect = $ColorRect
+@onready var button_rect = %ColorRect
 
 var buttons = []
 var gates : Array#get_tree().get_nodes_in_group("Gate")
@@ -14,15 +14,15 @@ var dragged_gate = null
 var drag_offset = Vector2.ZERO
 var is_mouse_movement = false
 
-#func _ready():
+func _ready():
 	#for gate in gates:
 		#gate.clicked.connect(_on_gate_clicked)
 		#gate.released.connect(_on_gate_released)
 		#gate.destroyed.connect(_on_gate_destroyed)
 	#call_deferred("apply_gate_z_index")
-	#for button in button_rect.get_children():
-		#buttons.append(button)
-		#button.gate_spawned.connect(_on_gate_spawned)
+	for button in button_rect.get_children():
+		buttons.append(button)
+		button.gate_spawned.connect(_on_gate_spawned)
 
 func put_gate_in_front(gate):
 	gates.erase(gate)

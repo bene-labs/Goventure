@@ -31,17 +31,17 @@ offset_right = 218.0
 offset_bottom = 88.0
 mouse_filter = 2
 
-[node name="Title" type="Label" parent="Sprite"]
+[node name="InteractibleSelection" type="OptionButton" parent="Sprite"]
 unique_name_in_owner = true
 z_index = 1000
-offset_top = -1.0
-offset_right = 142.0
-offset_bottom = 82.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 178.0
+offset_bottom = 31.0
 mouse_filter = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_6t1mn")
 theme_override_font_sizes/font_size = 26
-text = "Title"
 
 [node name="OutputLabels" type="VBoxContainer" parent="Sprite"]
 unique_name_in_owner = true

@@ -5,9 +5,12 @@ extends VSNode
 
 
 func _ready():
-	%Title.text = Goventure.interactibles[0]
+	%InteractibleSelection.clear()
+	for interactible in Goventure.interactibles:
+		%InteractibleSelection.add_item(interactible)
+	%InteractibleSelection.selected = 0
+
 	var colision_polygon = $Area2D/CollisionPolygon2D.polygon
-	
 	for action in Goventure.actions:
 		var new_label := output_label.instantiate()
 		new_label.text = action

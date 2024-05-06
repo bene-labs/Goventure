@@ -26,7 +26,6 @@ var sprite_z_index = z_index
 
 func _ready():
 	CursorCollision.register(self)
-	gates._on_gate_spawned(self)
 	default_color = image.modulate
 
 	for output in %Outputs.get_children():
@@ -35,16 +34,17 @@ func _ready():
 		position_changed.connect(output._on_position_changed)
 		z_index_changed.connect(output._on_z_index_changed)
 		destroy.connect(output._on_destroy)
-	if get_node_or_null("%Inputs") == null:
-		return
-	for input in %Inputs.get_children():
-		inputs.append(input)
-		input.is_standalone = false
-		input.state_changed.connect(_on_input_changed)
-		position_changed.connect(input._on_position_changed)
-		z_index_changed.connect(input._on_z_index_changed)
-		destroy.connect(input._on_destroy)
-	call_deferred("_on_input_changed")
+	if get_node_or_null("%Inputs") != null:
+		for input in %Inputs.get_children():
+			inputs.append(input)
+			input.is_standalone = false
+			input.state_changed.connect(_on_input_changed)
+			position_changed.connect(input._on_position_changed)
+			z_index_changed.connect(input._on_z_index_changed)
+			destroy.connect(input._on_destroy)
+		call_deferred("_on_input_changed")
+	gates._on_gate_spawned(self)
+
 
 func _on_input_changed():
 	pass

@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbx2b23ji6j5v"]
+
+[ext_resource type="PackedScene" uid="uid://crca0b4if23s0" path="res://addons/goventure/visual_scripting/Cables.tscn" id="2_hkxax"]
+[ext_resource type="Script" path="res://addons/goventure/visual_scripting/Gates.gd" id="3_lek4x"]
+[ext_resource type="PackedScene" uid="uid://cr5x5uinj6cpv" path="res://addons/goventure/visual_scripting/nodes/InteractibleBaseNode.tscn" id="4_5ijad"]
+[ext_resource type="PackedScene" uid="uid://dkydwulkc34i0" path="res://addons/goventure/visual_scripting/nodes/ActionCombinationNode.tscn" id="5_o0vbr"]
+
+[node name="InteractionEditor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Cables" parent="." instance=ExtResource("2_hkxax")]
+unique_name_in_owner = true
+
+[node name="Gates" type="Control" parent="." node_paths=PackedStringArray("cables")]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_lek4x")
+cables = NodePath("../Cables")
+
+[node name="InteractibleBaseNode" parent="Gates" instance=ExtResource("4_5ijad")]
+offset_left = 157.0
+offset_top = 174.0
+offset_right = 157.0
+offset_bottom = 174.0
+
+[node name="ActionCombination" parent="Gates" instance=ExtResource("5_o0vbr")]
+offset_left = 617.0
+offset_top = 216.0
+offset_right = 617.0
+offset_bottom = 216.0
