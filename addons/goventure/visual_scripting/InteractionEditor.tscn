@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://cktpmsab71i1m"]
+
+[ext_resource type="PackedScene" uid="uid://5c0h6y1alh76" path="res://addons/goventure/visual_scripting/Background.tscn" id="2_r4s74"]
+[ext_resource type="PackedScene" uid="uid://b86inyphjxolg" path="res://addons/goventure/visual_scripting/Camera.tscn" id="3_5jaqv"]
+[ext_resource type="PackedScene" uid="uid://crca0b4if23s0" path="res://addons/goventure/visual_scripting/Cables.tscn" id="4_e00ap"]
+[ext_resource type="Script" path="res://addons/goventure/visual_scripting/Gates.gd" id="4_lecha"]
+[ext_resource type="PackedScene" uid="uid://dkydwulkc34i0" path="res://addons/goventure/visual_scripting/nodes/ActionCombinationNode.tscn" id="6_28pqu"]
+[ext_resource type="PackedScene" uid="uid://cr5x5uinj6cpv" path="res://addons/goventure/visual_scripting/nodes/InteractibleBaseNode.tscn" id="7_trnyt"]
+
+[node name="InteractionEditor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" parent="." instance=ExtResource("2_r4s74")]
+scale = Vector2(1.25, 1.25)
+
+[node name="Camera3D" parent="." node_paths=PackedStringArray("button_container") instance=ExtResource("3_5jaqv")]
+limit_left = -6250
+limit_top = -4720
+limit_right = 6250
+limit_bottom = 4720
+button_container = NodePath("")
+
+[node name="Cables" parent="." instance=ExtResource("4_e00ap")]
+unique_name_in_owner = true
+
+[node name="Gates" type="Control" parent="." node_paths=PackedStringArray("cables")]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_lecha")
+cables = NodePath("../Cables")
+
+[node name="InteractibleBaseNode" parent="Gates" instance=ExtResource("7_trnyt")]
+offset_left = 157.0
+offset_top = 174.0
+offset_right = 157.0
+offset_bottom = 174.0
+
+[node name="LightBulb" parent="Gates" instance=ExtResource("6_28pqu")]
+offset_left = 617.0
+offset_top = 216.0
+offset_right = 617.0
+offset_bottom = 216.0

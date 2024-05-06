@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cfrmlkthki0cj"]
 
 [ext_resource type="Script" path="res://scripts/Gates/LowConstant.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://cuas374ejpad6" path="res://scenes/Output.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://cuas374ejpad6" path="res://addons/goventure/visual_scripting/Output.tscn" id="3"]
 [ext_resource type="FontFile" uid="uid://cfol7ig1l2b5" path="res://fonts/Ubuntu/Ubuntu-Bold.ttf" id="3_vp7vt"]
 
 [node name="LowConstant" type="Node2D" groups=["Gate"]]

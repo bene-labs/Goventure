@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://di8v3o0xdf46d"]
 
 [ext_resource type="Script" path="res://scripts/Gates/LightBulb.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://cor48p1kfum6g" path="res://sprites/icons/lightbulb.png" id="2_b8rip"]
-[ext_resource type="PackedScene" uid="uid://de1m4sv5oavl7" path="res://scenes/Input.tscn" id="3_knddi"]
+[ext_resource type="Texture2D" uid="uid://cor48p1kfum6g" path="res://addons/goventure/visual_scripting/sprites/icons/lightbulb.png" id="2_b8rip"]
+[ext_resource type="PackedScene" uid="uid://de1m4sv5oavl7" path="res://addons/goventure/visual_scripting/Input.tscn" id="3_knddi"]
 
 [node name="LightBulb" type="Node2D" groups=["Gate"]]
 script = ExtResource("1")

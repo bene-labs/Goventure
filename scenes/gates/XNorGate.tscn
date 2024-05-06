@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://hgpexjrtid1f"]
 
-[ext_resource type="PackedScene" uid="uid://cuas374ejpad6" path="res://scenes/Output.tscn" id="1"]
-[ext_resource type="PackedScene" uid="uid://de1m4sv5oavl7" path="res://scenes/Input.tscn" id="2"]
-[ext_resource type="Texture2D" uid="uid://by7b34xkwrn1x" path="res://sprites/Xnor-gate-en.svg.png" id="3"]
+[ext_resource type="PackedScene" uid="uid://cuas374ejpad6" path="res://addons/goventure/visual_scripting/Output.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://de1m4sv5oavl7" path="res://addons/goventure/visual_scripting/Input.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://by7b34xkwrn1x" path="res://addons/goventure/visual_scripting/sprites/Xnor-gate-en.svg.png" id="3"]
 [ext_resource type="Script" path="res://scripts/Gates/XNorGate.gd" id="5"]
 
 [node name="XNorGate" type="Node2D" groups=["Gate"]]
