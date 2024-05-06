@@ -104,3 +104,5 @@ offset_left = 0.0
 offset_top = 0.0
 offset_right = 48.0
 offset_bottom = 48.0
+
+[connection signal="item_selected" from="Sprite/InteractibleSelection" to="." method="_on_interactible_selection_item_selected"]

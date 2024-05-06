@@ -11,6 +11,7 @@ anchors_preset = 0
 script = ExtResource("1_6k8mp")
 output_node = ExtResource("2_0oh4h")
 output_label = ExtResource("4_kw8hq")
+save_directory = "res://addons/goventure/resources"
 
 [node name="Sprite" type="Node2D" parent="."]
 
@@ -64,7 +65,7 @@ offset_top = 29.0
 offset_right = 306.0
 offset_bottom = 77.0
 
-[node name="Output" parent="Sprite/Outputs" instance=ExtResource("2_0oh4h")]
+[node name="Default Action" parent="Sprite/Outputs" instance=ExtResource("2_0oh4h")]
 show_behind_parent = true
 layout_mode = 2
 
@@ -72,3 +73,5 @@ layout_mode = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(0, 0, 220, 0, 220, 90, 1, 90)
+
+[connection signal="item_selected" from="Sprite/InteractibleSelection" to="." method="_on_interactible_selection_item_selected"]

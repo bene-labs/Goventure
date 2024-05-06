@@ -16,6 +16,8 @@ var active_color = Color("65c2dd")
 @onready var interactionSprite : TextureRect = %InteractionPoint
 @onready var base_scale = interactionSprite.scale
 
+var parent_node : VSNode
+
 var is_hovered : bool = false
 var is_active : bool = false
 var is_standalone = true

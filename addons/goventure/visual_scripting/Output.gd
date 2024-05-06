@@ -45,14 +45,24 @@ func is_available():
 
 func _on_z_index_changed(new_index):
 	super._on_z_index_changed(new_index)
-#	for connected_cable in connected_cables:
-#		connected_cable.set_z_index(new_index - 1)
 	set_z_index(new_index)
 
 func _on_destroy():
 	for connected_cable in connected_cables:
 		if weakref(connected_cable).get_ref():
 			connected_cable.queue_free()
+
+
+func get_connected_nodes():
+	var connected_nodes : Array
+	
+	for input in connected_inputs:
+		while input.is_standalone and input.connected_input != null:
+			input = input.connected_input
+		if not input.is_standalone:
+			connected_nodes.push_back(input.parent_node)
+	return connected_nodes
+
 
 func _exit_tree():
 	super._exit_tree()

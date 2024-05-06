@@ -24,6 +24,9 @@ var drag_mode_queded = false
 
 var sprite_z_index = z_index
 
+var title := "Node"
+var param := "Nil"
+
 func _ready():
 	CursorCollision.register(self)
 	default_color = image.modulate
@@ -31,6 +34,7 @@ func _ready():
 	for output in %Outputs.get_children():
 		outputs.append(output)
 		output.is_standalone = false
+		output.parent_node = self
 		position_changed.connect(output._on_position_changed)
 		z_index_changed.connect(output._on_z_index_changed)
 		destroy.connect(output._on_destroy)
@@ -38,6 +42,7 @@ func _ready():
 		for input in %Inputs.get_children():
 			inputs.append(input)
 			input.is_standalone = false
+			input.parent_node = self
 			input.state_changed.connect(_on_input_changed)
 			position_changed.connect(input._on_position_changed)
 			z_index_changed.connect(input._on_z_index_changed)
