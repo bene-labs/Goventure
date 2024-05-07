@@ -1,0 +1,3 @@
+combine with Door:
+	say "Now it's locked."
+	say "Why not I guess?"

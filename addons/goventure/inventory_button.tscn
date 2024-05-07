@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://ca1x6xh8sd0mr"]
+
+[node name="InventoryButton" type="Button"]
+size_flags_vertical = 3

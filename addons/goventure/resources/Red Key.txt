@@ -1,5 +1,5 @@
 use with Blue Lock:
-	say "Doesn't fit. :("
+	say "Doesn't fit..."
 use with Red Lock:
 	say "It opened."
-	say "Nice. :)"
+	say "Nice!"
