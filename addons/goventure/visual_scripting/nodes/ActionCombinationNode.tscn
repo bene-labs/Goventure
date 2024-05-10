@@ -82,6 +82,7 @@ offset_top = 1.99998
 offset_right = 47.0
 offset_bottom = 50.0
 rotation = -0.0121394
+accepted_connection_types = Array[int]([0])
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -104,5 +105,6 @@ offset_left = 0.0
 offset_top = 0.0
 offset_right = 48.0
 offset_bottom = 48.0
+connection_types = 2
 
 [connection signal="item_selected" from="Sprite/InteractibleSelection" to="." method="_on_interactible_selection_item_selected"]

@@ -1,9 +1,18 @@
 class_name Connection extends Control
 
-signal state_changed
+signal value_changed
 signal clicked(node)
 signal released_over(node)
 signal position_changed(new_pos)
+
+enum ConnectionType {
+	ACTION,
+	FLOW
+}
+
+@onready var wire = get_node_or_null("InteractionPoint/Wire")
+@onready var interactionSprite : TextureRect = %InteractionPoint
+@onready var base_scale = interactionSprite.scale
 
 var collision_radius = 26.0
 var undefined_color = Color.RED
@@ -12,42 +21,29 @@ var on_color = Color("241ec9")
 var inactive_color = Color("b1e2f1")
 var active_color = Color("65c2dd")
 
-@onready var wire = get_node_or_null("InteractionPoint/Wire")
-@onready var interactionSprite : TextureRect = %InteractionPoint
-@onready var base_scale = interactionSprite.scale
-
 var parent_node : VSNode
 
 var is_hovered : bool = false
 var is_active : bool = false
 var is_standalone = true
 
-var state = TriState.new()
+var value = null
+#var value_type := Variant.Type.TYPE_NIL
 var is_dragged = false
 var drag_offset = Vector2.ZERO
 var is_mouse_movement = false
 
 func _ready():
-	set_state(TriState.State.UNDEFINED)
 	interactionSprite.self_modulate = inactive_color
 	CursorCollision.register(self)
 
-func set_state(value):
-	match value:
-		TriState.State.TRUE:
-			self_modulate = on_color
-		TriState.State.FALSE:
-			self_modulate = off_color
-		_:
-			self_modulate = undefined_color
-	if value == state.value:
-		return
-	state.value = value
+func set_value(value):
+	self.value = value
 	
 	$DelayTimer.wait_time = Goventure.configs.simulation_speed
 	$DelayTimer.start()
 	await $DelayTimer.timeout
-	state_changed.emit()
+	value_changed.emit()
 
 
 func get_attachment_point():
@@ -98,7 +94,7 @@ func _process(delta):
 	set_position(get_global_mouse_position() + drag_offset)
 	_on_position_changed()
 	
-func is_available():
+func can_connect(other : Connection):
 	return false
 
 func _on_z_index_changed(new_index):

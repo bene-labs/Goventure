@@ -1,5 +1,3 @@
-use with Blue Lock:
-	say "Doesn't fit..."
-use with Red Lock:
-	say "It opened."
-	say "Nice!"
+Default Action with Red Key:
+	say "Stack Oveflow"
+	say "LOL"

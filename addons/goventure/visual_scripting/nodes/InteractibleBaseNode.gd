@@ -27,7 +27,7 @@ func _ready():
 	
 	super._ready()
 	for output in outputs:
-		output.set_state(TriState.State.FALSE)
+		output.set_value(TriState.State.FALSE)
 
 
 func add_action_text_rec(start_node: VSNode, text := "") -> String:

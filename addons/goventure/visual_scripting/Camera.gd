@@ -130,7 +130,7 @@ func _on_Right_mouse_exited():
 	moving_right = false
 
 
-func _on_Cables_active_cable_state_changed(is_active):
+func _on_Cables_active_cable_value_changed(is_active):
 	set_edge_move_mode(is_active)
 
 func _on_Gates_drag_toggled(value):

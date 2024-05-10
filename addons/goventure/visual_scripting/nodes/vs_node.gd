@@ -43,7 +43,7 @@ func _ready():
 			inputs.append(input)
 			input.is_standalone = false
 			input.parent_node = self
-			input.state_changed.connect(_on_input_changed)
+			input.value_changed.connect(_on_input_changed)
 			position_changed.connect(input._on_position_changed)
 			z_index_changed.connect(input._on_z_index_changed)
 			destroy.connect(input._on_destroy)

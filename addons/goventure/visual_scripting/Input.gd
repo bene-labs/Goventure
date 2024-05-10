@@ -2,11 +2,14 @@ class_name InputConnection extends Connection
 
 signal destroyed(input)
 
+@export var accepted_connection_types : Array[ConnectionType]
+
+@onready var cables = get_tree().get_nodes_in_group("Cables")[0]
+
 var connected_output = null
 var connected_input = null
 var connected_cable = null
 var extra_cable = null
-@onready var cables = get_tree().get_nodes_in_group("Cables")[0]
 
 
 func _ready():
@@ -14,12 +17,12 @@ func _ready():
 	clicked.connect(_on_Input_clicked)
 	released_over.connect(_on_Input_released_over)
 
-func set_state(value):
-	super.set_state(value)
+func set_value(value):
+	super.set_value(value)
 	if weakref(extra_cable).get_ref():
-		extra_cable.adjust_color(state)
+		extra_cable.adjust_color(value)
 	if  weakref(connected_input).get_ref() and connected_input.connected_cable == extra_cable:
-		connected_input.set_state(value)
+		connected_input.set_value(value)
 
 func link_chained_input(input, cable):
 	if connected_cable != null:
@@ -28,7 +31,7 @@ func link_chained_input(input, cable):
 		extra_cable.queue_free()
 	connected_input = input
 	extra_cable = cable
-	set_state(TriState.State.UNDEFINED)
+	set_value(TriState.State.UNDEFINED)
 
 func link(connection, cable):
 	if connected_cable != null:
@@ -38,18 +41,25 @@ func link(connection, cable):
 		extra_cable.queue_free()
 	connected_output = connection
 	connected_cable = cable
-	#print("connected '", connection.get_path(), "' with '", get_path(), "' => state: ", connection.state.value)
-	set_state(connection.state.value)
+	#print("connected '", connection.get_path(), "' with '", get_path(), "' => value: ", connection.value.value)
+	set_value(connection.value)
 
-func is_available():
-	return true
+
+func can_connect(other: Connection) -> bool:
+	if not other is Output:
+		return false
+	for accepted_type in accepted_connection_types:
+		if other.connection_types & (1 << accepted_type):
+			return true
+	return false
+
 
 func _on_Input_clicked(node):
 	if weakref(connected_cable).get_ref():
 		connected_cable.queue_free()
 		connected_cable = null
 		connected_output = null
-		set_state(TriState.State.UNDEFINED)
+		set_value(TriState.State.UNDEFINED)
 
 func _on_Input_released_over(node):
 	if weakref(connected_cable).get_ref():

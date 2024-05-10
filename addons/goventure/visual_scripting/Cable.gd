@@ -32,8 +32,8 @@ func update_loose_point(position) -> bool:
 func set_point(node):
 	set_start_point(node.global_position) if node is Output else set_end_point(node.global_position)
 
-func adjust_color(state):
-	match state.value:
+func adjust_color(value):
+	match value:
 		TriState.State.TRUE:
 			line.default_color = on_color
 		TriState.State.FALSE:
@@ -140,4 +140,4 @@ func _exit_tree():
 		connected_input.queue_free()
 		return
 	connected_input.connected_cable = null
-	connected_input.set_state(TriState.State.UNDEFINED)
+	connected_input.set_value(TriState.State.UNDEFINED)
