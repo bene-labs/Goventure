@@ -139,5 +139,5 @@ func _exit_tree():
 		connected_input.delete_all_cables()
 		connected_input.queue_free()
 		return
-	connected_input.connected_cable = null
+	connected_input.connected_cables.clear()
 	connected_input.set_value(TriState.State.UNDEFINED)

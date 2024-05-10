@@ -1,3 +1,0 @@
-Default Action with Red Key:
-	say "Stack Oveflow"
-	say "LOL"
