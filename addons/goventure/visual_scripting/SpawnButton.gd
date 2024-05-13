@@ -19,6 +19,5 @@ func _on_button_down():
 #	new_gate.global_position = Vector2(rand_range(min_pos.x + view_size.x * 0.2, max_pos.x - view_size.x * 0.01),
 #		 rand_range(min_pos.y + view_size.y * 0.01, max_pos.y - + view_size.y * 0.01))
 	get_parent().get_parent().get_parent().add_child(new_gate)
-	emit_signal("gate_spawned", new_gate)
 	new_gate.emit_signal("clicked", new_gate, Vector2.ZERO)
 	
