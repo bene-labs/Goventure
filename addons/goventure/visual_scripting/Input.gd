@@ -2,15 +2,12 @@ class_name InputConnection extends Connection
 
 signal destroyed(input)
 
-@export var accepted_connection_types : Array[ConnectionType]
-@export var is_multiple_connections := true
+
 
 @onready var cables = get_tree().get_nodes_in_group("Cables")[0]
 
 
 var connected_input = null
-var connected_outputs := [] 
-var connected_cables : Array = []
 var extra_cable = null
 
 
@@ -18,6 +15,7 @@ func _ready():
 	super._ready()
 	clicked.connect(_on_Input_clicked)
 	released_over.connect(_on_Input_released_over)
+	self_modulate = undefined_color
 
 func set_value(value):
 	super.set_value(value)
@@ -42,23 +40,25 @@ func link(connection, cable):
 	if !is_standalone and extra_cable != null:
 		extra_cable.queue_free()
 	if is_multiple_connections:
-		connected_outputs.append(connection)
+		linked_connections.append(connection)
 		connected_cables.append(cable)
 	else:
-		connected_outputs = [connection]
+		linked_connections = [connection]
 		connected_cables = [cable]
 	#print("connected '", connection.get_path(), "' with '", get_path(), "' => value: ", connection.value.value)
 	set_value(connection.value)
 
-func clear_cables():
-	for cable in connected_cables:
-		cable.queue_free()
 
 func can_connect(other: Connection) -> bool:
-	if not other is Output:
+	if not super.can_connect(other):
 		return false
-	for accepted_type in accepted_connection_types:
-		if other.connection_types & (1 << accepted_type):
+	if other is InputConnection:
+		return false
+	for type in ConnectionType.values():
+		type = 1 << type
+		if connection_types & type == 0:
+			continue
+		if connection_types & type == other.connection_types & type:
 			return true
 	return false
 
@@ -68,7 +68,7 @@ func _on_Input_clicked(node):
 		return
 	clear_cables()
 	connected_cables.clear()
-	connected_outputs.clear()
+	linked_connections.clear()
 	set_value(TriState.State.UNDEFINED)
 
 func _on_Input_released_over(node):
@@ -76,7 +76,7 @@ func _on_Input_released_over(node):
 		return
 	clear_cables()
 	connected_cables.clear()
-	connected_outputs.clear()
+	linked_connections.clear()
 
 func _on_z_index_changed(new_index):
 	super._on_z_index_changed(new_index)

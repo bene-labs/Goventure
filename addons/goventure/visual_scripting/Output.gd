@@ -2,28 +2,25 @@ class_name Output extends Connection
 
 signal destroyed(output)
 
-
-@export_flags("Action", "Flow") var connection_types : int
-
-var connected_inputs = []
-var connected_cables : Array = []
-
 func _ready():
 	super._ready()
 	inactive_color = Color("eac07d")
 	active_color = Color("cd8715")
 	interactionSprite.self_modulate = inactive_color
-	set_value(TriState.State.TRUE)
 
 func set_value(value):
 	super.set_value(value)
 	for cable in connected_cables:
 		cable.adjust_color(value)
-	for input in connected_inputs:
+	for input in linked_connections:
 		input.set_value(value)
 
 func link(connection, cable):
-	connected_inputs.append(connection)
+	if not is_multiple_connections:
+		clear_cables()
+		connected_cables.clear()
+		linked_connections.clear()
+	linked_connections.append(connection)
 	connected_cables.append(cable)
 	for connected_cable in connected_cables:
 		connected_cable.adjust_color(value)
@@ -39,15 +36,20 @@ func remove_cable(cable):
 		return
 	
 	connected_cables.remove_at(idx_to_remove)
-	if connected_inputs[idx_to_remove] != null and "connected_output" in connected_inputs[idx_to_remove]:
-		connected_inputs[idx_to_remove].connected_output = null
-	connected_inputs.remove_at(idx_to_remove)
+	if linked_connections[idx_to_remove] != null and "connected_output" in linked_connections[idx_to_remove]:
+		linked_connections[idx_to_remove].connected_output = null
+	linked_connections.remove_at(idx_to_remove)
 
 func can_connect(other: Connection):
-	if not other is InputConnection:
+	if not super.can_connect(other):
 		return false
-	for accepted_type in other.accepted_connection_types:
-		if connection_types & (1 << accepted_type):
+	if other is Output:
+		return false
+	for type in ConnectionType.values():
+		type = 1 << type
+		if connection_types & type == 0:
+			continue
+		if connection_types & type == other.connection_types & type:
 			return true
 	return false
 
@@ -62,14 +64,29 @@ func _on_destroy():
 			connected_cable.queue_free()
 
 
+func add_connected_nodes_rec(connection : Connection, connected_nodes: Array, searched_nodes = []):
+	if connection in searched_nodes:
+		return
+	searched_nodes.append(connection)
+	if connection.is_standalone:
+		for linked_connection in connection.linked_connections:
+			add_connected_nodes_rec(linked_connection, connected_nodes, searched_nodes)
+		return
+	if connection is Output:
+		return
+	if connection in connected_nodes:
+		return
+	connected_nodes.append(connection.parent_node)
+
+
 func get_connected_nodes():
 	var connected_nodes : Array
 	
-	for input in connected_inputs:
-		while input.is_standalone and input.connected_input != null:
-			input = input.connected_input
-		if not input.is_standalone:
-			connected_nodes.push_back(input.parent_node)
+	for connection in linked_connections:
+		if not connection.is_standalone:
+			connected_nodes.push_back(connection.parent_node)
+			continue
+		add_connected_nodes_rec(connection, connected_nodes)
 	return connected_nodes
 
 

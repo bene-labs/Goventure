@@ -166,16 +166,15 @@ func add_cable_connection():
 	
 	new_start_point.set_script(load(output_script_path if is_input_required else input_script_path))
 	new_start_point.global_position = mouse_pos
+	new_start_point.connection_types = active_start_connection.connection_types
 	get_tree().root.add_child(new_start_point)
 	if is_input_required:
-		new_start_point.connection_types = active_start_connection.connection_types
 		new_start_point.name = "Output"
 		register_output(new_start_point)
 		active_cable.connect_input(new_start_point)
 		active_start_connection.link(new_start_point, active_cable)
 		new_start_point.value = active_start_connection.value
 	else:
-		new_start_point.accepted_connection_types = active_start_connection.accepted_connection_types
 		new_start_point.name = "Input"
 		register_input(new_start_point)
 		active_cable.connect_output(new_start_point)

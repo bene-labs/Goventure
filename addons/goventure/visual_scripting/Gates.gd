@@ -73,4 +73,3 @@ func _on_gate_spawned(new_gate):
 		cables.register_input(input)
 	for output in new_gate.outputs:
 		cables.register_output(output)
-	

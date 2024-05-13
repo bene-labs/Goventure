@@ -10,6 +10,10 @@ enum ConnectionType {
 	FLOW
 }
 
+
+@export_flags("Action", "Flow") var connection_types : int
+@export var is_multiple_connections := true
+
 @onready var wire = get_node_or_null("InteractionPoint/Wire")
 @onready var interactionSprite : TextureRect = %InteractionPoint
 @onready var base_scale = interactionSprite.scale
@@ -22,24 +26,26 @@ var inactive_color = Color("b1e2f1")
 var active_color = Color("65c2dd")
 
 var parent_node : VSNode
+var linked_connections = []
+var connected_cables : Array = []
 
 var is_hovered : bool = false
 var is_active : bool = false
 var is_standalone = true
 
 var value = null
-#var value_type := Variant.Type.TYPE_NIL
 var is_dragged = false
 var drag_offset = Vector2.ZERO
 var is_mouse_movement = false
 
 func _ready():
+	self_modulate = off_color
 	interactionSprite.self_modulate = inactive_color
 	CursorCollision.register(self)
 
 func set_value(value):
 	self.value = value
-	
+	self_modulate = on_color
 	$DelayTimer.wait_time = Goventure.configs.simulation_speed
 	$DelayTimer.start()
 	await $DelayTimer.timeout
@@ -93,13 +99,19 @@ func _process(delta):
 		return
 	set_position(get_global_mouse_position() + drag_offset)
 	_on_position_changed()
-	
+
+
 func can_connect(other : Connection):
-	return false
+	return parent_node == null or parent_node != other.parent_node
+
 
 func _on_z_index_changed(new_index):
 	pass
 
+
+func clear_cables():
+	for cable in connected_cables:
+		cable.queue_free()
 
 @warning_ignore("native_method_override")
 func set_z_index(value, wire_offset = 0):

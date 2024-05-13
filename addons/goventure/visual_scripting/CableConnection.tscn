@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdg0jkwik7k15"]
+[gd_scene load_steps=4 format=3 uid="uid://cdg0jkwik7k15"]
 
 [ext_resource type="Texture2D" uid="uid://03rdi1upb1cy" path="res://addons/goventure/visual_scripting/sprites/Pin_outline_thicc.png" id="1"]
+[ext_resource type="Script" path="res://addons/goventure/visual_scripting/cable_connection.gd" id="1_gsbr8"]
 [ext_resource type="Texture2D" uid="uid://m55uahd2db8t" path="res://addons/goventure/visual_scripting/sprites/Pin_under.png" id="2"]
 
 [node name="CableConnection" type="Control"]
@@ -8,6 +9,7 @@ self_modulate = Color(0, 0, 0, 1)
 layout_mode = 3
 anchors_preset = 0
 scale = Vector2(0.5, 0.5)
+script = ExtResource("1_gsbr8")
 
 [node name="InteractionPoint" type="TextureRect" parent="."]
 unique_name_in_owner = true

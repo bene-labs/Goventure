@@ -15,7 +15,6 @@ var connected_output = null
 var connected_input = null
 var is_hovered = false
 
-var has_started_from_input = false
 
 func _ready():
 	CursorCollision.register(self)
@@ -33,13 +32,12 @@ func set_point(node):
 	set_start_point(node.global_position) if node is Output else set_end_point(node.global_position)
 
 func adjust_color(value):
-	match value:
-		TriState.State.TRUE:
-			line.default_color = on_color
-		TriState.State.FALSE:
-			line.default_color = off_color
-		_:
-			line.default_color = undefined_color
+	if value:
+		self_modulate = on_color
+	elif value == null:
+		self_modulate = off_color
+	else:
+		self_modulate = undefined_color
 
 func set_start_point(point : Vector2):
 	line.points[0] = point
@@ -75,15 +73,11 @@ func connect_to(connection):
 		connect_input(connection)
 
 func connect_input(input):
-	if connected_output == null:
-		has_started_from_input = true
 	connected_input = input
 	set_end_point(input.get_attachment_point())
 	input.position_changed.connect(_on_input_position_changed)
 	
 func connect_output(output):
-	if connected_input == null:
-		has_started_from_input = false
 	connected_output = output
 	set_start_point(output.get_attachment_point())
 	output.position_changed.connect(_on_output_position_changed)
@@ -127,8 +121,8 @@ func _exit_tree():
 	CursorCollision.unregister(self)
 	if weakref(connected_output).get_ref():
 		if connected_output is InputConnection:
-			if connected_output.connected_cable != null:
-				connected_output.connected_cable.queue_free()
+			for connected_cable in connected_output.connected_cables:
+				connected_cable.queue_free()
 			connected_output.queue_free()
 		else:
 			connected_output.remove_cable(self)

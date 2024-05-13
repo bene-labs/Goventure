@@ -50,10 +50,17 @@ func save_to_file():
 	
 	for output : Output in outputs:
 		for node : VSNode in output.get_connected_nodes():
-			text += output.name + ' '
+			text += output.name
+			if node is ActionCombinationNode:
+				text += " "
+			else:
+				text += ":\n\t"
 			text += node.title + ' '
-			text += node.param 
-			text += ":\n"
+			text += node.param
+			if node is ActionCombinationNode:
+				text += ":\n"
+			else:
+				text += "\n"
 			text += add_action_text_rec(node)
 	file.store_string(text)
 

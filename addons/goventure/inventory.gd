@@ -38,9 +38,13 @@ func _input(event):
 			action = button.text
 	for button in second_item_buttons.get_children():
 		if button.button_pressed:
-			selected_item2 = button.text
-	$ActionLabel.text = action + " " + \
-		selected_item1 + " with " + selected_item2
+			if selected_item2 == button.text:
+				selected_item2 = ""
+			else:
+				selected_item2 = button.text
+	$ActionLabel.text = action + " " + selected_item1
+	if selected_item2 != "":
+		$ActionLabel.text += " with " + selected_item2
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -58,7 +62,7 @@ func _on_run_button_pressed():
 
 	for i in range(lines.size()):
 		var line : String = lines[i]
-		if line.contains(action) and line.contains(selected_item2):
+		if line.contains(action) and (selected_item2 == "" or line.contains(selected_item2)):
 			line = lines[i+1]
 			while line.contains("\t"):
 				events.push_back(line.substr(6, line.length() - 7))
