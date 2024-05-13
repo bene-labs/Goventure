@@ -4,6 +4,7 @@ signal value_changed
 signal clicked(node)
 signal released_over(node)
 signal position_changed(new_pos)
+signal destroyed(connection)
 
 enum ConnectionType {
 	ACTION,
@@ -25,7 +26,7 @@ var on_color = Color("241ec9")
 var inactive_color = Color("b1e2f1")
 var active_color = Color("65c2dd")
 
-var parent_node : VSNode
+var parent_node : VSNode = null
 var linked_connections = []
 var connected_cables : Array = []
 
@@ -127,3 +128,4 @@ func _on_position_changed():
 
 func _exit_tree():
 	CursorCollision.unregister(self)
+	destroyed.emit(self)

@@ -1,6 +1,5 @@
 class_name Output extends Connection
 
-signal destroyed(output)
 
 func _ready():
 	super._ready()
@@ -88,8 +87,3 @@ func get_connected_nodes():
 			continue
 		add_connected_nodes_rec(connection, connected_nodes)
 	return connected_nodes
-
-
-func _exit_tree():
-	super._exit_tree()
-	emit_signal("destroyed", self)

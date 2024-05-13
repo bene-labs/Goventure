@@ -1,9 +1,5 @@
 class_name InputConnection extends Connection
 
-signal destroyed(input)
-
-
-
 @onready var cables = get_tree().get_nodes_in_group("Cables")[0]
 
 
@@ -87,6 +83,3 @@ func _on_z_index_changed(new_index):
 func _on_destroy():
 	clear_cables()
 
-func _exit_tree():
-	super._exit_tree()
-	emit_signal("destroyed", self)
