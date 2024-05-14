@@ -4,8 +4,6 @@ signal active_cable_value_changed(is_active)
 
 var cable_scene = preload("res://addons/goventure/visual_scripting/Cable.tscn")
 var cable_connection_scene = preload("res://addons/goventure/visual_scripting/CableConnection.tscn")
-var input_script_path = "res://addons/goventure/visual_scripting/Input.gd"
-var output_script_path = "res://addons/goventure/visual_scripting/Output.gd"
 
 var active_cable : Cable = null
 var active_start_connection = null
@@ -68,9 +66,11 @@ func show_available_connections(from : Connection):
 	for input in inputs:
 		if input.can_connect(from):
 			input.set_active()
+			CursorCollision.add_to_whitelist(input)
 	for output in outputs:
 		if output.can_connect(from):
 			output.set_active()
+			CursorCollision.add_to_whitelist(output)
 
 
 func hide_available_connections():
@@ -79,8 +79,7 @@ func hide_available_connections():
 	for output in outputs:
 		output.set_inactive()
 	active_cable_value_changed.emit(false)
-	CursorCollision.remove_from_whitelist(input_script_path if is_input_required else output_script_path)
-
+	CursorCollision.clear_whitelist()
 
 func create_new_cable(start_node):
 	if active_cable != null:
@@ -92,7 +91,7 @@ func create_new_cable(start_node):
 	#active_cable.outline.z_index = start_node.z_index - 1
 	active_start_connection = start_node
 	active_cable_value_changed.emit(true)
-	CursorCollision.add_to_whitelist(input_script_path if is_input_required else output_script_path)
+	# CursorCollision.add_to_whitelist(input_script_path if is_input_required else output_script_path)
 
 
 func _on_connection_released(over):
@@ -129,11 +128,10 @@ func add_cable_connection():
 	get_tree().root.add_child(new_start_point)
 	active_start_connection.link(new_start_point, active_cable)
 	new_start_point.link(active_start_connection, active_cable)
+	active_cable.connect_to(new_start_point)
 	if is_input_required:
-		active_cable.connect_input(new_start_point)
 		register_input(new_start_point)
 	else:
-		active_cable.connect_output(new_start_point)
 		register_output(new_start_point)
 	#if is_input_required:
 		#new_start_point.name = "Output"

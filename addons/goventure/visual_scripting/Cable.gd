@@ -11,8 +11,8 @@ var on_color = Color("241ec9")
 var hover_color = Color.CORNFLOWER_BLUE
 var side_offset = 5
 
-var connected_output : Connection = null
-var connected_input : Connection = null
+var start_connection : Connection = null
+var end_connection : Connection = null
 var is_hovered := false
 
 
@@ -20,9 +20,9 @@ func _ready():
 	CursorCollision.register(self)
 
 func update_loose_point(position) -> bool:
-	if connected_output == null:
+	if start_connection == null:
 		set_start_point(position)
-	elif connected_input == null:
+	elif end_connection == null:
 		set_end_point(position)
 	else:
 		return false
@@ -69,26 +69,23 @@ func calc_collision(start, end):
 func is_point_inside(point) -> bool:
 	return Geometry2D.is_point_in_polygon(point, collision_shape.polygon)
 
+
 func connect_to(connection):
-	if connection is Output:
-		connect_output(connection)
+	if end_connection == null:
+		end_connection = connection
+		set_end_point(end_connection.get_attachment_point())
+		end_connection.position_changed.connect(_on_end_position_changed)
 	else:
-		connect_input(connection)
+		start_connection = connection
+		set_start_point(start_connection.get_attachment_point())
+		start_connection.position_changed.connect(_on_start_position_changed)
 
-func connect_input(input):
-	connected_input = input
-	set_end_point(input.get_attachment_point())
-	input.position_changed.connect(_on_input_position_changed)
-	
-func connect_output(output):
-	connected_output = output
-	set_start_point(output.get_attachment_point())
-	output.position_changed.connect(_on_output_position_changed)
 
-func _on_input_position_changed(new_pos):
+
+func _on_end_position_changed(new_pos):
 	set_end_point(new_pos)
 
-func _on_output_position_changed(new_pos):
+func _on_start_position_changed(new_pos):
 	set_start_point(new_pos)
 
 func get_end_point():
@@ -122,21 +119,21 @@ func _input(event):
 
 func destroy():
 	CursorCollision.unregister(self)
-	if connected_output != null:
+	if start_connection != null:
 		#if connected_input != null and connected_output.is_standalone \
 		#and connected_output.get_connected_input_nodes().size() <= 1:
 			#connected_output.clear_cables()
 			#connected_output.queue_free()
 		#else:
-		connected_output.remove_cable(self)
-		connected_output.unlink(connected_input)
-	if connected_input == null:
+		start_connection.remove_cable(self)
+		start_connection.unlink(end_connection)
+	if end_connection == null:
 		return
 	#if connected_output != null and connected_input.is_standalone \
 	#and connected_input.get_connected_output_nodes().size() <= 1:
 		#connected_input.clear_cables()
 		#connected_input.queue_free()
 		#return
-	connected_input.remove_cable(self)
-	connected_input.unlink(connected_output)
+	end_connection.remove_cable(self)
+	end_connection.unlink(start_connection)
 	queue_free()
