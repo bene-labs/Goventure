@@ -58,13 +58,18 @@ func set_value(value):
 
 
 func link(connection : Connection, cable: Cable):
-	if not is_multiple_connection_allowed:
-		clear_cables()
-		linked_connections.clear()
+	if connection in linked_connections:
+		return
 	linked_connections.append(connection)
+	if cable == null:
+		return
+	if not is_multiple_connection_allowed and not is_standalone:
+		clear_cables()
 	connected_cables.append(cable)
 	for connected_cable in connected_cables:
 		connected_cable.adjust_color(value)
+	if is_standalone and not is_multiple_connection_allowed:
+		_on_new_cable(connection)
 
 
 func unlink(from: Connection):
@@ -143,6 +148,7 @@ func get_connected_nodes():
 
 
 func get_connected_input_nodes():
+	var test
 	return get_all_connections() \
 		.filter(func(x): return x.is_standalone and x is InputConnection) \
 		.map(func(x): return x.parent_node)
@@ -203,19 +209,23 @@ func set_z_index(value, wire_offset = 0):
 
 
 func _on_clicked(node):
-	if is_multiple_connection_allowed:
-		return
-	clear_cables()
-	connected_cables.clear()
-	linked_connections.clear()
+	if not is_multiple_connection_allowed and not is_standalone:
+		clear_cables()
+
+
+func _on_new_cable(to_connection):
+	var connected_input_nodes = get_connected_input_nodes()
+	if connected_input_nodes.size() > 1:
+		for input_node in connected_input_nodes:
+			var inputs = input_node.linked_connections.filter(func(x): return x is InputConnection)
+			if to_connection in inputs:
+				continue
+			inputs[0].clear_cables()
 
 
 func _on_released_over(node):
-	if is_multiple_connection_allowed:
-		return
-	clear_cables()
-	connected_cables.clear()
-	linked_connections.clear()
+	if not is_multiple_connection_allowed and not is_standalone:
+		clear_cables()
 
 
 func _on_position_changed():
