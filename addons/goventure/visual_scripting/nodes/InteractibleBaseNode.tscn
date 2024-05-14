@@ -9,14 +9,13 @@
 [node name="InteractibleBaseNode" type="Control" groups=["Gate"]]
 layout_mode = 3
 anchors_preset = 0
+mouse_filter = 2
 script = ExtResource("1_6k8mp")
 output_node = ExtResource("2_vx4ha")
 output_label = ExtResource("4_kw8hq")
 save_directory = "res://addons/goventure/resources"
 
-[node name="Sprite" type="Node2D" parent="."]
-
-[node name="Outline" type="ColorRect" parent="Sprite"]
+[node name="Outline" type="ColorRect" parent="."]
 unique_name_in_owner = true
 z_index = 1000
 offset_right = 220.0
@@ -24,28 +23,26 @@ offset_bottom = 90.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect" type="ColorRect" parent="Sprite"]
+[node name="ColorRect" type="ColorRect" parent="."]
 unique_name_in_owner = true
 z_index = 1000
 offset_left = 2.0
 offset_top = 2.0
 offset_right = 218.0
 offset_bottom = 88.0
-mouse_filter = 2
 
-[node name="InteractibleSelection" type="OptionButton" parent="Sprite"]
+[node name="InteractibleSelection" type="OptionButton" parent="."]
 unique_name_in_owner = true
 z_index = 1000
 offset_left = 3.0
 offset_top = 3.0
 offset_right = 178.0
 offset_bottom = 31.0
-mouse_filter = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_6t1mn")
 theme_override_font_sizes/font_size = 26
 
-[node name="OutputLabels" type="VBoxContainer" parent="Sprite"]
+[node name="OutputLabels" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
 z_index = 1000
 offset_left = 2.0
@@ -54,11 +51,11 @@ offset_right = 216.0
 offset_bottom = 107.0
 theme_override_constants/separation = 29
 
-[node name="ActionLabel" parent="Sprite/OutputLabels" instance=ExtResource("4_kw8hq")]
+[node name="ActionLabel" parent="OutputLabels" instance=ExtResource("4_kw8hq")]
 layout_mode = 2
 text = "Default Action"
 
-[node name="Outputs" type="VBoxContainer" parent="Sprite"]
+[node name="Outputs" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
 show_behind_parent = true
 offset_left = 258.0
@@ -66,7 +63,7 @@ offset_top = 29.0
 offset_right = 306.0
 offset_bottom = 77.0
 
-[node name="Default Action" parent="Sprite/Outputs" instance=ExtResource("2_0oh4h")]
+[node name="Default Action" parent="Outputs" instance=ExtResource("2_0oh4h")]
 show_behind_parent = true
 layout_mode = 2
 connection_types = 1
@@ -76,4 +73,4 @@ connection_types = 1
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(0, 0, 220, 0, 220, 90, 1, 90)
 
-[connection signal="item_selected" from="Sprite/InteractibleSelection" to="." method="_on_interactible_selection_item_selected"]
+[connection signal="item_selected" from="InteractibleSelection" to="." method="_on_interactible_selection_item_selected"]

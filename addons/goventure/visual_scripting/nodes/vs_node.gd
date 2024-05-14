@@ -13,8 +13,7 @@ var hover_color = Color.LIGHT_BLUE
 var default_color
 
 @onready var gates : Gates = get_parent()
-@onready var collision_shape = $Area2D/CollisionPolygon2D
-@onready var image = $Sprite
+@onready var image = %ColorRect
 
 var outputs = []
 var inputs = []
@@ -28,7 +27,9 @@ var title := "Node"
 var param := "Nil"
 
 func _ready():
-	CursorCollision.register(self)
+	image.mouse_entered.connect(_on_mouse_entered)
+	image.mouse_exited.connect(_on_mouse_exited)
+	#CursorCollision.register(self)
 	default_color = image.modulate
 
 	for output in %Outputs.get_children():
@@ -65,11 +66,11 @@ func _on_mouse_exited():
 
 func set_dragged():
 	is_dragged = true
-	CursorCollision.lock()
+	#CursorCollision.lock()
 	
 func set_undragged():
 	is_dragged = false
-	CursorCollision.unlock()
+	#CursorCollision.unlock()
 
 func _input(event):
 	if is_dragged and Input.is_action_just_released("gate"):
@@ -79,7 +80,7 @@ func _input(event):
 		return
 
 	if Input.is_action_just_pressed("destroy") and not is_dragged:
-		CursorCollision.unregister(self)
+		#CursorCollision.unregister(self)
 		emit_signal("destroy")
 		call_deferred("queue_free")
 	elif Input.is_action_just_pressed("gate") and not drag_mode_queded:
@@ -117,9 +118,7 @@ func get_z_index():
 func rotate_counterclockwise():
 	$Sprite.rotate(deg_to_rad(90.0))
 	update_position(position)
-	
-func is_point_inside(point):
-	return Geometry2D.is_point_in_polygon($Sprite.to_local(point), collision_shape.polygon)
+
 
 func _exit_tree():
 	emit_signal("destroyed", self)

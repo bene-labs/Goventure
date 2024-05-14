@@ -23,7 +23,7 @@ var drag_mode_queded = false
 var sprite_z_index = z_index
 
 func _ready():
-	CursorCollision.register(self)
+	# CursorCollision.register(self)
 	default_color = image.modulate
 
 	if output != null:
@@ -59,11 +59,11 @@ func _on_mouse_exited():
 
 func set_dragged():
 	is_dragged = true
-	CursorCollision.lock()
+	# CursorCollision.lock()
 	
 func set_undragged():
 	is_dragged = false
-	CursorCollision.unlock()
+	# CursorCollision.unlock()
 
 func _input(event):
 	if is_dragged and Input.is_action_just_released("gate"):
@@ -73,7 +73,7 @@ func _input(event):
 		return
 
 	if Input.is_action_just_pressed("destroy") and not is_dragged:
-		CursorCollision.unregister(self)
+		# CursorCollision.unregister(self)
 		emit_signal("destroy")
 		call_deferred("queue_free")
 	elif Input.is_action_just_pressed("gate") and not drag_mode_queded:

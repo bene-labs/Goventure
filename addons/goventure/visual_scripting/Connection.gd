@@ -40,9 +40,11 @@ var drag_offset = Vector2.ZERO
 var is_mouse_movement = false
 
 func _ready():
+	mouse_entered.connect(_on_mouse_entered)
+	mouse_exited.connect(_on_mouse_exited)
 	self_modulate = off_color
 	interactionSprite.self_modulate = inactive_color
-	CursorCollision.register(self)
+	# CursorCollision.register(self)
 	clicked.connect(_on_clicked)
 	released_over.connect(_on_released_over)
 
@@ -155,10 +157,10 @@ func _input(event):
 	elif is_standalone and Input.is_action_just_pressed("drag_connection"):
 		is_dragged = true
 		drag_offset = global_position - get_global_mouse_position()
-		CursorCollision.lock()
+		# CursorCollision.lock()
 	elif is_dragged and Input.is_action_just_released("drag_connection"):
 		is_dragged = false
-		CursorCollision.unlock()
+		# CursorCollision.unlock()
 
 func _process(delta):
 	if !is_dragged or !is_mouse_movement:
@@ -222,5 +224,5 @@ func _exit_tree():
 	clear_cables()
 	for linked_connection in linked_connections:
 		linked_connection.unlink(self)
-	CursorCollision.unregister(self)
+	# CursorCollision.unregister(self)
 	destroyed.emit(self)

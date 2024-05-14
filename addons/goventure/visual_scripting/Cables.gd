@@ -79,7 +79,7 @@ func hide_available_connections():
 	for output in outputs:
 		output.set_inactive()
 	active_cable_value_changed.emit(false)
-	CursorCollision.remove_from_whitelist(input_script_path if is_input_required else output_script_path)
+	# CursorCollision.remove_from_whitelist(input_script_path if is_input_required else output_script_path)
 
 
 func create_new_cable(start_node):
@@ -92,7 +92,7 @@ func create_new_cable(start_node):
 	#active_cable.outline.z_index = start_node.z_index - 1
 	active_start_connection = start_node
 	active_cable_value_changed.emit(true)
-	CursorCollision.add_to_whitelist(input_script_path if is_input_required else output_script_path)
+	# CursorCollision.add_to_whitelist(input_script_path if is_input_required else output_script_path)
 
 
 func _on_connection_released(over):
@@ -111,11 +111,11 @@ func add_cable_connection():
 	if active_cable == null:
 		return
 	for input in inputs:
-		if input.is_point_inside(get_global_mouse_position()):
+		if input.is_hovered:
 			remove_active_cable()
 			return
 	for output in outputs:
-		if output.is_point_inside(get_global_mouse_position()):
+		if output.is_hovered:
 			remove_active_cable()
 			return
 	var mouse_pos = get_global_mouse_position()
@@ -148,7 +148,7 @@ func add_cable_connection():
 		#new_start_point.link_chained_input(active_start_connection, active_cable)
 		#active_start_connection.link(new_start_point, active_cable)
 	
-	CursorCollision.put_in_front(new_start_point)
+	# CursorCollision.put_in_front(new_start_point)
 	active_cable = null
 	hide_available_connections()
 	

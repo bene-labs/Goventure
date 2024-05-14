@@ -28,7 +28,7 @@ func put_gate_in_front(gate):
 	gates.erase(gate)
 	gates.push_front(gate)
 	apply_gate_z_index()
-	CursorCollision.update_order()
+	# CursorCollision.update_order()
 
 func apply_gate_z_index():
 	var z_index = gates.size() * 3

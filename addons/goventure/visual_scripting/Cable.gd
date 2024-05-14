@@ -17,7 +17,8 @@ var is_hovered := false
 
 
 func _ready():
-	CursorCollision.register(self)
+	pass
+	# CursorCollision.register(self)
 
 func update_loose_point(position) -> bool:
 	if connected_output == null:
@@ -121,7 +122,7 @@ func _input(event):
 		destroy()
 
 func destroy():
-	CursorCollision.unregister(self)
+	# CursorCollision.unregister(self)
 	if connected_output != null:
 		#if connected_input != null and connected_output.is_standalone \
 		#and connected_output.get_connected_input_nodes().size() <= 1:
