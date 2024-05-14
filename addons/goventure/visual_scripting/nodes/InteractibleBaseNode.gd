@@ -32,7 +32,7 @@ func _ready():
 
 func add_action_text_rec(start_node: VSNode, text := "") -> String:
 	for output : Output in start_node.outputs:
-		for node : VSNode in output.get_connected_nodes():
+		for node : VSNode in output.get_connected_input_nodes():
 			text += "\t" + node.title + " " + node.param + "\n"
 			text += add_action_text_rec(node)
 	return text
@@ -49,7 +49,7 @@ func save_to_file():
 	var text := ""
 	
 	for output : Output in outputs:
-		for node : VSNode in output.get_connected_nodes():
+		for node : VSNode in output.get_connected_input_nodes():
 			text += output.name
 			if node is ActionCombinationNode:
 				text += " "

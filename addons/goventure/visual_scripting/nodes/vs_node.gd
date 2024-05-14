@@ -37,7 +37,6 @@ func _ready():
 		output.parent_node = self
 		position_changed.connect(output._on_position_changed)
 		z_index_changed.connect(output._on_z_index_changed)
-		destroy.connect(output._on_destroy)
 	if get_node_or_null("%Inputs") != null:
 		for input in %Inputs.get_children():
 			inputs.append(input)
@@ -46,7 +45,6 @@ func _ready():
 			input.value_changed.connect(_on_input_changed)
 			position_changed.connect(input._on_position_changed)
 			z_index_changed.connect(input._on_z_index_changed)
-			destroy.connect(input._on_destroy)
 		call_deferred("_on_input_changed")
 	gates._on_gate_spawned(self)
 

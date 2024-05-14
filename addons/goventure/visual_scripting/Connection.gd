@@ -13,7 +13,7 @@ enum ConnectionType {
 
 
 @export_flags("Action", "Flow") var connection_types : int
-@export var is_multiple_connections := true
+@export var is_multiple_connection_allowed := true
 
 @onready var wire = get_node_or_null("InteractionPoint/Wire")
 @onready var interactionSprite : TextureRect = %InteractionPoint
@@ -43,6 +43,9 @@ func _ready():
 	self_modulate = off_color
 	interactionSprite.self_modulate = inactive_color
 	CursorCollision.register(self)
+	clicked.connect(_on_clicked)
+	released_over.connect(_on_released_over)
+
 
 func set_value(value):
 	self.value = value
@@ -53,6 +56,16 @@ func set_value(value):
 	value_changed.emit()
 
 
+func link(connection : Connection, cable: Cable):
+	if not is_multiple_connection_allowed:
+		clear_cables()
+		linked_connections.clear()
+	linked_connections.append(connection)
+	connected_cables.append(cable)
+	for connected_cable in connected_cables:
+		connected_cable.adjust_color(value)
+
+
 func get_attachment_point():
 	return %AttachmentPoint.global_position
 
@@ -61,21 +74,73 @@ func is_point_inside(point):
 	return get_attachment_point().distance_to(point) <= collision_radius
 
 
+func can_connect(other : Connection):
+	if parent_node != null and parent_node == other.parent_node:
+		return false
+	if other in get_all_connections():
+		return false
+	return true
+
+
 func _on_mouse_entered():
 	interactionSprite.scale = base_scale * 1.25
 	is_hovered = true
-	
+
+
 func _on_mouse_exited():
 	interactionSprite.scale = base_scale
 	is_hovered = false
-	
+
+
 func set_active():
 	is_active = true
 	interactionSprite.self_modulate = active_color
-	
+
+
 func set_inactive():
 	is_active = false
 	interactionSprite.self_modulate = inactive_color
+
+
+func add_all_connections_rec(connection : Connection, connected_nodes: Array, \
+	searched_nodes := []):
+	if connection in searched_nodes:
+		return
+	searched_nodes.append(connection)
+	if connection.is_standalone:
+		for linked_connection in connection.linked_connections:
+			add_all_connections_rec(linked_connection, connected_nodes, searched_nodes)
+	if connection in connected_nodes:
+		return
+	connected_nodes.append(connection)
+
+func get_all_connections():
+	var all_connections : Array
+	
+	for connection in linked_connections:
+		if not connection.is_standalone:
+			all_connections.push_back(connection)
+			continue
+		add_all_connections_rec(connection, all_connections)
+	return all_connections
+
+func get_connected_nodes():
+	return get_all_connections() \
+		.filter(func(x): return x.parent_node != null) \
+		.map(func(x): return x.parent_node)
+
+
+func get_connected_input_nodes():
+	return get_all_connections() \
+		.filter(func(x): return x.is_standalone and x is InputConnection) \
+		.map(func(x): return x.parent_node)
+
+
+func get_connected_output_nodes():
+	return get_all_connections() \
+		.filter(func(x): return not x.is_standalone and x is Output) \
+		.map(func(x): return x.parent_node)
+
 
 func _input(event):
 	if not is_hovered:
@@ -102,17 +167,28 @@ func _process(delta):
 	_on_position_changed()
 
 
-func can_connect(other : Connection):
-	return parent_node == null or parent_node != other.parent_node
-
-
 func _on_z_index_changed(new_index):
-	pass
+	set_z_index(new_index)
+
+
+func remove_cable(to_remove: Cable):
+	connected_cables.erase(to_remove)
+
+
+func unlink(from: Connection):
+	if from == null:
+		return
+	from.linked_connections.erase(self)
+	linked_connections.erase(from)
+	if is_standalone and get_connected_nodes().size() == 0:
+		queue_free()
 
 
 func clear_cables():
-	for cable in connected_cables:
-		cable.queue_free()
+	for cable in connected_cables.duplicate():
+		cable.destroy()
+	connected_cables.clear()
+
 
 @warning_ignore("native_method_override")
 func set_z_index(value, wire_offset = 0):
@@ -122,10 +198,29 @@ func set_z_index(value, wire_offset = 0):
 	wire.z_index = wire_offset
 
 
+func _on_clicked(node):
+	if is_multiple_connection_allowed:
+		return
+	clear_cables()
+	connected_cables.clear()
+	linked_connections.clear()
+
+
+func _on_released_over(node):
+	if is_multiple_connection_allowed:
+		return
+	clear_cables()
+	connected_cables.clear()
+	linked_connections.clear()
+
+
 func _on_position_changed():
 	position_changed.emit(get_attachment_point())
 
 
 func _exit_tree():
+	clear_cables()
+	for linked_connection in linked_connections:
+		linked_connection.unlink(self)
 	CursorCollision.unregister(self)
 	destroyed.emit(self)

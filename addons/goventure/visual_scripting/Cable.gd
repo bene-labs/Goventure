@@ -11,9 +11,9 @@ var on_color = Color("241ec9")
 var hover_color = Color.CORNFLOWER_BLUE
 var side_offset = 5
 
-var connected_output = null
-var connected_input = null
-var is_hovered = false
+var connected_output : Connection = null
+var connected_input : Connection = null
+var is_hovered := false
 
 
 func _ready():
@@ -45,13 +45,16 @@ func set_start_point(point : Vector2):
 	
 	calc_collision(outline.points[0], outline.points[-1])
 
+
 func get_start_point():
 	return line.points[0]
+
 
 func set_end_point(point : Vector2):
 	line.points[-1] = point
 	outline.points[-1] = point
 	calc_collision(outline.points[-2], outline.points[-1])
+
 
 func calc_collision(start, end):
 	collision_shape.polygon[0] = start + start.direction_to(end) * side_offset + \
@@ -115,23 +118,25 @@ func _input(event):
 	if not is_hovered:
 		return
 	if Input.is_action_just_pressed("destroy"):
-		queue_free()
+		destroy()
 
-func _exit_tree():
+func destroy():
 	CursorCollision.unregister(self)
-	if weakref(connected_output).get_ref():
-		if connected_output is InputConnection:
-			for connected_cable in connected_output.connected_cables:
-				connected_cable.queue_free()
-			connected_output.queue_free()
-		else:
-			connected_output.remove_cable(self)
-	if !weakref(connected_input).get_ref() or ("connected_cable" in connected_input and connected_input.connected_cable != self):
+	if connected_output != null:
+		#if connected_input != null and connected_output.is_standalone \
+		#and connected_output.get_connected_input_nodes().size() <= 1:
+			#connected_output.clear_cables()
+			#connected_output.queue_free()
+		#else:
+		connected_output.remove_cable(self)
+		connected_output.unlink(connected_input)
+	if connected_input == null:
 		return
-	if connected_input is Output:
-		connected_input.remove_cable(self)
-		connected_input.delete_all_cables()
-		connected_input.queue_free()
-		return
-	connected_input.connected_cables.clear()
-	connected_input.set_value(TriState.State.UNDEFINED)
+	#if connected_output != null and connected_input.is_standalone \
+	#and connected_input.get_connected_output_nodes().size() <= 1:
+		#connected_input.clear_cables()
+		#connected_input.queue_free()
+		#return
+	connected_input.remove_cable(self)
+	connected_input.unlink(connected_output)
+	queue_free()
