@@ -148,15 +148,14 @@ func get_connected_nodes():
 
 
 func get_connected_input_nodes():
-	var test
 	return get_all_connections() \
-		.filter(func(x): return x.is_standalone and x is InputConnection) \
+		.filter(func(x): return x.parent_node != null and x is InputConnection) \
 		.map(func(x): return x.parent_node)
 
 
 func get_connected_output_nodes():
 	return get_all_connections() \
-		.filter(func(x): return not x.is_standalone and x is Output) \
+		.filter(func(x): return x.parent_node != null and x is Output) \
 		.map(func(x): return x.parent_node)
 
 #endregion
