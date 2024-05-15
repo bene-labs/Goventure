@@ -216,7 +216,7 @@ func _on_new_cable(to_connection):
 	var connected_input_nodes = get_connected_input_nodes()
 	if connected_input_nodes.size() > 1:
 		for input_node in connected_input_nodes:
-			var inputs = input_node.linked_connections.filter(func(x): return x is InputConnection)
+			var inputs = input_node.inputs
 			if to_connection in inputs:
 				continue
 			inputs[0].clear_cables()
