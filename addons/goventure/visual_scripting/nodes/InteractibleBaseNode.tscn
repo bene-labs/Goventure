@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cr5x5uinj6cpv"]
+[gd_scene load_steps=5 format=3 uid="uid://cr5x5uinj6cpv"]
 
 [ext_resource type="Script" path="res://addons/goventure/visual_scripting/nodes/InteractibleBaseNode.gd" id="1_6k8mp"]
-[ext_resource type="PackedScene" uid="uid://cuas374ejpad6" path="res://addons/goventure/visual_scripting/Output.tscn" id="2_0oh4h"]
 [ext_resource type="PackedScene" uid="uid://bjavrs267kt0p" path="res://addons/goventure/visual_scripting/ActionOutput.tscn" id="2_vx4ha"]
 [ext_resource type="FontFile" uid="uid://cfol7ig1l2b5" path="res://fonts/Ubuntu/Ubuntu-Bold.ttf" id="3_6t1mn"]
 [ext_resource type="PackedScene" uid="uid://orv5ncqws73f" path="res://addons/goventure/visual_scripting/action_label.tscn" id="4_kw8hq"]
@@ -20,7 +19,7 @@ save_directory = "res://addons/goventure/resources"
 unique_name_in_owner = true
 z_index = 1000
 offset_right = 220.0
-offset_bottom = 90.0
+offset_bottom = 40.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
@@ -30,7 +29,7 @@ z_index = 1000
 offset_left = 2.0
 offset_top = 2.0
 offset_right = 218.0
-offset_bottom = 88.0
+offset_bottom = 38.0
 mouse_filter = 2
 
 [node name="InteractibleSelection" type="OptionButton" parent="Sprite"]
@@ -49,31 +48,22 @@ theme_override_font_sizes/font_size = 26
 unique_name_in_owner = true
 z_index = 1000
 offset_left = 2.0
-offset_top = 36.0
+offset_top = 40.0
 offset_right = 216.0
-offset_bottom = 107.0
+offset_bottom = 111.0
 theme_override_constants/separation = 29
-
-[node name="ActionLabel" parent="Sprite/OutputLabels" instance=ExtResource("4_kw8hq")]
-layout_mode = 2
-text = "Default Action"
 
 [node name="Outputs" type="VBoxContainer" parent="Sprite"]
 unique_name_in_owner = true
 show_behind_parent = true
 offset_left = 258.0
-offset_top = 29.0
+offset_top = 33.0
 offset_right = 306.0
-offset_bottom = 77.0
-
-[node name="Default Action" parent="Sprite/Outputs" instance=ExtResource("2_0oh4h")]
-show_behind_parent = true
-layout_mode = 2
-connection_types = 1
+offset_bottom = 81.0
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(0, 0, 220, 0, 220, 90, 1, 90)
+polygon = PackedVector2Array(0, 0, 220, 0, 220, 40, 1, 40)
 
 [connection signal="item_selected" from="Sprite/InteractibleSelection" to="." method="_on_interactible_selection_item_selected"]

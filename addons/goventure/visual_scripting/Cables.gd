@@ -121,10 +121,7 @@ func add_cable_connection():
 	var new_start_point = cable_connection_scene.instantiate()
 	
 	new_start_point.global_position = mouse_pos
-	new_start_point.connection_types = active_start_connection.connection_types
-	new_start_point.is_multiple_connection_allowed = \
-		active_start_connection.is_multiple_connection_allowed
-	new_start_point.value = active_start_connection.value
+	new_start_point.copy(active_start_connection)
 	get_tree().root.add_child(new_start_point)
 	active_start_connection.link(new_start_point, active_cable)
 	new_start_point.link(active_start_connection, active_cable)

@@ -15,8 +15,18 @@ func _ready():
 	for action in Goventure.actions:
 		var new_label := output_label.instantiate()
 		var new_output := output_node.instantiate()
-		new_label.text = action
-		new_output.name = action
+		new_label.text = action.title
+		new_output.name = action.title
+		match action.combination_type:
+			action.CombinationType.OPTIONAL:
+				new_output.connection_types = 1 << Connection.ConnectionType.ACTION
+				new_output.connection_types += 1 << Connection.ConnectionType.FLOW
+			action.CombinationType.MANDTORY:
+				new_output.connection_types = 1 << Connection.ConnectionType.ACTION
+				new_output.incompatible_connection_types = 1 << Connection.ConnectionType.FLOW
+			action.CombinationType.NONE:
+				new_output.connection_types = 1 << Connection.ConnectionType.FLOW
+				new_output.incompatible_connection_types = 1 << Connection.ConnectionType.ACTION
 		%OutputLabels.add_child(new_label)
 		%Outputs.add_child(new_output)
 		%Outline.size.y += 50

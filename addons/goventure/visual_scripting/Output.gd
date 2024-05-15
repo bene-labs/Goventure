@@ -20,10 +20,4 @@ func can_connect(other: Connection):
 		return false
 	if other is Output:
 		return false
-	for type in ConnectionType.values():
-		type = 1 << type
-		if connection_types & type == 0:
-			continue
-		if connection_types & type == other.connection_types & type:
-			return true
-	return false
+	return true

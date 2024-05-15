@@ -13,6 +13,7 @@ enum ConnectionType {
 
 
 @export_flags("Action", "Flow") var connection_types : int
+@export_flags("Action", "Flow") var incompatible_connection_types : int
 @export var is_multiple_connection_allowed := true
 @export var undefined_color = Color.RED
 @export var off_color = Color("545151")
@@ -46,6 +47,13 @@ func _ready():
 	CursorCollision.register(self)
 	clicked.connect(_on_clicked)
 	released_over.connect(_on_released_over)
+
+
+func copy(other: Connection):
+	connection_types = other.connection_types
+	incompatible_connection_types = other.incompatible_connection_types
+	is_multiple_connection_allowed = other.is_multiple_connection_allowed
+	value = other.value
 
 
 func set_value(value):
@@ -90,7 +98,19 @@ func can_connect(other : Connection):
 		return false
 	if other in get_all_connections():
 		return false
-	return true
+	for type in ConnectionType.values():
+		type = 1 << type
+		if incompatible_connection_types & type and other.connection_types & type:
+			return false
+		if other.incompatible_connection_types & type and connection_types & type:
+			return false
+	for type in ConnectionType.values():
+		type = 1 << type
+		if connection_types & type == 0:
+			continue
+		if connection_types & type == other.connection_types & type:
+			return true
+	return false
 
 #region mouse interaction
 func _on_mouse_entered():
