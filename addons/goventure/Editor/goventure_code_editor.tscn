@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c26fhm4hepdy2"]
+
+[node name="GoventureCodeEditor" type="CodeEdit"]
+offset_right = 1145.0
+offset_bottom = 639.0
+line_folding = true
+indent_automatic = true

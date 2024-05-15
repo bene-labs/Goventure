@@ -45,7 +45,7 @@ func _input(event):
 
 
 func save_to_file():
-	var file := FileAccess.open(save_directory + "/" + title + ".txt", FileAccess.WRITE)
+	var file := FileAccess.open(save_directory + "/" + title + ".gv", FileAccess.WRITE)
 	var text := ""
 	
 	for output : Output in outputs:

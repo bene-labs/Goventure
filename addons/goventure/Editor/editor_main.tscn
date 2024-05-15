@@ -1,19 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0d2rgfddgckd"]
+[gd_scene load_steps=6 format=3 uid="uid://c0d2rgfddgckd"]
 
 [ext_resource type="Texture2D" uid="uid://dfi7fhfc4dbc3" path="res://addons/dialogic/Editor/Images/Resources/portrait.svg" id="1_8vecs"]
-[ext_resource type="PackedScene" uid="uid://bbx2b23ji6j5v" path="res://addons/goventure/visual_scripting/IntegratedInteractionEditor.tscn" id="2_f35cy"]
-
-[sub_resource type="Image" id="Image_wjqxb"]
-data = {
-"data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
-"format": "RGBA8",
-"height": 16,
-"mipmaps": false,
-"width": 16
-}
-
-[sub_resource type="ImageTexture" id="ImageTexture_gh1ei"]
-image = SubResource("Image_wjqxb")
+[ext_resource type="Script" path="res://addons/goventure/Editor/editor_main.gd" id="1_gt0dq"]
+[ext_resource type="PackedScene" uid="uid://drhvyar4p35f" path="res://addons/goventure/Editor/resource_loader.tscn" id="2_xd8w4"]
+[ext_resource type="PackedScene" uid="uid://c26fhm4hepdy2" path="res://addons/goventure/Editor/goventure_code_editor.tscn" id="4_iiakd"]
+[ext_resource type="Script" path="res://addons/goventure/Editor/goventure_code_editor.gd" id="5_mliwi"]
 
 [node name="EditorMain" type="Control"]
 layout_mode = 3
@@ -23,38 +14,55 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
+script = ExtResource("1_gt0dq")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 6.0
+offset_right = -7.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Toolbar" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer"]
+layout_mode = 2
+split_offset = 150
+
+[node name="ResourceLoader" parent="MarginContainer/HSplitContainer" instance=ExtResource("2_xd8w4")]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer"]
+layout_mode = 2
+
+[node name="Toolbar" type="HBoxContainer" parent="MarginContainer/HSplitContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 2
 alignment = 2
 
-[node name="EditorTabBar" type="TabBar" parent="VBoxContainer/Toolbar"]
+[node name="EditorTabBar" type="TabBar" parent="MarginContainer/HSplitContainer/VBoxContainer/Toolbar"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
-tab_count = 2
+tab_count = 1
 tab_0/title = ""
 tab_0/icon = ExtResource("1_8vecs")
-tab_1/title = "Dialogue"
-tab_1/icon = SubResource("ImageTexture_gh1ei")
 
-[node name="CustomButtons" type="HBoxContainer" parent="VBoxContainer/Toolbar"]
+[node name="CustomButtons" type="HBoxContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/Toolbar"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Editors" type="PanelContainer" parent="VBoxContainer"]
+[node name="Editors" type="PanelContainer" parent="MarginContainer/HSplitContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="InteractionEditor" parent="VBoxContainer/Editors" instance=ExtResource("2_f35cy")]
+[node name="GoventureCodeEditor" parent="MarginContainer/HSplitContainer/VBoxContainer/Editors" instance=ExtResource("4_iiakd")]
+unique_name_in_owner = true
 layout_mode = 2
+script = ExtResource("5_mliwi")
+
+[connection signal="resource_selected" from="MarginContainer/HSplitContainer/ResourceLoader" to="." method="_on_resource_loader_resource_selected"]
