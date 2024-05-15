@@ -106,7 +106,7 @@ func update_position(value):
 
 @warning_ignore("native_method_override")
 func set_z_index(value):
-	image.z_index = value
+	z_index = value
 	sprite_z_index = value
 	emit_signal("z_index_changed", value)
 

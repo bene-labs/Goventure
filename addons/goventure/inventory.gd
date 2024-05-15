@@ -1,7 +1,7 @@
 extends Control
 
 @export var button : PackedScene
-@export_dir var resource_dir
+@export_dir var resource_dir = "res://addons/goventure/resources/interaction_data/"
 
 @onready var action_buttons = %ActionButtons
 @onready var first_item_buttons = %Item1Buttons
@@ -15,8 +15,8 @@ var action := ""
 func _ready():
 	for action in Goventure.actions:
 		var new_button = button.instantiate()
-		new_button.name = action
-		new_button.text = action
+		new_button.name = action.title
+		new_button.text = action.title
 		action_buttons.add_child(new_button)
 	for item in Goventure.interactibles:
 		var new_button = button.instantiate()
@@ -53,23 +53,26 @@ func _process(delta):
 
 func _on_run_button_pressed():
 	var events : Array
-	var path = resource_dir + "/" + selected_item1 + ".txt"
-	if not FileAccess.file_exists(path):
+	var path = resource_dir + "/" + selected_item1 + ".tres"
+	if not ResourceLoader.exists(path):
 		return
-	var file = FileAccess.open(path, FileAccess.READ)
-	var content = file.get_as_text()
-	var lines = content.split("\n")
+	var interactionData : InteractionData = ResourceLoader.load(path)
+	#var content = file.get_as_text()
+	#var lines = content.split("\n")
 
-	for i in range(lines.size()):
-		var line : String = lines[i]
-		if line.contains(action) and (selected_item2 == "" or line.contains(selected_item2)):
-			line = lines[i+1]
-			while line.contains("\t"):
-				events.push_back(line.substr(6, line.length() - 7))
-				i += 1
-				line = lines[i+1]
-			break
+	for command in interactionData.get_commands_by_action(action, selected_item2):
+		events.append(command.value)
 
+	#for i in range(lines.size()):
+		#var line : String = lines[i]
+		#if line.contains(action) and (selected_item2 == "" or line.contains(selected_item2)):
+			#line = lines[i+1]
+			#while line.contains("\t"):
+				#events.push_back(line.substr(6, line.length() - 7))
+				#i += 1
+				#line = lines[i+1]
+			#break
+#
 	if events.size() == 0:
 		return
 

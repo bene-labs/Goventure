@@ -8,7 +8,6 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_3x8gl")
 button = ExtResource("2_1o4c6")
-resource_dir = "res://addons/goventure/resources"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0

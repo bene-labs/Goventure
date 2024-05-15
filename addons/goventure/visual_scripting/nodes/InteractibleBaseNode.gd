@@ -1,5 +1,6 @@
 extends VSNode
 
+@export_dir var interaction_data_path = "res://addons/goventure/resources/"
 @export var output_node : PackedScene
 @export var output_label : PackedScene
 @export_dir var save_directory 
@@ -40,6 +41,12 @@ func _ready():
 		output.set_value(TriState.State.FALSE)
 
 
+func _input(event):
+	if event.is_action_pressed("save"):
+		save_to_file()
+	super._input(event)
+
+
 func add_action_text_rec(start_node: VSNode, text := "") -> String:
 	for output : Output in start_node.outputs:
 		for node : VSNode in output.get_connected_input_nodes():
@@ -48,14 +55,9 @@ func add_action_text_rec(start_node: VSNode, text := "") -> String:
 	return text
 
 
-func _input(event):
-	if event.is_action_pressed("save"):
-		save_to_file()
-	super._input(event)
-
 
 func save_to_file():
-	var file := FileAccess.open(save_directory + "/" + title + ".gv", FileAccess.WRITE)
+	var file := FileAccess.open(save_directory + title + ".gv", FileAccess.WRITE)
 	var text := ""
 	
 	for output : Output in outputs:
@@ -72,7 +74,34 @@ func save_to_file():
 			else:
 				text += "\n"
 			text += add_action_text_rec(node)
-	file.store_string(text)
+	
+	#file.store_string(text)
+	save_to_resource(text)
+
+func save_to_resource(text: String):
+	var interaction_data = InteractionData.new()
+	var lines = text.split("\n")
+	var i = 0
+	while i < lines.size():
+		var key : String
+		if lines[i] == "":
+			break
+		if lines[i].contains("with"):
+			key = lines[i].split(" with")[0]
+			key += lines[i].split(" with")[1]
+			key = key.trim_suffix(":")
+		else:
+			key = lines[i].trim_suffix(":")
+		interaction_data.command_lookup[key] = []
+		i += 1
+		while i < lines.size() and lines[i].contains("\t"):
+			#match lines[i].split(" ")[0]:
+				#"say":
+			interaction_data.command_lookup[key].append(
+				CommandData.new(CommandData.CommandType.DIALOGUE , \
+					lines[i].split('\"')[1]))
+			i += 1
+	ResourceSaver.save(interaction_data, interaction_data_path + "interaction_data/" + title + ".tres")
 
 
 func _on_interactible_selection_item_selected(index):

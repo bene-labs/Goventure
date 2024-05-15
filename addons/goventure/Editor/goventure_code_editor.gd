@@ -1,6 +1,7 @@
 @tool
 extends CodeEdit
 
+
 var current_file : FileAccess
 
 
@@ -32,7 +33,6 @@ func save_current_file():
 	if current_file == null:
 		return
 	current_file.store_string(text)
-
 
 func open_new_file(path: String) -> bool:
 	if !FileAccess.file_exists(path):

@@ -37,8 +37,11 @@ caret_blink_interval = 0.5
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-item_count = 1
+item_count = 4
 same_column_width = true
-item_0/text = "Red Key.gva"
+item_0/text = "Blue Lock.gv"
+item_1/text = "Door.gv"
+item_2/text = "Red Key.gv"
+item_3/text = "Red Lock.gv"
 
 [connection signal="item_activated" from="ResourcesList" to="." method="_on_resources_list_item_activated"]
