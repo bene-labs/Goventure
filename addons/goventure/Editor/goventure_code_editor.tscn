@@ -1,7 +1,31 @@
-[gd_scene format=3 uid="uid://c26fhm4hepdy2"]
+[gd_scene load_steps=3 format=3 uid="uid://c26fhm4hepdy2"]
+
+[ext_resource type="Script" path="res://addons/goventure/Editor/goventure_code_editor.gd" id="1_nltej"]
+
+[sub_resource type="CodeHighlighter" id="CodeHighlighter_ctpov"]
+number_color = Color(1, 1, 1, 1)
+symbol_color = Color(1, 1, 1, 1)
+function_color = Color(1, 1, 1, 1)
+member_variable_color = Color(1, 1, 1, 1)
+keyword_colors = {
+"say": Color(0.858824, 0.439216, 0.576471, 1),
+"with": Color(1, 0.498039, 0.313726, 1)
+}
+color_regions = {
+"\" \"": Color(1, 0.894118, 0.768627, 1)
+}
 
 [node name="GoventureCodeEditor" type="CodeEdit"]
 offset_right = 1145.0
 offset_bottom = 639.0
+minimap_draw = true
+caret_blink = true
+syntax_highlighter = SubResource("CodeHighlighter_ctpov")
+highlight_current_line = true
+draw_tabs = true
 line_folding = true
+gutters_draw_line_numbers = true
+gutters_draw_fold_gutter = true
 indent_automatic = true
+indent_automatic_prefixes = Array[String]([":"])
+script = ExtResource("1_nltej")
