@@ -6,7 +6,7 @@ extends Resource
 
 func get_commands_by_action(action: String, with = ""):
 	var key = action + with
-	if command_lookup.has(key):
+	if not command_lookup.has(key):
 		return []
 	return command_lookup[key]
 

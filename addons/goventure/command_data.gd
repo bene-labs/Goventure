@@ -7,6 +7,3 @@ enum CommandType {
 @export var type := CommandType.DIALOGUE
 @export var value = ""
 
-func _init(type, value):
-	self.type = type
-	self.value = value

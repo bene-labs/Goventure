@@ -57,7 +57,7 @@ func add_action_text_rec(start_node: VSNode, text := "") -> String:
 
 
 func save_to_file():
-	var file := FileAccess.open(save_directory + title + ".gv", FileAccess.WRITE)
+	var file := FileAccess.open(save_directory + "/" + title + ".gv", FileAccess.WRITE)
 	var text := ""
 	
 	for output : Output in outputs:
@@ -75,7 +75,7 @@ func save_to_file():
 				text += "\n"
 			text += add_action_text_rec(node)
 	
-	#file.store_string(text)
+	file.store_string(text)
 	save_to_resource(text)
 
 func save_to_resource(text: String):
@@ -97,9 +97,9 @@ func save_to_resource(text: String):
 		while i < lines.size() and lines[i].contains("\t"):
 			#match lines[i].split(" ")[0]:
 				#"say":
-			interaction_data.command_lookup[key].append(
-				CommandData.new(CommandData.CommandType.DIALOGUE , \
-					lines[i].split('\"')[1]))
+			var command = CommandData.new()
+			command.value = lines[i].split('\"')[1]
+			interaction_data.command_lookup[key].append(command)
 			i += 1
 	ResourceSaver.save(interaction_data, interaction_data_path + "interaction_data/" + title + ".tres")
 

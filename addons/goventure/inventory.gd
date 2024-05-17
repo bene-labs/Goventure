@@ -56,11 +56,12 @@ func _on_run_button_pressed():
 	var path = resource_dir + "/" + selected_item1 + ".tres"
 	if not ResourceLoader.exists(path):
 		return
-	var interactionData : InteractionData = ResourceLoader.load(path)
+	var interactionData : InteractionData = ResourceLoader.load(path, "InteractionData")
 	#var content = file.get_as_text()
 	#var lines = content.split("\n")
 
-	for command in interactionData.get_commands_by_action(action, selected_item2):
+	for command in interactionData.get_commands_by_action(action, \
+		" " + selected_item2 if selected_item2 != "" else ""):
 		events.append(command.value)
 
 	#for i in range(lines.size()):
