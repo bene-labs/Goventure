@@ -4,12 +4,9 @@ var configs = Configs.new()
 
 
 var actions : Array[Action] = [
-	Action.new("default action", Action.CombinationType.OPTIONAL),
 	Action.new("use", Action.CombinationType.OPTIONAL),
 	Action.new("combine", Action.CombinationType.MANDTORY),
-	Action.new("put into", Action.CombinationType.MANDTORY),
-	Action.new("examine", Action.CombinationType.NONE),
-	Action.new("talk", Action.CombinationType.NONE)]
+	Action.new("examine", Action.CombinationType.NONE)]
 
 var interactibles : Array[String] = ["Red Key", "Blue Lock", "Red Lock", "Door"]
 var path_depths : Dictionary

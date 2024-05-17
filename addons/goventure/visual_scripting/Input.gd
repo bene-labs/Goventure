@@ -15,4 +15,8 @@ func can_connect(other: Connection) -> bool:
 	if other is InputConnection:
 		return false
 	
+	if parent_node in other.get_all_connections() \
+		.filter(func (x): return not x.is_standalone and x is Output) \
+		.map(func (x): return x.parent_node):
+		return false
 	return true

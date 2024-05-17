@@ -1,8 +1,8 @@
 class_name Connection extends Control
 
 signal value_changed
-signal clicked(node)
-signal released_over(node)
+signal clicked(connection: Connection)
+signal released_over(connection: Connection)
 signal position_changed(new_pos)
 signal destroyed(connection)
 
