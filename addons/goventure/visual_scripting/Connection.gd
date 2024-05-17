@@ -138,6 +138,7 @@ func is_point_inside(point):
 
 #endregion
 
+
 #region get connected
 func add_all_connections_rec(connection : Connection, connected_nodes: Array, \
 	searched_nodes := []):
@@ -151,6 +152,7 @@ func add_all_connections_rec(connection : Connection, connected_nodes: Array, \
 		return
 	connected_nodes.append(connection)
 
+
 func get_all_connections():
 	var all_connections : Array
 	
@@ -160,6 +162,7 @@ func get_all_connections():
 			continue
 		add_all_connections_rec(connection, all_connections)
 	return all_connections
+
 
 func get_connected_nodes():
 	return get_all_connections() \

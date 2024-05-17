@@ -14,4 +14,5 @@ func can_connect(other: Connection) -> bool:
 		return false
 	if other is InputConnection:
 		return false
+	
 	return true
