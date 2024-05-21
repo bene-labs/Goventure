@@ -43,9 +43,43 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("save"):
-		save_to_file()
+		save()
+		#save_to_file()
 	super._input(event)
 
+
+
+
+
+func get_commands(output: Output) -> Array[CommandData]:
+	var commands : Array[CommandData] = []
+	while output.get_connected_input_nodes().size() != 0:
+		var node = output.get_connected_input_nodes()[0]
+		var new_command = CommandData.new()
+		new_command.type = node.title
+		new_command.value = node.param
+		commands.push_back(new_command)
+		output = node.get_outputs()[0] # todo: random node
+	return commands
+
+
+func save():
+	var interaction_data = InteractionData.new()
+	
+	for output : Output in outputs:
+		for node : VSNode in output.get_connected_input_nodes():
+			var key := ""
+			var output_to_use = output
+			key += output.name
+			if node is ActionCombinationNode:
+				key += " " + node.param
+				output_to_use = node.get_outputs()[0]
+			if key in interaction_data.command_lookup.keys():
+				push_error("Error when saving '%s'. 
+					Action Combination '%s' is already defined." % [title, key])
+				continue
+			interaction_data.command_lookup[key] = get_commands(output_to_use)
+	ResourceSaver.save(interaction_data, interaction_data_path + "interaction_data/" + title + ".tres")
 
 func add_action_text_rec(start_node: VSNode, text := "") -> String:
 	for output : Output in start_node.outputs:
@@ -53,7 +87,6 @@ func add_action_text_rec(start_node: VSNode, text := "") -> String:
 			text += "\t" + node.title + " " + node.param + "\n"
 			text += add_action_text_rec(node)
 	return text
-
 
 
 func save_to_file():
@@ -106,4 +139,3 @@ func save_to_resource(text: String):
 
 func _on_interactible_selection_item_selected(index):
 	title = %InteractibleSelection.get_item_text(index)
-

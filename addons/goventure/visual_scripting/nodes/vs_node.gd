@@ -49,6 +49,14 @@ func _ready():
 	gates._on_gate_spawned(self)
 
 
+func get_outputs():
+	return %Outputs.get_children()
+
+
+func get_inputs():
+	return %Inputs.get_children() if get_node_or_null("%Inputs") != null else []
+
+
 func _on_input_changed():
 	pass
 
