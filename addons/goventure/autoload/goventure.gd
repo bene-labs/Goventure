@@ -8,7 +8,7 @@ var actions : Array[Action] = [
 	Action.new("combine", Action.CombinationType.MANDTORY),
 	Action.new("examine", Action.CombinationType.NONE)]
 
-var interactibles : Array[String] = ["Red Key", "Blue Lock", "Red Lock", "Door"]
+var interactibles : Array[String] = ["Red Key", "Blue Lock", "Red Lock", "Door", "Coin"]
 var path_depths : Dictionary
 
 var path_rid : String

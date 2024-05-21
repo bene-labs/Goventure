@@ -48,18 +48,27 @@ func _input(event):
 	super._input(event)
 
 
+func get_command_paths(outputs: Array) -> Array:
+	var command_paths := []
+	for output : Output in outputs:
+		command_paths.push_back({output.value: get_commands(output)})
+	return command_paths
 
-
-
-func get_commands(output: Output) -> Array[CommandData]:
-	var commands : Array[CommandData] = []
+func get_commands(output: Output) -> Array:
+	var commands := []
 	while output.get_connected_input_nodes().size() != 0:
 		var node = output.get_connected_input_nodes()[0]
 		var new_command = CommandData.new()
+		var outputs = node.get_outputs().filter(func(x): return x != output)
 		new_command.type = node.title
-		new_command.value = node.param
-		commands.push_back(new_command)
-		output = node.get_outputs()[0] # todo: random node
+		if outputs.size() == 1:
+			new_command.value = node.param
+			output = outputs[0]
+			commands.push_back(new_command)
+		else:
+			new_command.value = get_command_paths(outputs)
+			commands.push_back(new_command)
+			return commands
 	return commands
 
 

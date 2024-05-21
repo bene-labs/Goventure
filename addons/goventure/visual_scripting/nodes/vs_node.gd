@@ -25,7 +25,7 @@ var drag_mode_queded = false
 var sprite_z_index = z_index
 
 var title := "Node"
-var param := "Nil"
+var param = "None"
 
 func _ready():
 	CursorCollision.register(self)

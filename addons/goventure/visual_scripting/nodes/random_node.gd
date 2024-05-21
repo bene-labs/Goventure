@@ -7,14 +7,16 @@ var total_weight = 0 :
 	set(value):
 		total_weight = value
 		_on_total_weight_changed()
+		param = total_weight
 	get: return total_weight
 
 
 func _ready():
 	super._ready()
+	title = "Random"
 	for option in %OutputOptions.get_children(false):
 		option.weight_changed.connect(_on_output_weight_changed)
-		total_weight += 1
+		_on_output_weight_changed(option.weight, option)
 
 
 func _on_remove_output_button_pressed():
@@ -48,12 +50,13 @@ func _on_add_output_button_button_down():
 
 
 func _on_total_weight_changed():
-	for output in %OutputOptions.get_children(false):
-		output.max_weight = total_weight
+	for option in %OutputOptions.get_children(false):
+		option.max_weight = total_weight
 
 
 func _on_output_weight_changed(value_change, source):
-	if source.weight <= 0 and value_change < 0:
-		return
-	source.weight += value_change
+	for i in range(%Outputs.get_child_count()):
+		if %OutputOptions.get_child(i) == source:
+			%Outputs.get_child(i).value = source.weight
+			break
 	total_weight += value_change

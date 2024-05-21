@@ -51,18 +51,40 @@ func _process(delta):
 	pass
 
 
+func pick_random_command_path(random_options):
+	var total_weight = 0
+	
+	for option in random_options:
+		total_weight += option.keys()[0]
+	
+	var hit = randi_range(1, total_weight)
+	var weight_index = total_weight
+	for option in random_options:
+		weight_index -= option.keys()[0]
+		if hit > weight_index:
+			return option.values()[0]
+	push_error("Inventory Error: failed to pick random command path.")
+
+
 func _on_run_button_pressed():
 	var events : Array
 	var path = resource_dir + "/" + selected_item1 + ".tres"
 	if not ResourceLoader.exists(path):
 		return
-	var interactionData : InteractionData = ResourceLoader.load(path, "InteractionData")
+	var interactionData : InteractionData = load(path)
 	#var content = file.get_as_text()
 	#var lines = content.split("\n")
 
-	for command in interactionData.get_commands_by_action(action, \
-		" " + selected_item2 if selected_item2 != "" else ""):
-		events.append(command.value)
+	var commands = interactionData.get_commands_by_action(action, selected_item2)
+	for command in commands:
+		match command.type:
+			"say":
+				events.append(command.value)
+			"Random":
+				#commands += pick_random_command_path(command.value)
+				events.append(pick_random_command_path(command.value)[0].value)
+			_:
+				push_error("Unkown command '%'", command.type)
 
 	#for i in range(lines.size()):
 		#var line : String = lines[i]

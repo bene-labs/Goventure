@@ -12,6 +12,7 @@ offset_bottom = 26.0
 texture = ExtResource("1_2m8rp")
 script = ExtResource("2_jorq5")
 connection_types = 2
+is_multiple_connection_allowed = false
 
 [node name="InteractionPoint" type="TextureRect" parent="."]
 unique_name_in_owner = true
