@@ -3,7 +3,7 @@ extends Control
 signal active_cable_value_changed(is_active)
 
 var cable_scene = preload("res://addons/goventure/visual_scripting/Cable.tscn")
-var cable_connection_scene = preload("res://addons/goventure/visual_scripting/CableConnection.tscn")
+var cable_connection_scene = preload("res://addons/goventure/visual_scripting/connections/CableConnection.tscn")
 
 var active_cable : Cable = null
 var active_start_connection = null

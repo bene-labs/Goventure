@@ -1,17 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjavrs267kt0p"]
+[gd_scene load_steps=4 format=3 uid="uid://b3qela1413318"]
 
-[ext_resource type="Texture2D" uid="uid://d2i02tnjucdwm" path="res://addons/goventure/visual_scripting/sprites/Pin_outline.png" id="1_c5lvx"]
-[ext_resource type="Script" path="res://addons/goventure/visual_scripting/Output.gd" id="2_tinad"]
-[ext_resource type="Texture2D" uid="uid://m55uahd2db8t" path="res://addons/goventure/visual_scripting/sprites/Pin_under.png" id="3_bw1td"]
+[ext_resource type="Texture2D" uid="uid://d2i02tnjucdwm" path="res://addons/goventure/visual_scripting/sprites/Pin_outline.png" id="1_2m8rp"]
+[ext_resource type="Script" path="res://addons/goventure/visual_scripting/connections/Output.gd" id="2_jorq5"]
+[ext_resource type="Texture2D" uid="uid://m55uahd2db8t" path="res://addons/goventure/visual_scripting/sprites/Pin_under.png" id="3_hw0wv"]
 
 [node name="Output" type="TextureRect" groups=["Output"]]
 offset_left = 64.0
 offset_top = -22.0
 offset_right = 112.0
 offset_bottom = 26.0
-texture = ExtResource("1_c5lvx")
-script = ExtResource("2_tinad")
-connection_types = 1
+texture = ExtResource("1_2m8rp")
+script = ExtResource("2_jorq5")
+connection_types = 2
 
 [node name="InteractionPoint" type="TextureRect" parent="."]
 unique_name_in_owner = true
@@ -23,7 +23,7 @@ offset_top = 6.0
 offset_right = 54.0
 offset_bottom = 54.0
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("3_bw1td")
+texture = ExtResource("3_hw0wv")
 
 [node name="DelayTimer" type="Timer" parent="."]
 wait_time = 0.1

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/Gates/Switch.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://cjq4iji7mh7p5" path="res://addons/goventure/visual_scripting/sprites/switch_off.png" id="2"]
-[ext_resource type="PackedScene" uid="uid://cuas374ejpad6" path="res://addons/goventure/visual_scripting/Output.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://cuas374ejpad6" path="res://addons/goventure/visual_scripting/connections/Output.tscn" id="3"]
 [ext_resource type="Texture2D" uid="uid://yphreu0vb4ic" path="res://addons/goventure/visual_scripting/sprites/switch_on.png" id="4"]
 
 [sub_resource type="SpriteFrames" id="3"]

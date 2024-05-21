@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bcewkxvckrtl0"]
 
-[ext_resource type="PackedScene" uid="uid://de1m4sv5oavl7" path="res://addons/goventure/visual_scripting/Input.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://de1m4sv5oavl7" path="res://addons/goventure/visual_scripting/connections/Input.tscn" id="1"]
 [ext_resource type="Script" path="res://scripts/Gates/NotGate.gd" id="2"]
-[ext_resource type="PackedScene" uid="uid://cuas374ejpad6" path="res://addons/goventure/visual_scripting/Output.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://cuas374ejpad6" path="res://addons/goventure/visual_scripting/connections/Output.tscn" id="3"]
 [ext_resource type="Texture2D" uid="uid://bsc2rkoorfgkg" path="res://addons/goventure/visual_scripting/sprites/Not-gate-en.svg.png" id="4"]
 
 [node name="NotGate" type="Node2D" groups=["Gate"]]

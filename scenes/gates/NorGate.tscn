@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bjk8kn25heb32"]
 
-[ext_resource type="PackedScene" uid="uid://cuas374ejpad6" path="res://addons/goventure/visual_scripting/Output.tscn" id="1"]
-[ext_resource type="PackedScene" uid="uid://de1m4sv5oavl7" path="res://addons/goventure/visual_scripting/Input.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://cuas374ejpad6" path="res://addons/goventure/visual_scripting/connections/Output.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://de1m4sv5oavl7" path="res://addons/goventure/visual_scripting/connections/Input.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://dds6xyou7wdnw" path="res://addons/goventure/visual_scripting/sprites/Nor-gate-en.svg.png" id="3"]
 [ext_resource type="Script" path="res://scripts/Gates/NorGate.gd" id="5"]
 

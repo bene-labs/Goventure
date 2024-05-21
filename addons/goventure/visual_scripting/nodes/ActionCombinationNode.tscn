@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://dkydwulkc34i0"]
 
 [ext_resource type="Script" path="res://addons/goventure/visual_scripting/nodes/action_combination_node.gd" id="1_723ec"]
-[ext_resource type="PackedScene" uid="uid://de1m4sv5oavl7" path="res://addons/goventure/visual_scripting/Input.tscn" id="3_7dys5"]
+[ext_resource type="PackedScene" uid="uid://de1m4sv5oavl7" path="res://addons/goventure/visual_scripting/connections/Input.tscn" id="3_kpaid"]
 [ext_resource type="FontFile" uid="uid://cfol7ig1l2b5" path="res://fonts/Ubuntu/Ubuntu-Bold.ttf" id="3_v56gc"]
-[ext_resource type="PackedScene" uid="uid://cuas374ejpad6" path="res://addons/goventure/visual_scripting/Output.tscn" id="4_t21ux"]
+[ext_resource type="PackedScene" uid="uid://cuas374ejpad6" path="res://addons/goventure/visual_scripting/connections/Output.tscn" id="4_nl8gg"]
 
 [node name="ActionCombination" type="Control" groups=["Gate"]]
 layout_mode = 3
@@ -75,7 +75,7 @@ show_behind_parent = true
 position = Vector2(-35, -8)
 scale = Vector2(2, 2)
 
-[node name="Input" parent="Inputs" instance=ExtResource("3_7dys5")]
+[node name="Input" parent="Inputs" instance=ExtResource("3_kpaid")]
 show_behind_parent = true
 offset_left = -1.0
 offset_top = 1.99998
@@ -99,7 +99,7 @@ offset_top = -11.0
 offset_right = 304.0
 offset_bottom = 29.0
 
-[node name="Output" parent="Outputs" instance=ExtResource("4_t21ux")]
+[node name="Output" parent="Outputs" instance=ExtResource("4_nl8gg")]
 layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0

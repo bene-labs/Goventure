@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://rnlqp6h5t4ig"]
+[gd_scene load_steps=7 format=3 uid="uid://rnlqp6h5t4ig"]
 
 [ext_resource type="Script" path="res://addons/goventure/visual_scripting/Gates.gd" id="1_a5j1v"]
 [ext_resource type="Script" path="res://addons/goventure/visual_scripting/SpawnButton.gd" id="3_djy8a"]
 [ext_resource type="PackedScene" uid="uid://cr5x5uinj6cpv" path="res://addons/goventure/visual_scripting/nodes/InteractibleBaseNode.tscn" id="3_npgb6"]
 [ext_resource type="PackedScene" uid="uid://dkydwulkc34i0" path="res://addons/goventure/visual_scripting/nodes/ActionCombinationNode.tscn" id="4_u6xoh"]
 [ext_resource type="PackedScene" uid="uid://d3nngfpospx70" path="res://addons/goventure/visual_scripting/nodes/dialogue_node.tscn" id="5_nf7ew"]
+[ext_resource type="PackedScene" uid="uid://dleua5pjmhsky" path="res://addons/goventure/visual_scripting/nodes/RandomNode.tscn" id="6_ilm41"]
 
 [node name="Gates" type="Control"]
 z_index = 4096
@@ -23,10 +24,10 @@ unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 11.0
-offset_top = 15.0
-offset_right = -1033.0
-offset_bottom = -458.0
+offset_left = 13.0
+offset_top = 19.0
+offset_right = -1031.0
+offset_bottom = -389.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 8
@@ -60,3 +61,13 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("3_djy8a")
 gate_prefab = ExtResource("5_nf7ew")
+
+[node name="SpawnButton4" type="Button" parent="CanvasLayer/ColorRect"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Random
+Node"
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("3_djy8a")
+gate_prefab = ExtResource("6_ilm41")

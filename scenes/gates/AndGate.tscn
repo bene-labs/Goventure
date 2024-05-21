@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://bt36yelnyau0w"]
 
 [ext_resource type="Script" path="res://scripts/Gates/AndGate.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://cuas374ejpad6" path="res://addons/goventure/visual_scripting/Output.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://cuas374ejpad6" path="res://addons/goventure/visual_scripting/connections/Output.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://uom64d00s8iv" path="res://addons/goventure/visual_scripting/sprites/AndGate.png" id="2_hn2jm"]
-[ext_resource type="PackedScene" uid="uid://de1m4sv5oavl7" path="res://addons/goventure/visual_scripting/Input.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://de1m4sv5oavl7" path="res://addons/goventure/visual_scripting/connections/Input.tscn" id="3"]
 
 [node name="AndGate" type="Node2D" groups=["Gate"]]
 script = ExtResource("1")

@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6l2hhlrowooq"]
+
+[ext_resource type="FontFile" uid="uid://cc4xli25271fd" path="res://addons/dialogic/Example Assets/Fonts/Roboto-Bold.ttf" id="1_h32we"]
+[ext_resource type="Script" path="res://addons/goventure/visual_scripting/connections/random_output_option.gd" id="1_hibor"]
+
+[node name="RandomOutputOption" type="HBoxContainer"]
+layout_direction = 3
+size_flags_vertical = 2
+script = ExtResource("1_hibor")
+
+[node name="MinusButton" type="Button" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_h32we")
+text = "-"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_h32we")
+theme_override_font_sizes/font_size = 22
+text = "1 / 5"
+
+[node name="PlusButton" type="Button" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_h32we")
+text = "+"
+
+[connection signal="pressed" from="MinusButton" to="." method="_on_minus_button_pressed"]
+[connection signal="pressed" from="PlusButton" to="." method="_on_plus_button_pressed"]

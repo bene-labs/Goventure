@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://c78ps0domu0ev"]
 
-[ext_resource type="PackedScene" uid="uid://de1m4sv5oavl7" path="res://addons/goventure/visual_scripting/Input.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://de1m4sv5oavl7" path="res://addons/goventure/visual_scripting/connections/Input.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://b1qdiqroiuyrc" path="res://addons/goventure/visual_scripting/sprites/Digits/two.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://qch8akehwgeb" path="res://addons/goventure/visual_scripting/sprites/Digits/b.png" id="3"]
 [ext_resource type="Script" path="res://scripts/Gates/4BitDigit.gd" id="4"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cr5x5uinj6cpv"]
 
 [ext_resource type="Script" path="res://addons/goventure/visual_scripting/nodes/InteractibleBaseNode.gd" id="1_6k8mp"]
-[ext_resource type="PackedScene" uid="uid://bjavrs267kt0p" path="res://addons/goventure/visual_scripting/ActionOutput.tscn" id="2_vx4ha"]
+[ext_resource type="PackedScene" uid="uid://bjavrs267kt0p" path="res://addons/goventure/visual_scripting/connections/ActionOutput.tscn" id="2_xbf4y"]
 [ext_resource type="FontFile" uid="uid://cfol7ig1l2b5" path="res://fonts/Ubuntu/Ubuntu-Bold.ttf" id="3_6t1mn"]
 [ext_resource type="PackedScene" uid="uid://orv5ncqws73f" path="res://addons/goventure/visual_scripting/action_label.tscn" id="4_kw8hq"]
 
@@ -9,7 +9,7 @@
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_6k8mp")
-output_node = ExtResource("2_vx4ha")
+output_node = ExtResource("2_xbf4y")
 output_label = ExtResource("4_kw8hq")
 save_directory = "res://addons/goventure/resources"
 
