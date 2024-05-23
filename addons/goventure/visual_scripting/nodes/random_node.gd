@@ -20,6 +20,8 @@ func _ready():
 
 
 func _on_remove_output_button_pressed():
+	if %OutputOptions.get_child_count() < 2:
+		return
 	var colision_polygon = $Area2D/CollisionPolygon2D.polygon
 	var option_to_remove = %OutputOptions.get_child(-1)
 	total_weight -= option_to_remove.weight
@@ -31,6 +33,8 @@ func _on_remove_output_button_pressed():
 	colision_polygon[2].y -= 50
 	colision_polygon[3].y -= 50
 	$Area2D/CollisionPolygon2D.polygon = colision_polygon
+	if %OutputOptions.get_child_count() <= 3:
+		$Sprite/OutputButtons/RemoveOutputButton.disabled = true
 
 
 func _on_add_output_button_button_down():
@@ -47,6 +51,7 @@ func _on_add_output_button_button_down():
 	colision_polygon[3].y += 50
 	total_weight += 1
 	$Area2D/CollisionPolygon2D.polygon = colision_polygon
+	$Sprite/OutputButtons/RemoveOutputButton.disabled = false
 
 
 func _on_total_weight_changed():

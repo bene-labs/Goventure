@@ -89,6 +89,7 @@ alignment = 2
 [node name="RemoveOutputButton" type="Button" parent="Sprite/OutputButtons"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_4y8iw")
+disabled = true
 text = " - "
 
 [node name="AddOutputButton" type="Button" parent="Sprite/OutputButtons"]
