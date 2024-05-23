@@ -114,12 +114,12 @@ offset_top = 1.99998
 offset_right = 47.0
 offset_bottom = 50.0
 rotation = -0.0121394
-connection_types = 1
+connection_types = 3
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(0, 0, 220, 0, 220, 40, 1, 40)
+polygon = PackedVector2Array(0, 0, 220, 0, 218, 174, 2, 174)
 
 [connection signal="pressed" from="Sprite/OutputButtons/RemoveOutputButton" to="." method="_on_remove_output_button_pressed"]
 [connection signal="button_down" from="Sprite/OutputButtons/AddOutputButton" to="." method="_on_add_output_button_button_down"]

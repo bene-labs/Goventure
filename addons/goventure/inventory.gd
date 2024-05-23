@@ -51,18 +51,18 @@ func _process(delta):
 	pass
 
 
-func pick_random_command_path(random_options):
+func pick_random_command_path(random_paths: Array):
+	randomize()
 	var total_weight = 0
-	
-	for option in random_options:
-		total_weight += option.keys()[0]
+	for random_path : CommandPathData in random_paths:
+		total_weight += random_path.value
 	
 	var hit = randi_range(1, total_weight)
 	var weight_index = total_weight
-	for option in random_options:
-		weight_index -= option.keys()[0]
+	for random_path : CommandPathData in random_paths:
+		weight_index -= random_path.value
 		if hit > weight_index:
-			return option.values()[0]
+			return random_path.path
 	push_error("Inventory Error: failed to pick random command path.")
 
 
@@ -76,15 +76,20 @@ func _on_run_button_pressed():
 	#var lines = content.split("\n")
 
 	var commands = interactionData.get_commands_by_action(action, selected_item2)
-	for command in commands:
+	var remaining_commands = commands.size()
+	var i = 0
+	while (i < remaining_commands):
+		var command = commands[i]
 		match command.type:
 			"say":
 				events.append(command.value)
 			"Random":
-				#commands += pick_random_command_path(command.value)
-				events.append(pick_random_command_path(command.value)[0].value)
+				commands = pick_random_command_path(command.paths)
+				i = -1
+				remaining_commands = commands.size()
 			_:
 				push_error("Unkown command '%'", command.type)
+		i += 1
 
 	#for i in range(lines.size()):
 		#var line : String = lines[i]

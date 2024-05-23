@@ -51,8 +51,12 @@ func _input(event):
 func get_command_paths(outputs: Array) -> Array:
 	var command_paths := []
 	for output : Output in outputs:
-		command_paths.push_back({output.value: get_commands(output)})
+		var new_path = CommandPathData.new()
+		new_path.value = output.value
+		new_path.path = get_commands(output)
+		command_paths.push_back(new_path)
 	return command_paths
+
 
 func get_commands(output: Output) -> Array:
 	var commands := []
@@ -61,12 +65,13 @@ func get_commands(output: Output) -> Array:
 		var new_command = CommandData.new()
 		var outputs = node.get_outputs().filter(func(x): return x != output)
 		new_command.type = node.title
+		new_command.value = node.param
 		if outputs.size() == 1:
-			new_command.value = node.param
 			output = outputs[0]
 			commands.push_back(new_command)
 		else:
-			new_command.value = get_command_paths(outputs)
+			new_command = BranchingCommandData.create_from_command_data(new_command)
+			new_command.paths = get_command_paths(outputs)
 			commands.push_back(new_command)
 			return commands
 	return commands
