@@ -47,7 +47,7 @@ func _on_add_output_button_button_down():
 	new_output.parent_node = self
 	position_changed.connect(new_output._on_position_changed)
 	z_index_changed.connect(new_output._on_z_index_changed)
-	#CursorCollision.register(new_output)
+	gates._on_output_added(new_output)
 	
 	new_output_option.weight_changed.connect(_on_output_weight_changed)
 	%OutputOptions.add_child(new_output_option)

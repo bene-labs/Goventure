@@ -21,21 +21,6 @@ var interactibles : Array[String] = ["Red Key", "Blue Lock", "Red Lock", "Door",
 var queued_commands := []
 
 
-func pick_random_command_path(random_paths: Array):
-	randomize()
-	var total_weight = 0
-	for random_path : CommandPathData in random_paths:
-		total_weight += random_path.value
-	
-	var hit = randi_range(1, total_weight)
-	var weight_index = total_weight
-	for random_path : CommandPathData in random_paths:
-		weight_index -= random_path.value
-		if hit > weight_index:
-			return random_path.path
-	push_error("Inventory Error: failed to pick random command path.")
-
-
 func run_action(action: String, interactible1: String, interactible2 := ""):
 	match command_mode:
 		CommandModes.EMIT_SIGNALS:
@@ -66,6 +51,37 @@ func advance_queued_commands() -> bool:
 	return true
 
 
+func get_random_command_path(random_paths: Array):
+	randomize()
+	var total_weight = 0
+	for random_path : CommandPathData in random_paths:
+		total_weight += random_path.value
+	
+	var hit = randi_range(1, total_weight)
+	var weight_index = total_weight
+	for random_path : CommandPathData in random_paths:
+		weight_index -= random_path.value
+		if hit > weight_index:
+			return random_path.path
+	push_error("Inventory Error: failed to pick random command path.")
+
+
+func get_sequence_command_path(sequence_command: BranchingCommandData):
+	if not sequence_command.value is int:
+		sequence_command.value = int(sequence_command.value)
+	if sequence_command.value >= sequence_command.paths.size():
+		match sequence_command.type:
+			"LoopSequence":
+				sequence_command.value = 0
+			"RepeatLastSequence":
+				sequence_command.value = sequence_command.paths.size() - 1
+			"StopSequence":
+				return []
+	var active_path = sequence_command.paths[sequence_command.value].path
+	sequence_command.value += 1
+	return active_path
+
+
 func run_action_in_dialogic(action: String, interactible1: String, interactible2 := ""):
 	if get_tree() == null or not get_tree().root.has_node("Dialogic"):
 		push_error("Dialogic Autoload not found. Ensure the plugin is propely installed.")
@@ -86,7 +102,11 @@ func run_action_in_dialogic(action: String, interactible1: String, interactible2
 			"say":
 				events.append(command.value)
 			"Random":
-				commands = pick_random_command_path(command.paths)
+				commands = get_random_command_path(command.paths)
+				i = -1
+				remaining_commands = commands.size()
+			"LoopSequence", "RepeatLastSequence", "StopSequence":
+				commands = get_sequence_command_path(command)
 				i = -1
 				remaining_commands = commands.size()
 			_:
@@ -98,7 +118,7 @@ func run_action_in_dialogic(action: String, interactible1: String, interactible2
 	var timeline : DialogicTimeline = DialogicTimeline.new()
 	timeline.events = events
 	Dialogic.start(timeline)
-
+	ResourceSaver.save(interactionData, path)
 
 class Action:
 	enum CombinationType {

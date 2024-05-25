@@ -117,7 +117,7 @@ offset_top = 1.99998
 offset_right = 47.0
 offset_bottom = 50.0
 rotation = -0.0121394
-connection_types = 3
+connection_types = 2
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -125,6 +125,7 @@ connection_types = 3
 polygon = PackedVector2Array(0, 0, 220, 0, 218, 174, 2, 174)
 
 [node name="ModeTitle" type="Label" parent="."]
+unique_name_in_owner = true
 z_index = 1000
 layout_mode = 0
 offset_left = 6.0
