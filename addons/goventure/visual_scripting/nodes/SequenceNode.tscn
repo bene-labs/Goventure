@@ -124,13 +124,25 @@ connection_types = 3
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(0, 0, 220, 0, 218, 174, 2, 174)
 
-[node name="CheckBox" type="CheckBox" parent="."]
+[node name="ModeTitle" type="Label" parent="."]
 z_index = 1000
 layout_mode = 0
-offset_left = 11.0
-offset_top = 140.0
-offset_right = 77.0
-offset_bottom = 169.0
+offset_left = 6.0
+offset_top = 115.0
+offset_right = 124.0
+offset_bottom = 138.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_eattu")
+text = "On end reached:"
+
+[node name="ModeSelection" type="OptionButton" parent="."]
+unique_name_in_owner = true
+z_index = 1000
+layout_mode = 0
+offset_left = 6.0
+offset_top = 138.0
+offset_right = 143.0
+offset_bottom = 168.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -139,8 +151,16 @@ theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_eattu")
-theme_override_font_sizes/font_size = 18
-text = "Loop"
+theme_override_font_sizes/font_size = 17
+item_count = 3
+selected = 0
+popup/item_0/text = "Start over"
+popup/item_0/id = 0
+popup/item_1/text = "Repeat last"
+popup/item_1/id = 1
+popup/item_2/text = "Stop"
+popup/item_2/id = 2
 
 [connection signal="pressed" from="Sprite/OutputButtons/RemoveOutputButton" to="." method="_on_remove_output_button_pressed"]
 [connection signal="button_down" from="Sprite/OutputButtons/AddOutputButton" to="." method="_on_add_output_button_button_down"]
+[connection signal="item_selected" from="ModeSelection" to="." method="_on_mode_selection_item_selected"]

@@ -41,6 +41,14 @@ func _on_add_output_button_button_down():
 	var colision_polygon = $Area2D/CollisionPolygon2D.polygon
 	var new_output := output_node_scene.instantiate()
 	var new_output_option := output_option_scene.instantiate()
+	
+	outputs.append(new_output)
+	new_output.is_standalone = false
+	new_output.parent_node = self
+	position_changed.connect(new_output._on_position_changed)
+	z_index_changed.connect(new_output._on_z_index_changed)
+	#CursorCollision.register(new_output)
+	
 	new_output_option.weight_changed.connect(_on_output_weight_changed)
 	%OutputOptions.add_child(new_output_option)
 	%Outputs.add_child(new_output)

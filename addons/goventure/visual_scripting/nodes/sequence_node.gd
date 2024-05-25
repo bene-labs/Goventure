@@ -8,7 +8,8 @@ var output_count = 0
 
 func _ready():
 	super._ready()
-	title = "Random"
+	title = "Sequence"
+	param = "Loop"
 	for i in range(%Outputs.get_child_count()):
 		output_count += 1
 		%Outputs.get_child(i).value = output_count
@@ -52,3 +53,13 @@ func _on_add_output_button_button_down():
 	$Area2D/CollisionPolygon2D.polygon = colision_polygon
 	$Sprite/OutputButtons/RemoveOutputButton.disabled = false
 
+
+
+func _on_mode_selection_item_selected(index):
+	match index:
+		0:
+			param = "Loop"
+		1:
+			param = "RepeatLast"
+		2:
+			param = "Stop"

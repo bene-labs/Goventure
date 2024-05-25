@@ -1,7 +1,6 @@
 extends Control
 
 @export var button : PackedScene
-@export_dir var resource_dir = "res://addons/goventure/resources/interaction_data/"
 
 @onready var action_buttons = %ActionButtons
 @onready var first_item_buttons = %Item1Buttons
@@ -51,59 +50,5 @@ func _process(delta):
 	pass
 
 
-func pick_random_command_path(random_paths: Array):
-	randomize()
-	var total_weight = 0
-	for random_path : CommandPathData in random_paths:
-		total_weight += random_path.value
-	
-	var hit = randi_range(1, total_weight)
-	var weight_index = total_weight
-	for random_path : CommandPathData in random_paths:
-		weight_index -= random_path.value
-		if hit > weight_index:
-			return random_path.path
-	push_error("Inventory Error: failed to pick random command path.")
-
-
 func _on_run_button_pressed():
-	var events : Array
-	var path = resource_dir + "/" + selected_item1 + ".tres"
-	if not ResourceLoader.exists(path):
-		return
-	var interactionData : InteractionData = load(path)
-	#var content = file.get_as_text()
-	#var lines = content.split("\n")
-
-	var commands = interactionData.get_commands_by_action(action, selected_item2)
-	var remaining_commands = commands.size()
-	var i = 0
-	while (i < remaining_commands):
-		var command = commands[i]
-		match command.type:
-			"say":
-				events.append(command.value)
-			"Random":
-				commands = pick_random_command_path(command.paths)
-				i = -1
-				remaining_commands = commands.size()
-			_:
-				push_error("Unkown command '%'", command.type)
-		i += 1
-
-	#for i in range(lines.size()):
-		#var line : String = lines[i]
-		#if line.contains(action) and (selected_item2 == "" or line.contains(selected_item2)):
-			#line = lines[i+1]
-			#while line.contains("\t"):
-				#events.push_back(line.substr(6, line.length() - 7))
-				#i += 1
-				#line = lines[i+1]
-			#break
-#
-	if events.size() == 0:
-		return
-
-	var timeline : DialogicTimeline = DialogicTimeline.new()
-	timeline.events = events
-	Dialogic.start(timeline)
+	Goventure.run_action_in_dialogic(action, selected_item1, selected_item2)
