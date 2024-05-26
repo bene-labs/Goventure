@@ -4,13 +4,30 @@ extends Control
 
 
 func _ready():
-	var save_data = FileAccess.open("user://default_scene.save", FileAccess.READ).get_var(true)
-	$VSNodes.load_nodes(save_data["nodes"])
+	_load()
+
+
+func _load(path = "user://default_scene.save"):
+	if not FileAccess.file_exists(path):
+		return
+	
+	var save_data = FileAccess.open(path, FileAccess.READ).get_var(true)
+	if save_data == null:
+		return
+	await $VSNodes.load_nodes(save_data["nodes"])
+	if "connections" in save_data:
+		await %Cables.load_connections(save_data["connections"])
+	if "cables" in save_data:
+		await %Cables.load_cables(save_data["cables"])
 
 
 func _save():
 	var file = FileAccess.open("user://default_scene.save", FileAccess.WRITE)
-	file.store_var($VSNodes.serialize(), true)
+	
+	var save_dict = $VSNodes.serialize()
+	save_dict.merge(%Cables.serialize())
+	
+	file.store_var(save_dict, true)
 	file.close()
 
 

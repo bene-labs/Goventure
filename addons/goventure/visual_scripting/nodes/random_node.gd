@@ -52,7 +52,7 @@ func add_output(output_scene = output_node_scene):
 	new_output.parent_node = self
 	position_changed.connect(new_output._on_position_changed)
 	z_index_changed.connect(new_output._on_z_index_changed)
-	vs_nodes._on_output_added(new_output)
+	vs_nodes._on_connection_added(new_output)
 	
 	new_output_option.weight_changed.connect(_on_output_weight_changed)
 	%OutputOptions.add_child(new_output_option)
@@ -82,11 +82,15 @@ func _on_output_weight_changed(value_change, source):
 
 
 func restore_configs(configs: Dictionary):
-	super.restore_configs(configs)
+	if not "additional_outputs" in configs:
+		super.restore_configs(configs)
+		return
+	
 	if not "additional_outputs" in configs:
 		return
 	for output in configs["additional_outputs"]:
 		add_output(load(output["path"]))
+	super.restore_configs(configs)
 
 
 func serialize() -> Dictionary:

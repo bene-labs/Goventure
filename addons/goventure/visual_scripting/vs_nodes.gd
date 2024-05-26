@@ -22,7 +22,6 @@ func _ready():
 	#call_deferred("apply_vs_node_z_index")
 	for button in button_rect.get_children():
 		buttons.append(button)
-		button.vs_node_spawned.connect(_on_vs_node_spawned)
 
 
 func put_vs_node_in_front(vs_node):
@@ -67,23 +66,23 @@ func _input(event):
 	is_mouse_movement = true if event is InputEventMouseMotion and event.relative else false
 
 
-func _on_vs_node_spawned(new_vs_node):
+func spawn_vs_node(vs_node_scene: PackedScene):
+	var new_vs_node = vs_node_scene.instantiate()
+	add_child(new_vs_node)
 	vs_nodes.append(new_vs_node)
 	new_vs_node.clicked.connect(_on_vs_node_clicked)
 	new_vs_node.released.connect(_on_vs_node_released)
 	new_vs_node.destroyed.connect(_on_vs_node_destroyed)
-	for input in new_vs_node.get_inputs():
-		cables.register_input(input)
-	for output in new_vs_node.get_outputs():
-		cables.register_output(output)
+	for connection in new_vs_node.get_connections():
+		cables.register_connection(connection)
+	return new_vs_node
+
+func _on_connection_added(new_connection):
+	cables.register_connection(new_connection)
 
 
-func _on_output_added(new_output):
-	cables.register_output(new_output)
-
-
-func _on_input_added(new_input):
-	cables.register_output(new_input)
+func get_nodes():
+	return get_children().filter(func(x): return x is VSNode)
 
 
 func load_nodes(nodes_data: Array):
@@ -91,15 +90,14 @@ func load_nodes(nodes_data: Array):
 		node.queue_free()
 	vs_nodes.clear()
 	for node_data in nodes_data:
-		var new_node = load(node_data["path"]).instantiate()
-		add_child(new_node)
+		spawn_vs_node(load(node_data["path"]))
 	await get_tree().process_frame
-	for i in range(vs_nodes.size()):
-		vs_nodes[i].restore_configs(nodes_data[i]["configs"])
+	for i in range(get_nodes().size()):
+		get_nodes()[i].restore_configs(nodes_data[i]["configs"])
 
 
 func serialize():
 	var nodes = []
-	for node in vs_nodes:
+	for node in get_nodes():
 		nodes.push_back(node.serialize())
 	return {"nodes": nodes}

@@ -1,8 +1,10 @@
-class_name Cable extends Control
+class_name Cable 
+extends Control
 
 @onready var line : Line2D = $Outline/Line2D
 @onready var outline : Line2D = $Outline
 @onready var collision_shape : CollisionPolygon2D = $Area2D/CollisionShape
+
 var collision_rect : Rect2
 
 var undefined_color = Color.RED
@@ -66,11 +68,14 @@ func calc_collision(start, end):
 	collision_shape.polygon[3] = end + end.direction_to(start) * side_offset + \
 		start.direction_to(end).rotated(deg_to_rad(-90)).normalized() * outline.width / 2
 
+
 func is_point_inside(point) -> bool:
 	return Geometry2D.is_point_in_polygon(point, collision_shape.polygon)
 
 
 func connect_to(connection):
+	if connection == null:
+		return
 	if end_connection == null:
 		end_connection = connection
 		set_end_point(end_connection.get_attachment_point())
@@ -137,3 +142,26 @@ func destroy():
 	end_connection.remove_cable(self)
 	end_connection.unlink(start_connection)
 	queue_free()
+
+
+func restore_configs(configs: Dictionary, cable_service: CableService):
+	var start_connection = cable_service.get_connection_by_id(configs["start_connection_id"])
+	var end_connection = cable_service.get_connection_by_id(configs["end_connection_id"])
+	
+	if start_connection != null:
+		connect_to(start_connection)
+		start_connection.connected_cables.append(self)
+	if end_connection != null:
+		connect_to(end_connection)
+		end_connection.connected_cables.append(self)
+	
+
+
+func serialize() -> Dictionary:
+	return {
+		"path": scene_file_path, 
+		"configs": {
+			"start_connection_id": start_connection.id if start_connection != null else -1,
+			"end_connection_id": end_connection.id if end_connection != null else -1
+		}
+	}

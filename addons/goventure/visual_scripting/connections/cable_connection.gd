@@ -6,6 +6,7 @@ func _ready():
 	is_standalone = true
 	inactive_color = Color.WHITE_SMOKE
 	active_color = Color.DARK_GRAY
+	interactionSprite.self_modulate = inactive_color
 
 func can_connect(other: Connection):
 	if other is InputConnection:
@@ -50,11 +51,24 @@ func _on_connections_changed():
 		connection.incompatible_connection_types = incompatible_connection_types
 
 
-func link(connection : Connection, cable: Cable):
+func link(connection : Connection, cable: Cable = null):
 	super.link(connection, cable)
+	if cable == null:
+		return
 	_on_connections_changed()
 
 
 func unlink(from: Connection):
 	super.unlink(from)
 	_on_connections_changed()
+
+
+func restore_configs(configs: Dictionary):
+	super.restore_configs(configs)
+	global_position = configs["position"]
+
+
+func serialize() -> Dictionary:
+	var serial_dict = super.serialize()
+	serial_dict["configs"]["position"] = global_position
+	return serial_dict

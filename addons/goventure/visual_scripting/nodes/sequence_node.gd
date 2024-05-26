@@ -50,7 +50,7 @@ func add_output(output_scene = output_node_scene):
 	new_output.parent_node = self
 	position_changed.connect(new_output._on_position_changed)
 	z_index_changed.connect(new_output._on_z_index_changed)
-	vs_nodes._on_output_added(new_output)
+	vs_nodes._on_connection_added(new_output)
 
 	new_output_label.text = str(output_count)
 	%OutputLabel.add_child(new_output_label)
@@ -78,11 +78,14 @@ func _on_mode_selection_item_selected(index):
 
 
 func restore_configs(configs: Dictionary):
-	super.restore_configs(configs)
 	%ModeSelection.selected = configs["selected"]
 	_on_mode_selection_item_selected(%ModeSelection.selected)
+	if not "additional_outputs" in configs:
+		super.restore_configs(configs)
+		return
 	for output in configs["additional_outputs"]:
 		add_output(load(output["path"]))
+	super.restore_configs(configs)
 
 func serialize() -> Dictionary:
 	var serial_data = super.serialize()

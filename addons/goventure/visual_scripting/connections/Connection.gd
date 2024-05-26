@@ -25,8 +25,16 @@ enum ConnectionType {
 @onready var interactionSprite : TextureRect = %InteractionPoint
 @onready var base_scale = interactionSprite.scale
 
-var collision_radius = 26.0
+var id = 0 :
+	set(value):
+		id = value
+		id_text.text = str(id)
+	get:
+		return id
 
+var linked_connection_ids = []
+
+var collision_radius = 26.0
 
 var parent_node : VSNode = null
 var linked_connections = []
@@ -40,8 +48,11 @@ var value = null
 var is_dragged = false
 var drag_offset = Vector2.ZERO
 var is_mouse_movement = false
+var id_text = Label.new()
 
 func _ready():
+	id_text.self_modulate = Color.GRAY
+	add_child(id_text)
 	self_modulate = off_color
 	interactionSprite.self_modulate = inactive_color
 	CursorCollision.register(self)
@@ -65,7 +76,7 @@ func set_value(value):
 	value_changed.emit()
 
 
-func link(connection : Connection, cable: Cable):
+func link(connection : Connection, cable: Cable = null):
 	if connection in linked_connections:
 		return
 	linked_connections.append(connection)
@@ -255,13 +266,27 @@ func _on_position_changed():
 
 
 func restore_configs(configs: Dictionary):
-	pass
+	connection_types = configs["connection_types"]
+	incompatible_connection_types = configs["incompatible_connection_types"]
+	is_multiple_connection_allowed = configs["is_multiple_connection_allowed"]
+	value = configs["value"]
+	linked_connection_ids = configs["linked_connection_ids"]
+	id = configs["id"]
 
 
 func serialize() -> Dictionary:
 	return {
-		"path": scene_file_path
+		"path": scene_file_path,
+		"configs": {
+			"connection_types": connection_types,
+			"incompatible_connection_types": incompatible_connection_types,
+			"is_multiple_connection_allowed": is_multiple_connection_allowed,
+			"value": value,
+			"linked_connection_ids": linked_connections.map(func(x): return x.id),
+			"id": id
+		}
 	}
+
 
 func _exit_tree():
 	clear_cables()

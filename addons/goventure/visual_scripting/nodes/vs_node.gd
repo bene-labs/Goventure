@@ -44,7 +44,10 @@ func _ready():
 			position_changed.connect(input._on_position_changed)
 			z_index_changed.connect(input._on_z_index_changed)
 		call_deferred("_on_input_changed")
-	vs_nodes._on_vs_node_spawned(self)
+
+
+func get_connections():
+	return get_inputs() + get_outputs()
 
 
 func get_outputs():
@@ -142,6 +145,10 @@ func is_point_inside(point):
 func restore_configs(configs: Dictionary):
 	global_position = configs["position"]
 	rotation = configs["rotation"]
+	
+	var connections = get_connections()
+	for i in range(configs["connection_configs"].size()):
+		connections[i].restore_configs(configs["connection_configs"][i])
 
 
 func serialize() -> Dictionary:
@@ -149,7 +156,8 @@ func serialize() -> Dictionary:
 		"path": scene_file_path, 
 		"configs": {
 			"position": global_position,
-			"rotation": rotation
+			"rotation": rotation,
+			"connection_configs": get_connections().map(func(x): return x.serialize()["configs"])
 		}
 	}
 

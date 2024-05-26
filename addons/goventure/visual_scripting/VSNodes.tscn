@@ -38,7 +38,7 @@ Node"
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("3_djy8a")
-vs_node_prefab = ExtResource("3_08eg1")
+vs_node_scene = ExtResource("3_08eg1")
 
 [node name="CombinationNodeButton" type="Button" parent="CanvasLayer/ColorRect"]
 layout_mode = 2
@@ -48,7 +48,7 @@ Node"
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("3_djy8a")
-vs_node_prefab = ExtResource("4_2metv")
+vs_node_scene = ExtResource("4_2metv")
 
 [node name="DialogueNodeButton" type="Button" parent="CanvasLayer/ColorRect"]
 layout_mode = 2
@@ -58,7 +58,7 @@ Node"
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("3_djy8a")
-vs_node_prefab = ExtResource("5_0flov")
+vs_node_scene = ExtResource("5_0flov")
 
 [node name="RandomNodeButton" type="Button" parent="CanvasLayer/ColorRect"]
 layout_mode = 2
@@ -68,7 +68,7 @@ Node"
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("3_djy8a")
-vs_node_prefab = ExtResource("6_h8asd")
+vs_node_scene = ExtResource("6_h8asd")
 
 [node name="SequenceNodeButton" type="Button" parent="CanvasLayer/ColorRect"]
 layout_mode = 2
@@ -78,4 +78,4 @@ Node"
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("3_djy8a")
-vs_node_prefab = ExtResource("7_et8xa")
+vs_node_scene = ExtResource("7_et8xa")
