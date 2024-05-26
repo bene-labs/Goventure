@@ -145,3 +145,18 @@ func set_edge_move_mode(active):
 	$Down.input_pickable = active
 	$Left.input_pickable = active
 	$Right.input_pickable = active
+
+
+func restore_configs(configs: Dictionary):
+	global_position = configs["position"]
+	zoom = configs["zoom"]
+	zoom_scale = configs["zoom_scale"]
+
+func serialize() -> Dictionary:
+	return {
+		"camera_configs": {
+			"position": global_position,
+			"zoom": zoom,
+			"zoom_scale": zoom_scale
+		}
+	}

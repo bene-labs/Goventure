@@ -14,19 +14,20 @@ func _load(path = "user://default_scene.save"):
 	var save_data = FileAccess.open(path, FileAccess.READ).get_var(true)
 	if save_data == null:
 		return
+	if "camera_configs" in save_data:
+		$Camera.restore_configs(save_data["camera_configs"])
 	await $VSNodes.load_nodes(save_data["nodes"])
 	if "connections" in save_data:
 		await %Cables.load_connections(save_data["connections"])
 	if "cables" in save_data:
 		await %Cables.load_cables(save_data["cables"])
 
-
 func _save():
 	var file = FileAccess.open("user://default_scene.save", FileAccess.WRITE)
 	
 	var save_dict = $VSNodes.serialize()
 	save_dict.merge(%Cables.serialize())
-	
+	save_dict.merge($Camera.serialize())
 	file.store_var(save_dict, true)
 	file.close()
 
