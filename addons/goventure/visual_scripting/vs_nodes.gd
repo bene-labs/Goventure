@@ -93,7 +93,7 @@ func load_nodes(nodes_data: Array):
 		spawn_vs_node(load(node_data["path"]))
 	await get_tree().process_frame
 	for i in range(get_nodes().size()):
-		get_nodes()[i].restore_configs(nodes_data[i]["configs"])
+		await get_nodes()[i].restore_configs(nodes_data[i]["configs"])
 
 
 func serialize():

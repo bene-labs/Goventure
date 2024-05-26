@@ -85,6 +85,7 @@ func restore_configs(configs: Dictionary):
 		return
 	for output in configs["additional_outputs"]:
 		add_output(load(output["path"]))
+	await get_tree().process_frame
 	super.restore_configs(configs)
 
 func serialize() -> Dictionary:
