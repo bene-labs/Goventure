@@ -37,8 +37,8 @@ func _ready():
 	$Area2D/CollisionPolygon2D.polygon = colision_polygon
 	
 	super._ready()
-	for output in outputs:
-		output.set_value(TriState.State.FALSE)
+	#for output in outputs:
+		#output.set_value(TriState.State.FALSE)
 
 
 func _input(event):

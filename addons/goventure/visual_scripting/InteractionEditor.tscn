@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b86inyphjxolg" path="res://addons/goventure/visual_scripting/Camera.tscn" id="1_ftl2u"]
 [ext_resource type="PackedScene" uid="uid://5c0h6y1alh76" path="res://addons/goventure/visual_scripting/Background.tscn" id="2_r4s74"]
 [ext_resource type="PackedScene" uid="uid://crca0b4if23s0" path="res://addons/goventure/visual_scripting/Cables.tscn" id="4_e00ap"]
-[ext_resource type="PackedScene" uid="uid://rnlqp6h5t4ig" path="res://addons/goventure/visual_scripting/Gates.tscn" id="4_e0oe3"]
+[ext_resource type="PackedScene" uid="uid://rnlqp6h5t4ig" path="res://addons/goventure/visual_scripting/VSNodes.tscn" id="4_e0oe3"]
 
 [node name="InteractionEditor" type="Control"]
 layout_mode = 3
@@ -21,6 +21,6 @@ scale = Vector2(1.25, 1.25)
 [node name="Cables" parent="." instance=ExtResource("4_e00ap")]
 unique_name_in_owner = true
 
-[node name="Gates" parent="." node_paths=PackedStringArray("cables") instance=ExtResource("4_e0oe3")]
+[node name="VSNodes" parent="." node_paths=PackedStringArray("cables") instance=ExtResource("4_e0oe3")]
 layout_mode = 1
 cables = NodePath("../Cables")

@@ -47,13 +47,16 @@ func register_output(output):
 	output.clicked.connect(_on_connection_clicked)
 	output.released_over.connect(_on_connection_released)
 	output.destroyed.connect(remove_output)
+	print("Registered output: %s" % output.get)
 
-	
+
 func remove_input(input):
 	inputs.erase(input)
-	
+
+
 func remove_output(output):
 	outputs.erase(output)
+	print("Removed output: %s" % output.name)
 
 
 func _on_connection_clicked(connection):

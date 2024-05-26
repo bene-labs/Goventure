@@ -47,10 +47,9 @@ func _on_add_output_button_button_down():
 	new_output.parent_node = self
 	position_changed.connect(new_output._on_position_changed)
 	z_index_changed.connect(new_output._on_z_index_changed)
-	gates._on_output_added(new_output)
+	vs_nodes._on_output_added(new_output)
 
 	new_output_label.text = str(output_count)
-	gates._on_output_added(new_output)
 	%OutputLabel.add_child(new_output_label)
 	%Outputs.add_child(new_output)
 	%OutputButtons.position.y += 50

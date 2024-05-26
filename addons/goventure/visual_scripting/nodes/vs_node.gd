@@ -12,7 +12,7 @@ var hover_color = Color.LIGHT_BLUE
 
 var default_color
 
-@onready var gates : Gates = get_parent()
+@onready var vs_nodes : VSNodes = get_parent()
 @onready var collision_shape = $Area2D/CollisionPolygon2D
 @onready var image = $Sprite
 
@@ -46,7 +46,7 @@ func _ready():
 			position_changed.connect(input._on_position_changed)
 			z_index_changed.connect(input._on_z_index_changed)
 		call_deferred("_on_input_changed")
-	gates._on_gate_spawned(self)
+	vs_nodes._on_vs_node_spawned(self)
 
 
 func get_outputs():
@@ -80,7 +80,7 @@ func set_undragged():
 	CursorCollision.unlock()
 
 func _input(event):
-	if is_dragged and Input.is_action_just_released("gate"):
+	if is_dragged and Input.is_action_just_released("vs_node"):
 		emit_signal("released", self)
 	
 	if not is_hovered:
@@ -90,19 +90,19 @@ func _input(event):
 		CursorCollision.unregister(self)
 		emit_signal("destroy")
 		call_deferred("queue_free")
-	elif Input.is_action_just_pressed("gate") and not drag_mode_queded:
+	elif Input.is_action_just_pressed("vs_node") and not drag_mode_queded:
 		drag_mode_queded = true
 		await get_tree().create_timer(0.1).timeout
 		try_start_drag_mode()
 	
-	if Input.is_action_just_pressed("rotate_gate"):
+	if Input.is_action_just_pressed("rotate_vs_node"):
 		rotate_counterclockwise()
 
 func try_start_drag_mode():
 	if not drag_mode_queded:
 		return true
 	drag_mode_queded = false
-	if not is_hovered or not Input.is_action_pressed("gate"):
+	if not is_hovered or not Input.is_action_pressed("vs_node"):
 		return false
 	
 	clicked.emit(self, global_position - get_global_mouse_position())

@@ -103,7 +103,7 @@ func update_move_rects():
 
 	#button_container.global_position = Vector2(min_pos.x + button_width * 0.025, min_pos.y + (view_size.y * (1.0 - relative_buttons_heigth)) / 2)
 	#button_container.size = Vector2(button_width, button_heigth)
-	#$Gates.update_button_dimensions()
+	#$vs_nodes.update_button_dimensions()
 
 func _on_Up_mouse_entered():
 	moving_up = true
@@ -133,7 +133,7 @@ func _on_Right_mouse_exited():
 func _on_Cables_active_cable_value_changed(is_active):
 	set_edge_move_mode(is_active)
 
-func _on_Gates_drag_toggled(value):
+func _on_vs_nodes_drag_toggled(value):
 	set_edge_move_mode(value)
 
 func set_edge_move_mode(active):
