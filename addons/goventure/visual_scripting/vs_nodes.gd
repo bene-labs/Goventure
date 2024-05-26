@@ -85,5 +85,21 @@ func _on_output_added(new_output):
 func _on_input_added(new_input):
 	cables.register_output(new_input)
 
-func _save():
-	pass
+
+func load_nodes(nodes_data: Array):
+	for node in vs_nodes:
+		node.queue_free()
+	vs_nodes.clear()
+	for node_data in nodes_data:
+		var new_node = load(node_data["path"]).instantiate()
+		add_child(new_node)
+	await get_tree().process_frame
+	for i in range(vs_nodes.size()):
+		vs_nodes[i].restore_configs(nodes_data[i]["configs"])
+
+
+func serialize():
+	var nodes = []
+	for node in vs_nodes:
+		nodes.push_back(node.serialize())
+	return {"nodes": nodes}

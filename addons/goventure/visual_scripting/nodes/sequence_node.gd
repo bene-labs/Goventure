@@ -37,8 +37,12 @@ func _on_remove_output_button_pressed():
 
 
 func _on_add_output_button_button_down():
+	add_output()
+
+
+func add_output(output_scene = output_node_scene):
 	var colision_polygon = $Area2D/CollisionPolygon2D.polygon
-	var new_output := output_node_scene.instantiate()
+	var new_output := output_scene.instantiate()
 	var new_output_label := output_label_scene.instantiate()
 	output_count += 1
 	new_output.value = output_count
@@ -71,3 +75,21 @@ func _on_mode_selection_item_selected(index):
 			title = "RepeatLastSequence"
 		2:
 			title = "StopSequence"
+
+
+func restore_configs(configs: Dictionary):
+	super.restore_configs(configs)
+	%ModeSelection.selected = configs["selected"]
+	_on_mode_selection_item_selected(%ModeSelection.selected)
+	for output in configs["additional_outputs"]:
+		add_output(load(output["path"]))
+
+func serialize() -> Dictionary:
+	var serial_data = super.serialize()
+	serial_data["configs"]["selected"] = %ModeSelection.selected
+	if %Outputs.get_child_count() <= 2:
+		return serial_data
+	serial_data["configs"]["additional_outputs"] = []
+	for i in range(2, %Outputs.get_child_count()):
+		serial_data["configs"]["additional_outputs"].push_back(%Outputs.get_child(i).serialize())
+	return serial_data

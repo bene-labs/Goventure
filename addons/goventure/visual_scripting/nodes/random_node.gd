@@ -40,8 +40,12 @@ func _on_remove_output_button_pressed():
 
 
 func _on_add_output_button_button_down():
+	add_output()
+
+
+func add_output(output_scene = output_node_scene):
 	var colision_polygon = $Area2D/CollisionPolygon2D.polygon
-	var new_output := output_node_scene.instantiate()
+	var new_output := output_scene.instantiate()
 	var new_output_option := output_option_scene.instantiate()
 	
 	new_output.is_standalone = false
@@ -79,6 +83,10 @@ func _on_output_weight_changed(value_change, source):
 
 func restore_configs(configs: Dictionary):
 	super.restore_configs(configs)
+	if not "additional_outputs" in configs:
+		return
+	for output in configs["additional_outputs"]:
+		add_output(load(output["path"]))
 
 
 func serialize() -> Dictionary:
@@ -86,4 +94,6 @@ func serialize() -> Dictionary:
 	if %Outputs.get_child_count() <= 2:
 		return serial_data
 	serial_data["configs"]["additional_outputs"] = []
+	for i in range(2, %Outputs.get_child_count()):
+		serial_data["configs"]["additional_outputs"].push_back(%Outputs.get_child(i).serialize())
 	return serial_data
