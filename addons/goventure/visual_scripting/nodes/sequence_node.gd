@@ -42,7 +42,6 @@ func _on_add_output_button_button_down():
 	var new_output_label := output_label_scene.instantiate()
 	output_count += 1
 	new_output.value = output_count
-	outputs.append(new_output)
 	new_output.is_standalone = false
 	new_output.parent_node = self
 	position_changed.connect(new_output._on_position_changed)

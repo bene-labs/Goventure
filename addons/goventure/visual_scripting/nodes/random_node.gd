@@ -44,7 +44,6 @@ func _on_add_output_button_button_down():
 	var new_output := output_node_scene.instantiate()
 	var new_output_option := output_option_scene.instantiate()
 	
-	outputs.append(new_output)
 	new_output.is_standalone = false
 	new_output.parent_node = self
 	position_changed.connect(new_output._on_position_changed)
@@ -76,3 +75,15 @@ func _on_output_weight_changed(value_change, source):
 			%Outputs.get_child(i).value = source.weight
 			break
 	total_weight += value_change
+
+
+func restore_configs(configs: Dictionary):
+	super.restore_configs(configs)
+
+
+func serialize() -> Dictionary:
+	var serial_data = super.serialize()
+	if %Outputs.get_child_count() <= 2:
+		return serial_data
+	serial_data["configs"]["additional_outputs"] = []
+	return serial_data

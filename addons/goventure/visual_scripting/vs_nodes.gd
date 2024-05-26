@@ -72,9 +72,9 @@ func _on_vs_node_spawned(new_vs_node):
 	new_vs_node.clicked.connect(_on_vs_node_clicked)
 	new_vs_node.released.connect(_on_vs_node_released)
 	new_vs_node.destroyed.connect(_on_vs_node_destroyed)
-	for input in new_vs_node.inputs:
+	for input in new_vs_node.get_inputs():
 		cables.register_input(input)
-	for output in new_vs_node.outputs:
+	for output in new_vs_node.get_outputs():
 		cables.register_output(output)
 
 

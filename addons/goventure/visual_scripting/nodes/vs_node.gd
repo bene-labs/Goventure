@@ -16,8 +16,7 @@ var default_color
 @onready var collision_shape = $Area2D/CollisionPolygon2D
 @onready var image = $Sprite
 
-var outputs = []
-var inputs = []
+
 var is_hovered = false
 var is_dragged = false
 var drag_mode_queded = false
@@ -27,19 +26,18 @@ var sprite_z_index = z_index
 var title := "Node"
 var param = "None"
 
+
 func _ready():
 	CursorCollision.register(self)
 	default_color = image.modulate
 
 	for output in %Outputs.get_children():
-		outputs.append(output)
 		output.is_standalone = false
 		output.parent_node = self
 		position_changed.connect(output._on_position_changed)
 		z_index_changed.connect(output._on_z_index_changed)
 	if get_node_or_null("%Inputs") != null:
 		for input in %Inputs.get_children():
-			inputs.append(input)
 			input.is_standalone = false
 			input.parent_node = self
 			input.value_changed.connect(_on_input_changed)
@@ -60,10 +58,12 @@ func get_inputs():
 func _on_input_changed():
 	pass
 
+
 func _on_mouse_entered():
 	image.modulate = hover_color
 	is_hovered = true
-	
+
+
 func _on_mouse_exited():
 	if drag_mode_queded:
 		clicked.emit(self, global_position - get_global_mouse_position())
@@ -71,13 +71,16 @@ func _on_mouse_exited():
 	image.modulate = default_color
 	is_hovered = false
 
+
 func set_dragged():
 	is_dragged = true
 	CursorCollision.lock()
-	
+
+
 func set_undragged():
 	is_dragged = false
 	CursorCollision.unlock()
+
 
 func _input(event):
 	if is_dragged and Input.is_action_just_released("vs_node"):
@@ -98,6 +101,7 @@ func _input(event):
 	if Input.is_action_just_pressed("rotate_vs_node"):
 		rotate_counterclockwise()
 
+
 func try_start_drag_mode():
 	if not drag_mode_queded:
 		return true
@@ -108,9 +112,11 @@ func try_start_drag_mode():
 	clicked.emit(self, global_position - get_global_mouse_position())
 	return true
 
+
 func update_position(value):
 	position = value
 	emit_signal("position_changed")
+
 
 @warning_ignore("native_method_override")
 func set_z_index(value):
@@ -118,16 +124,35 @@ func set_z_index(value):
 	sprite_z_index = value
 	emit_signal("z_index_changed", value)
 
+
 @warning_ignore("native_method_override")
 func get_z_index():
 	return sprite_z_index
-	
+
+
 func rotate_counterclockwise():
 	$Sprite.rotate(deg_to_rad(90.0))
 	update_position(position)
-	
+
+
 func is_point_inside(point):
 	return Geometry2D.is_point_in_polygon($Sprite.to_local(point), collision_shape.polygon)
+
+
+func restore_configs(configs: Dictionary):
+	global_position = configs["position"]
+	rotation = configs["rotation"]
+
+
+func serialize() -> Dictionary:
+	return {
+		"path": scene_file_path, 
+		"configs": {
+			"position": global_position,
+			"rotation": rotation
+		}
+	}
+
 
 func _exit_tree():
 	emit_signal("destroyed", self)

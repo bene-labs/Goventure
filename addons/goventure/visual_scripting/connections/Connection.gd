@@ -239,7 +239,7 @@ func _on_new_cable(to_connection):
 	var connected_input_nodes = get_connected_input_nodes()
 	if connected_input_nodes.size() > 1:
 		for input_node in connected_input_nodes:
-			var inputs = input_node.inputs
+			var inputs = input_node.get_inputs()
 			if to_connection in inputs:
 				continue
 			inputs[0].clear_cables()
@@ -253,6 +253,15 @@ func _on_released_over(node):
 func _on_position_changed():
 	position_changed.emit(get_attachment_point())
 
+
+func restore_configs(configs: Dictionary):
+	pass
+
+
+func serialize() -> Dictionary:
+	return {
+		"path": scene_file_path
+	}
 
 func _exit_tree():
 	clear_cables()

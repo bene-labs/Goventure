@@ -37,8 +37,6 @@ func _ready():
 	$Area2D/CollisionPolygon2D.polygon = colision_polygon
 	
 	super._ready()
-	#for output in outputs:
-		#output.set_value(TriState.State.FALSE)
 
 
 func _input(event):
@@ -50,7 +48,7 @@ func _input(event):
 
 func get_command_paths(outputs: Array) -> Array:
 	var command_paths := []
-	for output : Output in outputs:
+	for output : Output in %Outputs.get_children():
 		var new_path = CommandPathData.new()
 		new_path.value = output.value
 		new_path.path = get_commands(output)
@@ -80,7 +78,7 @@ func get_commands(output: Output) -> Array:
 func save():
 	var interaction_data = InteractionData.new()
 	
-	for output : Output in outputs:
+	for output : Output in %Outputs.get_children():
 		for node : VSNode in output.get_connected_input_nodes():
 			var key := ""
 			var output_to_use = output
@@ -96,7 +94,7 @@ func save():
 	ResourceSaver.save(interaction_data, interaction_data_path + "interaction_data/" + title + ".tres")
 
 func add_action_text_rec(start_node: VSNode, text := "") -> String:
-	for output : Output in start_node.outputs:
+	for output : Output in start_node.get_outputs():
 		for node : VSNode in output.get_connected_input_nodes():
 			text += "\t" + node.title + " " + node.param + "\n"
 			text += add_action_text_rec(node)
@@ -107,7 +105,7 @@ func save_to_file():
 	var file := FileAccess.open(save_directory + "/" + title + ".gv", FileAccess.WRITE)
 	var text := ""
 	
-	for output : Output in outputs:
+	for output : Output in %Outputs.get_children():
 		for node : VSNode in output.get_connected_input_nodes():
 			text += output.name
 			if node is ActionCombinationNode:
@@ -142,8 +140,6 @@ func save_to_resource(text: String):
 		interaction_data.command_lookup[key] = []
 		i += 1
 		while i < lines.size() and lines[i].contains("\t"):
-			#match lines[i].split(" ")[0]:
-				#"say":
 			var command = CommandData.new()
 			command.value = lines[i].split('\"')[1]
 			interaction_data.command_lookup[key].append(command)
@@ -153,3 +149,15 @@ func save_to_resource(text: String):
 
 func _on_interactible_selection_item_selected(index):
 	title = %InteractibleSelection.get_item_text(index)
+
+
+func restore_configs(configs: Dictionary):
+	super.restore_configs(configs)
+	%InteractibleSelection.selected = configs["selected"]
+	title = %InteractibleSelection.get_item_text(%InteractibleSelection.selected)
+
+
+func serialize() -> Dictionary:
+	var serial_data = super.serialize()
+	serial_data["configs"]["selected"] = %InteractibleSelection.selected
+	return serial_data
