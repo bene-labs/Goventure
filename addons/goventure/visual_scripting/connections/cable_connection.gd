@@ -46,7 +46,7 @@ func _on_connections_changed():
 		all_incompatible_types = all_incompatible_types | conection.incompatible_connection_types
 	connection_types = lowest_types
 	incompatible_connection_types = all_incompatible_types
-	for connection in get_all_connections().filter(func(x): return x.is_standalone and x is Output):
+	for connection in get_all_connections().filter(func(x): return x.is_standalone):
 		connection.connection_types = connection_types
 		connection.incompatible_connection_types = incompatible_connection_types
 
