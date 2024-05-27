@@ -37,11 +37,17 @@ func can_connect(other: Connection):
 func _on_connections_changed():
 	var lowest_types : ConnectionType
 	var all_incompatible_types : ConnectionType = 0
+	var input_nodes = get_connected_input_nodes()
+	var connected_input_node_count = get_connected_input_nodes().size()
 	
 	for type in ConnectionType.values():
 		lowest_types |= 1 << type
 	
+	
 	for conection in get_all_connections().filter(func(x): return not x.is_standalone and x is Output):
+		if connected_input_node_count > 1 and not conection.is_multiple_connection_allowed:
+			conection.clear_cables()
+			continue
 		lowest_types = lowest_types & conection.connection_types
 		all_incompatible_types = all_incompatible_types | conection.incompatible_connection_types
 	connection_types = lowest_types

@@ -166,12 +166,14 @@ func add_all_connections_rec(connection : Connection, connected_nodes: Array, \
 
 func get_all_connections():
 	var all_connections : Array
+	var searched_nodes = [self]
 	
 	for connection in linked_connections:
 		if not connection.is_standalone:
 			all_connections.push_back(connection)
+			searched_nodes.push_back(connection)
 			continue
-		add_all_connections_rec(connection, all_connections)
+		add_all_connections_rec(connection, all_connections, searched_nodes)
 	return all_connections
 
 

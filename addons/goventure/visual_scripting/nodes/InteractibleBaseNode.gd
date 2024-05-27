@@ -28,6 +28,7 @@ func _ready():
 			action.CombinationType.NONE:
 				new_output.connection_types = 1 << Connection.ConnectionType.FLOW
 				new_output.incompatible_connection_types = 1 << Connection.ConnectionType.ACTION
+				new_output.is_multiple_connection_allowed = false
 		%OutputLabels.add_child(new_label)
 		%Outputs.add_child(new_output)
 		%Outline.size.y += 50
