@@ -123,7 +123,6 @@ func _input(event):
 		destroy()
 
 func destroy():
-	CursorCollision.unregister(self)
 	if start_connection != null:
 		#if connected_input != null and connected_output.is_standalone \
 		#and connected_output.get_connected_input_nodes().size() <= 1:
@@ -142,6 +141,10 @@ func destroy():
 	end_connection.remove_cable(self)
 	end_connection.unlink(start_connection)
 	queue_free()
+
+
+func _exit_tree():
+	CursorCollision.unregister(self)
 
 
 func restore_configs(configs: Dictionary, cable_service: CableService):

@@ -87,13 +87,16 @@ func link(connection : Connection, cable: Cable = null):
 	connected_cables.append(cable)
 	for connected_cable in connected_cables:
 		connected_cable.adjust_color(value)
-	if is_standalone and not is_multiple_connection_allowed:
-		_on_new_cable(connection)
+	#if is_standalone and not is_multiple_connection_allowed:
+		#_on_new_cable(connection)
 
 
 func unlink(from: Connection):
 	if from == null:
 		return
+	for cable : Cable in connected_cables:
+		if cable.start_connection == from or cable.end_connection == from:
+			cable.destroy()
 	from.linked_connections.erase(self)
 	linked_connections.erase(from)
 	if is_standalone and get_connected_nodes().size() == 0:
