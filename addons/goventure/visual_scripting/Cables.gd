@@ -139,6 +139,8 @@ func load_connections(connections_data: Array):
 	for connection in connections:
 		for linked_connection_id in connection.linked_connection_ids:
 			connection.link(get_connection_by_id(linked_connection_id))
+	connection_id = connections.map(func(x): return x.id).max() + 1
+
 
 func load_cables(cables_data: Array):
 	for cable_data in cables_data:
