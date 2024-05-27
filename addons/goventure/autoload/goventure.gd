@@ -1,3 +1,4 @@
+@tool
 extends Node
 
 signal command_executed(command: CommandData)
@@ -12,13 +13,49 @@ var command_mode := CommandModes.RUN_IN_DIALOGIC
 
 var configs = Configs.new()
 
-var actions : Array[Action] = [
+var actions := [
 	Action.new("use", Action.CombinationType.OPTIONAL),
 	Action.new("combine", Action.CombinationType.MANDTORY),
 	Action.new("examine", Action.CombinationType.NONE)]
-var interactibles : Array[String] = ["Red Key", "Blue Lock", "Red Lock", "Door", "Coin"]
+var interactibles := ["Red Key", "Blue Lock", "Red Lock", "Door", "Coin"]
 
 var queued_commands := []
+
+
+func _ready():
+	_load()
+
+
+func _save():
+	var save_file = FileAccess.open("res://addons/goventure/editor/resources/configs.save", FileAccess.WRITE)
+	save_file.store_var({
+		"actions_titles": actions.map(func(x): return x.title),
+		"actions_types": actions.map(func(x): return x.combination_type),
+		"interactibles": interactibles
+	}, true)
+
+
+func _load():
+	if not FileAccess.file_exists("res://addons/goventure/editor/resources/configs.save"):
+		return
+	
+	var save_file = FileAccess.open("res://addons/goventure/editor/resources/configs.save", FileAccess.READ)
+	var save_dict = save_file.get_var(true)
+	if save_dict == null:
+		return
+	#actions = save_dict["actions"]
+	interactibles.clear()
+	actions.clear()
+	interactibles = save_dict["interactibles"]
+	for i in range(save_dict["actions_titles"].size()):
+		actions.push_back(Action.new(save_dict["actions_titles"][i], save_dict["actions_types"][i]))
+
+func _notification(what):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST \
+		or what == NOTIFICATION_EDITOR_PRE_SAVE \
+		or what == NOTIFICATION_UNPARENTED:
+		print("Saving ACTIONS!")
+		_save()
 
 
 func run_action(action: String, interactible1: String, interactible2 := ""):

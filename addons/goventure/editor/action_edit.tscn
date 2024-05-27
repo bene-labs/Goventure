@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://jfr3dpf8bqae"]
+
+[ext_resource type="Texture2D" uid="uid://dklm342430sre" path="res://addons/goventure/editor/icons/delete.png" id="1_ks40v"]
+[ext_resource type="Script" path="res://addons/goventure/editor/action_edit.gd" id="1_xapde"]
+
+[node name="ActionEdit" type="HBoxContainer"]
+script = ExtResource("1_xapde")
+
+[node name="NameEdit" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "enter action name"
+
+[node name="ActionTypeSelections" type="OptionButton" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 3
+selected = 0
+popup/item_0/text = "NONE"
+popup/item_0/id = 0
+popup/item_1/text = "MANDTORY"
+popup/item_1/id = 1
+popup/item_2/text = "OPTIONAL"
+popup/item_2/id = 2
+
+[node name="DeleteButton" type="Button" parent="."]
+layout_mode = 2
+icon = ExtResource("1_ks40v")
+
+[connection signal="text_submitted" from="NameEdit" to="." method="_on_name_edit_text_submitted"]
+[connection signal="item_selected" from="ActionTypeSelections" to="." method="_on_action_type_selections_item_selected"]
+[connection signal="pressed" from="DeleteButton" to="." method="_on_delete_button_pressed"]

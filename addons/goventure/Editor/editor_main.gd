@@ -14,3 +14,4 @@ func _process(delta):
 
 func _on_resource_loader_resource_selected(path):
 	%GoventureCodeEditor.open_new_file(path)
+

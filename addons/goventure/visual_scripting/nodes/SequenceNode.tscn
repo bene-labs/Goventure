@@ -108,6 +108,7 @@ connection_types = 2
 [node name="Outputs" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
 show_behind_parent = true
+layout_mode = 0
 offset_left = 258.0
 offset_top = 33.0
 offset_right = 306.0

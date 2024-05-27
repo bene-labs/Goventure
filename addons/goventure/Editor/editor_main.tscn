@@ -1,11 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0d2rgfddgckd"]
+[gd_scene load_steps=11 format=3 uid="uid://c0d2rgfddgckd"]
 
 [ext_resource type="Script" path="res://addons/goventure/Editor/editor_main.gd" id="1_gt0dq"]
-[ext_resource type="PackedScene" uid="uid://drhvyar4p35f" path="res://addons/goventure/Editor/resource_loader.tscn" id="2_xd8w4"]
+[ext_resource type="PackedScene" uid="uid://drhvyar4p35f" path="res://addons/goventure/editor/resource_loader.tscn" id="2_xd8w4"]
 [ext_resource type="Texture2D" uid="uid://b5xwnxdb7064n" path="res://addons/dialogic/Modules/Glossary/icon.svg" id="3_1vf0w"]
-[ext_resource type="PackedScene" uid="uid://c26fhm4hepdy2" path="res://addons/goventure/Editor/goventure_code_editor.tscn" id="4_iiakd"]
+[ext_resource type="PackedScene" uid="uid://c26fhm4hepdy2" path="res://addons/goventure/editor/goventure_code_editor.tscn" id="4_iiakd"]
+[ext_resource type="PackedScene" uid="uid://dbinot6x0ecx8" path="res://addons/goventure/editor/actions.tscn" id="5_ldfda"]
+[ext_resource type="Script" path="res://addons/goventure/editor/actions.gd" id="6_eoyt8"]
+[ext_resource type="PackedScene" uid="uid://jfr3dpf8bqae" path="res://addons/goventure/editor/action_edit.tscn" id="7_jkeek"]
 
-[sub_resource type="Image" id="Image_5ukbj"]
+[sub_resource type="Image" id="Image_xui0x"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 144, 239, 151, 76, 142, 239, 151, 228, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 228, 143, 241, 154, 73, 255, 255, 255, 0, 255, 255, 255, 0, 143, 239, 152, 229, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 226, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 142, 240, 152, 128, 143, 239, 151, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 143, 239, 151, 127, 142, 239, 151, 255, 143, 239, 151, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 142, 240, 152, 128, 142, 239, 151, 255, 142, 240, 152, 128, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 143, 239, 151, 127, 142, 240, 152, 128, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 228, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 240, 151, 225, 255, 255, 255, 0, 255, 255, 255, 0, 143, 241, 154, 73, 142, 239, 151, 226, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 240, 151, 225, 142, 241, 153, 70, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
 "format": "RGBA8",
@@ -15,9 +18,9 @@ data = {
 }
 
 [sub_resource type="ImageTexture" id="ImageTexture_7td0y"]
-image = SubResource("Image_5ukbj")
+image = SubResource("Image_xui0x")
 
-[sub_resource type="CodeHighlighter" id="CodeHighlighter_t1ski"]
+[sub_resource type="CodeHighlighter" id="CodeHighlighter_etk8i"]
 number_color = Color(1, 1, 1, 1)
 symbol_color = Color(1, 1, 1, 1)
 function_color = Color(1, 1, 1, 1)
@@ -56,6 +59,7 @@ layout_mode = 2
 split_offset = 150
 
 [node name="ResourceLoader" parent="MarginContainer/HSplitContainer" instance=ExtResource("2_xd8w4")]
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer"]
@@ -88,8 +92,31 @@ size_flags_vertical = 3
 
 [node name="GoventureCodeEditor" parent="MarginContainer/HSplitContainer/VBoxContainer/Editors" instance=ExtResource("4_iiakd")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
-syntax_highlighter = SubResource("CodeHighlighter_t1ski")
+syntax_highlighter = SubResource("CodeHighlighter_etk8i")
 gutters_draw_bookmarks = true
 
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/Editors"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 31
+theme_override_constants/margin_bottom = 10
+
+[node name="Actions" parent="MarginContainer/HSplitContainer/VBoxContainer/Editors/MarginContainer" instance=ExtResource("5_ldfda")]
+layout_mode = 2
+script = ExtResource("6_eoyt8")
+action_edit_scene = ExtResource("7_jkeek")
+
+[node name="ActionButtonContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/Editors/MarginContainer/Actions"]
+layout_mode = 2
+theme_override_constants/margin_top = 21
+
+[node name="AddActionButton" type="Button" parent="MarginContainer/HSplitContainer/VBoxContainer/Editors/MarginContainer/Actions/ActionButtonContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Add New Action"
+
 [connection signal="resource_selected" from="MarginContainer/HSplitContainer/ResourceLoader" to="." method="_on_resource_loader_resource_selected"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/Editors/MarginContainer/Actions/ActionButtonContainer/AddActionButton" to="MarginContainer/HSplitContainer/VBoxContainer/Editors/MarginContainer/Actions" method="_on_add_action_button_pressed"]

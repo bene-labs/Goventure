@@ -47,6 +47,7 @@ theme_override_font_sizes/font_size = 26
 [node name="OutputLabels" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
 z_index = 1000
+layout_mode = 0
 offset_left = 2.0
 offset_top = 40.0
 offset_right = 216.0
@@ -56,6 +57,7 @@ theme_override_constants/separation = 29
 [node name="Outputs" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
 show_behind_parent = true
+layout_mode = 0
 offset_left = 258.0
 offset_top = 33.0
 offset_right = 306.0
