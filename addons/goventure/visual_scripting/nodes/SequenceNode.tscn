@@ -64,20 +64,6 @@ text = "1 "
 layout_mode = 2
 text = "2 "
 
-[node name="Outputs" type="VBoxContainer" parent="Sprite"]
-unique_name_in_owner = true
-show_behind_parent = true
-offset_left = 258.0
-offset_top = 33.0
-offset_right = 306.0
-offset_bottom = 81.0
-
-[node name="Output" parent="Sprite/Outputs" instance=ExtResource("2_3ekub")]
-layout_mode = 2
-
-[node name="Output2" parent="Sprite/Outputs" instance=ExtResource("2_3ekub")]
-layout_mode = 2
-
 [node name="OutputButtons" type="HBoxContainer" parent="Sprite"]
 unique_name_in_owner = true
 z_index = 1000
@@ -118,6 +104,20 @@ offset_right = 47.0
 offset_bottom = 50.0
 rotation = -0.0121394
 connection_types = 2
+
+[node name="Outputs" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+show_behind_parent = true
+offset_left = 258.0
+offset_top = 33.0
+offset_right = 306.0
+offset_bottom = 133.0
+
+[node name="Output" parent="Outputs" instance=ExtResource("2_3ekub")]
+layout_mode = 2
+
+[node name="Output2" parent="Outputs" instance=ExtResource("2_3ekub")]
+layout_mode = 2
 
 [node name="Area2D" type="Area2D" parent="."]
 

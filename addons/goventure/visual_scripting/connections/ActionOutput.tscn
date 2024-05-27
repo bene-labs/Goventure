@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://m55uahd2db8t" path="res://addons/goventure/visual_scripting/sprites/Pin_under.png" id="3_jc8m3"]
 
 [node name="Output" type="TextureRect" groups=["Output"]]
-offset_left = 64.0
+offset_left = 42.0
 offset_top = -22.0
-offset_right = 112.0
+offset_right = 90.0
 offset_bottom = 26.0
 texture = ExtResource("1_60nrf")
 script = ExtResource("2_h7vv7")
@@ -25,25 +25,21 @@ offset_bottom = 54.0
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("3_jc8m3")
 
-[node name="DelayTimer" type="Timer" parent="."]
-wait_time = 0.1
-one_shot = true
-
-[node name="Wire" type="Control" parent="."]
+[node name="Wire" type="Control" parent="InteractionPoint"]
 show_behind_parent = true
 anchors_preset = 0
-offset_left = 136.0
-offset_top = 27.0
-offset_right = 136.0
-offset_bottom = 27.0
+offset_left = 173.333
+offset_top = 29.3333
+offset_right = 173.333
+offset_bottom = 29.3333
 
-[node name="Wire" type="ColorRect" parent="Wire"]
+[node name="Wire" type="ColorRect" parent="InteractionPoint/Wire"]
 show_behind_parent = true
 layout_mode = 0
-offset_left = -200.0
-offset_top = -20.0
-offset_right = -129.0
-offset_bottom = 11.0
+offset_left = -237.0
+offset_top = -24.3333
+offset_right = -150.0
+offset_bottom = 7.66667
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 

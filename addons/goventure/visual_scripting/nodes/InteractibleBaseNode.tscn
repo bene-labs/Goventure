@@ -44,7 +44,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_6t1mn")
 theme_override_font_sizes/font_size = 26
 
-[node name="OutputLabels" type="VBoxContainer" parent="Sprite"]
+[node name="OutputLabels" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
 z_index = 1000
 offset_left = 2.0
@@ -53,7 +53,7 @@ offset_right = 216.0
 offset_bottom = 111.0
 theme_override_constants/separation = 29
 
-[node name="Outputs" type="VBoxContainer" parent="Sprite"]
+[node name="Outputs" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
 show_behind_parent = true
 offset_left = 258.0
