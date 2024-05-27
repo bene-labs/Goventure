@@ -12,9 +12,10 @@ var active_start_connection = null
 var connection_id = 0
 
 var connections : Array[Connection]
+var searched_connections := []
 
 var is_input_required = false
-var tween : Tween
+
 
 
 func _input(event):
@@ -55,12 +56,41 @@ func _on_connection_clicked(connection):
 	create_new_cable(connection)
 
 
+func get_all_linked_connections_rec(current_connection : Connection, all_linked_connections: Array):
+	if current_connection in all_linked_connections:
+		return
+	all_linked_connections.append(current_connection)
+	
+	if current_connection is InputConnection:
+		for connection in current_connection.parent_node.get_outputs():
+			for linked_connection in connection.linked_connections:
+				get_all_linked_connections_rec(linked_connection, all_linked_connections)
+		return
+	if current_connection is Output:
+		for connection in current_connection.parent_node.get_inputs():
+			for linked_connection in connection.linked_connections:
+				get_all_linked_connections_rec(linked_connection, all_linked_connections)
+		return
+	for linked_connection in current_connection.linked_connections:
+		get_all_linked_connections_rec(linked_connection, all_linked_connections)
+
+
+func get_all_linked_connections(from: Connection):
+	var all_linked_connections : Array
+	
+	get_all_linked_connections_rec(from, all_linked_connections)
+	return all_linked_connections
+
+
 func show_available_connections(from : Connection):
+	var linked_connections = get_all_linked_connections(from)
 	for connection in connections:
+		if connection in linked_connections:
+			continue
 		if connection.can_connect(from):
 			connection.set_active()
 			CursorCollision.add_to_whitelist(connection)
-
+	searched_connections.clear()
 
 func hide_available_connections():
 	for connection in connections:

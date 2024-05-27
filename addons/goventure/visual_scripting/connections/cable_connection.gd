@@ -60,7 +60,7 @@ func link(connection : Connection, cable: Cable = null):
 
 func unlink(from: Connection):
 	super.unlink(from)
-	call_deferred("_on_connections_changed")
+	_on_connections_changed()
 
 
 func restore_configs(configs: Dictionary):
