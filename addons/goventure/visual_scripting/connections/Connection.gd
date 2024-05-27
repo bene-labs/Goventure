@@ -108,6 +108,8 @@ func get_attachment_point():
 
 
 func can_connect(other : Connection):
+	if other == self:
+		return false
 	if parent_node != null and parent_node == other.parent_node:
 		return false
 	if other in get_all_connections():

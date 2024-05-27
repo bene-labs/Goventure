@@ -1,5 +1,6 @@
 class_name CableConnection extends Connection
 
+var started_from_input = false
 
 func _ready():
 	super._ready()
@@ -12,30 +13,7 @@ func _ready():
 func can_connect(other: Connection):
 	if not other.is_multiple_connection_allowed and get_connected_input_nodes().size() > 1:
 		return false
-	
-	if other is InputConnection:
-		for output in get_all_connections() \
-			.filter(func(x): return not x.is_standalone and x is Output):
-			if not output.can_connect(other):
-				return false
-	elif other is Output:
-		for input in get_all_connections() \
-			.filter(func(x): return not x.is_standalone and x is InputConnection):
-			if not input.can_connect(other):
-				return false
-	else:
-		for connection in get_all_connections() \
-			.filter(func(x): return not x.is_standalone):
-			if not other.can_connect(connection):
-				return false
-	
-	for type in ConnectionType.values():
-		type = 1 << type
-		if connection_types & type == 0:
-			continue
-		if connection_types & type == other.connection_types & type:
-			return true
-	return false
+	return super.can_connect(other)
 
 
 func _on_connections_changed():
@@ -78,12 +56,11 @@ func link(connection : Connection, cable: Cable = null):
 	super.link(connection, cable)
 	if cable == null:
 		return
-	_on_connections_changed()
-
+	call_deferred("_on_connections_changed")
 
 func unlink(from: Connection):
 	super.unlink(from)
-	_on_connections_changed()
+	call_deferred("_on_connections_changed")
 
 
 func restore_configs(configs: Dictionary):
