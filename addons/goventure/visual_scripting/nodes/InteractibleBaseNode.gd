@@ -1,6 +1,5 @@
 extends VSNode
 
-@export_dir var interaction_data_path = "res://addons/goventure/resources/"
 @export var output_node : PackedScene
 @export var output_label : PackedScene
 @export_dir var save_directory 
@@ -49,7 +48,7 @@ func _input(event):
 
 func get_command_paths(outputs: Array) -> Array:
 	var command_paths := []
-	for output : Output in %Outputs.get_children():
+	for output : Output in outputs:
 		var new_path = CommandPathData.new()
 		new_path.value = output.value
 		new_path.path = get_commands(output)
@@ -92,7 +91,8 @@ func save():
 					Action Combination '%s' is already defined." % [title, key])
 				continue
 			interaction_data.command_lookup[key] = get_commands(output_to_use)
-	ResourceSaver.save(interaction_data, interaction_data_path + "interaction_data/" + title + ".tres")
+	ResourceSaver.save(interaction_data, Goventure.resource_dir_path + title + ".tres")
+
 
 func add_action_text_rec(start_node: VSNode, text := "") -> String:
 	for output : Output in start_node.get_outputs():
@@ -145,7 +145,7 @@ func save_to_resource(text: String):
 			command.value = lines[i].split('\"')[1]
 			interaction_data.command_lookup[key].append(command)
 			i += 1
-	ResourceSaver.save(interaction_data, interaction_data_path + "interaction_data/" + title + ".tres")
+	ResourceSaver.save(interaction_data, Goventure.resource_dir_path + title + ".tres")
 
 
 func _on_interactible_selection_item_selected(index):

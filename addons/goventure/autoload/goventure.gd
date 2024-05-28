@@ -28,6 +28,7 @@ var queued_commands := []
 func _ready():
 	var usr_args = OS.get_cmdline_user_args()
 	for usr_arg in usr_args:
+		print("usr_arg received: %s" % usr_arg)
 		if usr_arg.begins_with("save_path="):
 			var potential_save_dir = usr_arg.split("=")[1]
 			if not FileAccess.file_exists(potential_save_dir):
