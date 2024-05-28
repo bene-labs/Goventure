@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://7c0dcfe0jhim"]
+
+[ext_resource type="Script" path="res://addons/goventure/editor/interactible_edit.gd" id="1_74fb3"]
+[ext_resource type="Texture2D" uid="uid://dklm342430sre" path="res://addons/goventure/editor/icons/delete.png" id="2_ts6a3"]
+
+[node name="InteractibleEdit" type="HBoxContainer"]
+script = ExtResource("1_74fb3")
+
+[node name="NameEdit" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "enter interactible name"
+
+[node name="DeleteButton" type="Button" parent="."]
+layout_mode = 2
+icon = ExtResource("2_ts6a3")
+
+[connection signal="text_changed" from="NameEdit" to="." method="_on_name_edit_text_changed"]
+[connection signal="text_submitted" from="NameEdit" to="." method="_on_name_edit_text_submitted"]
+[connection signal="pressed" from="DeleteButton" to="." method="_on_delete_button_pressed"]

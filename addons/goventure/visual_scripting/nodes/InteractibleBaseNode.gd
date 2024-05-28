@@ -154,7 +154,8 @@ func _on_interactible_selection_item_selected(index):
 
 func restore_configs(configs: Dictionary):
 	super.restore_configs(configs)
-	%InteractibleSelection.selected = configs["selected"]
+	if configs["selected"] < %InteractibleSelection.item_count:
+		%InteractibleSelection.selected = configs["selected"]
 	title = %InteractibleSelection.get_item_text(%InteractibleSelection.selected)
 
 

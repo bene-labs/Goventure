@@ -25,7 +25,8 @@ func _on_interactible_selection_item_selected(index):
 
 func restore_configs(configs: Dictionary):
 	super.restore_configs(configs)
-	interactible_selection.selected = configs["selected"]
+	if configs["selected"] < interactible_selection.item_count:
+		interactible_selection.selected = configs["selected"]
 	param = interactible_selection.get_item_text(interactible_selection.selected)
 
 
