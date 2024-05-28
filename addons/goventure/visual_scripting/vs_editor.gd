@@ -1,17 +1,17 @@
 extends Control
 
-@export_dir var save_dir = "res://addons/goventure/resources/vs_scenes/"
+var save_file_path = "user://default_scene.save"
 
 
 func _ready():
 	_load()
 
 
-func _load(path = "user://default_scene.save"):
-	if not FileAccess.file_exists(path):
+func _load():
+	if not FileAccess.file_exists(save_file_path):
 		return
 	
-	var save_data = FileAccess.open(path, FileAccess.READ).get_var(true)
+	var save_data = FileAccess.open(save_file_path, FileAccess.READ).get_var(true)
 	if save_data == null:
 		return
 	if "camera_configs" in save_data:
@@ -22,8 +22,9 @@ func _load(path = "user://default_scene.save"):
 	if "cables" in save_data:
 		await %Cables.load_cables(save_data["cables"])
 
+
 func _save():
-	var file = FileAccess.open("user://default_scene.save", FileAccess.WRITE)
+	var file = FileAccess.open(save_file_path, FileAccess.WRITE)
 	
 	var save_dict = $VSNodes.serialize()
 	save_dict.merge(%Cables.serialize())
