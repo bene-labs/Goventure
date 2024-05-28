@@ -10,7 +10,7 @@ var selected_item1 := ""
 var selected_item2 := ""
 var action := ""
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	for action in Goventure.actions:
 		var new_button = button.instantiate()
@@ -26,7 +26,7 @@ func _ready():
 		new_button2.name = item
 		new_button2.text = item
 		second_item_buttons.add_child(new_button2)
-	
+
 
 func _input(event):
 	for button in first_item_buttons.get_children():
@@ -44,10 +44,6 @@ func _input(event):
 	$ActionLabel.text = action + " " + selected_item1
 	if selected_item2 != "":
 		$ActionLabel.text += " with " + selected_item2
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 
 func _on_run_button_pressed():

@@ -3,9 +3,6 @@ extends Node
 
 signal command_executed(command: CommandData)
 
-enum Interactibles {
-
-}
 enum CommandModes {
 	EMIT_SIGNALS,
 	RUN_IN_DIALOGIC
@@ -41,7 +38,6 @@ func _ready():
 				push_error("Invalid Resource Path Arg: %s. Directory does not exit." % potential_resource_dir)
 				break
 			resource_dir_path = potential_resource_dir
-		
 	_load()
 
 
@@ -64,12 +60,12 @@ func _load():
 	var save_dict = save_file.get_var(true)
 	if save_dict == null:
 		return
-	#actions = save_dict["actions"]
 	interactibles.clear()
 	actions.clear()
 	interactibles = save_dict["interactibles"]
 	for i in range(save_dict["actions_titles"].size()):
 		actions.push_back(Action.new(save_dict["actions_titles"][i], save_dict["actions_types"][i]))
+
 
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST \
@@ -177,6 +173,7 @@ func run_action_in_dialogic(action: String, interactible1: String, interactible2
 	timeline.events = events
 	Dialogic.start(timeline)
 	ResourceSaver.save(interactionData, path)
+
 
 class Action:
 	enum CombinationType {

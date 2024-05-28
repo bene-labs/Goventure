@@ -62,12 +62,10 @@ func get_all_linked_connections_rec(current_connection : Connection, all_linked_
 	all_linked_connections.append(current_connection)
 	
 	if current_connection is InputConnection:
-		for connection in current_connection.parent_node.get_outputs():
-			for linked_connection in connection.linked_connections:
-				get_all_linked_connections_rec(linked_connection, all_linked_connections)
 		return
 	if current_connection is Output:
 		for connection in current_connection.parent_node.get_inputs():
+			all_linked_connections.append(connection)
 			for linked_connection in connection.linked_connections:
 				get_all_linked_connections_rec(linked_connection, all_linked_connections)
 		return

@@ -11,6 +11,3 @@ func get_commands_by_action(action: String, with = ""):
 	if not command_lookup.has(key):
 		return []
 	return command_lookup[key]
-
-
-
