@@ -6,14 +6,25 @@
 [node name="ActionEdit" type="HBoxContainer"]
 script = ExtResource("1_xapde")
 
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Action Name:"
+
 [node name="NameEdit" type="LineEdit" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "enter action name"
 
+[node name="ModeLabel" type="Label" parent="."]
+layout_mode = 2
+text = " Combination Mode:"
+
 [node name="ActionTypeSelections" type="OptionButton" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "NONE: this action can only be used with one interactible
+MANDOTORY: this action can only be used with two interactibles
+OPTIONAL: this action can be used with one or two interactibles"
 item_count = 3
 selected = 0
 popup/item_0/text = "NONE"
