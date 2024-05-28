@@ -77,7 +77,7 @@ func set_value(value):
 
 
 func link(connection : Connection, cable: Cable = null):
-	if connection in linked_connections:
+	if connection == null or connection in linked_connections:
 		return
 	linked_connections.append(connection)
 	if cable == null:

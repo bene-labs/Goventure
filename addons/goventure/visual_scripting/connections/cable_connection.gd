@@ -13,6 +13,9 @@ func _ready():
 func can_connect(other: Connection):
 	if not other.is_multiple_connection_allowed and get_connected_input_nodes().size() > 1:
 		return false
+	for input in get_all_connections().filter(func(x): return x is InputConnection):
+		if not input.can_connect(other):
+			return false
 	return super.can_connect(other)
 
 

@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://dbinot6x0ecx8"]
+[gd_scene load_steps=3 format=3 uid="uid://dbinot6x0ecx8"]
+
+[ext_resource type="Script" path="res://addons/goventure/editor/actions.gd" id="1_piw6t"]
+[ext_resource type="PackedScene" uid="uid://jfr3dpf8bqae" path="res://addons/goventure/editor/action_edit.tscn" id="2_2tcks"]
 
 [node name="Actions" type="VBoxContainer"]
+script = ExtResource("1_piw6t")
+action_edit_scene = ExtResource("2_2tcks")

@@ -18,6 +18,7 @@ func _ready():
 		var new_output := output_node.instantiate()
 		new_label.text = action.title
 		new_output.name = action.title
+		new_output.value = action.title
 		match action.combination_type:
 			action.CombinationType.OPTIONAL:
 				new_output.connection_types = 1 << Connection.ConnectionType.ACTION

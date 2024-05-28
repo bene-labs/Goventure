@@ -148,6 +148,8 @@ func restore_configs(configs: Dictionary):
 	
 	var connections = get_connections()
 	for i in range(configs["connection_configs"].size()):
+		if i >= connections.size():
+			return
 		connections[i].restore_configs(configs["connection_configs"][i])
 
 

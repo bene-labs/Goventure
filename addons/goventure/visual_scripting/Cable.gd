@@ -151,13 +151,17 @@ func restore_configs(configs: Dictionary, cable_service: CableService):
 	var start_connection = cable_service.get_connection_by_id(configs["start_connection_id"])
 	var end_connection = cable_service.get_connection_by_id(configs["end_connection_id"])
 	
-	if start_connection != null:
-		connect_to(start_connection)
-		start_connection.connected_cables.append(self)
-	if end_connection != null:
-		connect_to(end_connection)
-		end_connection.connected_cables.append(self)
+	if start_connection == null:
+		queue_free()
+		return
+	connect_to(start_connection)
+	start_connection.connected_cables.append(self)
 	
+	if end_connection == null:
+		queue_free()
+		return
+	connect_to(end_connection)
+	end_connection.connected_cables.append(self)
 
 
 func serialize() -> Dictionary:

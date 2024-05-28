@@ -1,8 +1,8 @@
 extends EditorInspectorPlugin
 
 
-var InteractibleIdEditor = preload("res://addons/goventure/interactible_id_editor.gd")
-var InteractionsEditor = preload("res://addons/goventure/interactible_interactions_editor.gd")
+var InteractibleIdEditor = preload("res://addons/goventure/interactible/interactible_id_editor.gd")
+var InteractionsEditor = preload("res://addons/goventure/interactible/interactible_interactions_editor.gd")
 
 
 func _can_handle(object):

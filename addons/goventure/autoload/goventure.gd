@@ -3,6 +3,9 @@ extends Node
 
 signal command_executed(command: CommandData)
 
+enum Interactibles {
+
+}
 enum CommandModes {
 	EMIT_SIGNALS,
 	RUN_IN_DIALOGIC
@@ -17,6 +20,7 @@ var actions := [
 	Action.new("use", Action.CombinationType.OPTIONAL),
 	Action.new("combine", Action.CombinationType.MANDTORY),
 	Action.new("examine", Action.CombinationType.NONE)]
+
 var interactibles := ["Red Key", "Blue Lock", "Red Lock", "Door", "Coin"]
 
 var queued_commands := []
