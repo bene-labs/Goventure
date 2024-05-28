@@ -116,12 +116,6 @@ func can_connect(other : Connection):
 		return false
 	for type in ConnectionType.values():
 		type = 1 << type
-		if incompatible_connection_types & type and other.connection_types & type:
-			return false
-		if other.incompatible_connection_types & type and connection_types & type:
-			return false
-	for type in ConnectionType.values():
-		type = 1 << type
 		if connection_types & type == 0:
 			continue
 		if connection_types & type == other.connection_types & type:

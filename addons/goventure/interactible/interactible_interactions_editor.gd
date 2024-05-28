@@ -1,3 +1,4 @@
+class_name GoventureInteractionsEditorProperty
 extends EditorProperty
 
 var interaction_editor_exe_path = ProjectSettings.globalize_path(\
@@ -53,6 +54,3 @@ func _update_property():
 
 func refresh_control_text():
 	property_control.text = current_value
-
-func _exit_tree():
-	_try_to_kill_interaction_editor()

@@ -175,6 +175,11 @@ func run_action_in_dialogic(action: String, interactible1: String, interactible2
 	ResourceSaver.save(interactionData, path)
 
 
+func _exit_tree():
+	if GoventureInteractionsEditorProperty.interaction_editor_pid >= 0:
+		OS.kill(GoventureInteractionsEditorProperty.interaction_editor_pid)
+		GoventureInteractionsEditorProperty.interaction_editor_pid = -1
+
 class Action:
 	enum CombinationType {
 		NONE,
