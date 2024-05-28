@@ -7,6 +7,7 @@ const MainPanel = preload("res://addons/goventure/editor/editor_main.tscn")
 var main_panel_instance
 
 func _enter_tree():
+	add_inspector_plugin(preload("res://addons/goventure/interactible_inspector_plugin.gd").new())
 	main_panel_instance = MainPanel.instantiate()
 	# Add the main panel to the editor's main viewport.
 	EditorInterface.get_editor_main_screen().add_child(main_panel_instance)

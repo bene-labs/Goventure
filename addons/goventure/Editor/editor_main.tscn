@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://addons/goventure/editor/actions.gd" id="6_eoyt8"]
 [ext_resource type="PackedScene" uid="uid://jfr3dpf8bqae" path="res://addons/goventure/editor/action_edit.tscn" id="7_jkeek"]
 
-[sub_resource type="Image" id="Image_xiqio"]
+[sub_resource type="Image" id="Image_th46e"]
 data = {
 "data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 144, 239, 151, 76, 142, 239, 151, 228, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 228, 143, 241, 154, 73, 255, 255, 255, 0, 255, 255, 255, 0, 143, 239, 152, 229, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 226, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 142, 240, 152, 128, 143, 239, 151, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 143, 239, 151, 127, 142, 239, 151, 255, 143, 239, 151, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 142, 240, 152, 128, 142, 239, 151, 255, 142, 240, 152, 128, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 143, 239, 151, 127, 142, 240, 152, 128, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 255, 142, 239, 151, 255, 255, 255, 255, 0, 255, 255, 255, 0, 142, 239, 151, 228, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 240, 151, 225, 255, 255, 255, 0, 255, 255, 255, 0, 143, 241, 154, 73, 142, 239, 151, 226, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 239, 151, 255, 142, 240, 151, 225, 142, 241, 153, 70, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
 "format": "RGBA8",
@@ -18,9 +18,9 @@ data = {
 }
 
 [sub_resource type="ImageTexture" id="ImageTexture_7td0y"]
-image = SubResource("Image_xiqio")
+image = SubResource("Image_th46e")
 
-[sub_resource type="CodeHighlighter" id="CodeHighlighter_5oroh"]
+[sub_resource type="CodeHighlighter" id="CodeHighlighter_asa48"]
 number_color = Color(1, 1, 1, 1)
 symbol_color = Color(1, 1, 1, 1)
 function_color = Color(1, 1, 1, 1)
@@ -94,29 +94,45 @@ size_flags_vertical = 3
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-syntax_highlighter = SubResource("CodeHighlighter_5oroh")
+syntax_highlighter = SubResource("CodeHighlighter_asa48")
 gutters_draw_bookmarks = true
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/Editors"]
+[node name="ActionsContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/Editors"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 31
 theme_override_constants/margin_bottom = 10
 
-[node name="Actions" parent="MarginContainer/HSplitContainer/VBoxContainer/Editors/MarginContainer" instance=ExtResource("5_ldfda")]
+[node name="Actions" parent="MarginContainer/HSplitContainer/VBoxContainer/Editors/ActionsContainer" instance=ExtResource("5_ldfda")]
 layout_mode = 2
 script = ExtResource("6_eoyt8")
 action_edit_scene = ExtResource("7_jkeek")
 
-[node name="ActionButtonContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/Editors/MarginContainer/Actions"]
+[node name="ActionButtonContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/Editors/ActionsContainer/Actions"]
 layout_mode = 2
 theme_override_constants/margin_top = 21
 
-[node name="AddActionButton" type="Button" parent="MarginContainer/HSplitContainer/VBoxContainer/Editors/MarginContainer/Actions/ActionButtonContainer"]
+[node name="AddActionButton" type="Button" parent="MarginContainer/HSplitContainer/VBoxContainer/Editors/ActionsContainer/Actions/ActionButtonContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Add New Action"
 
+[node name="InteractibleContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/Editors"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 31
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="MarginContainer/HSplitContainer/VBoxContainer/Editors/InteractibleContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "To add "
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/VBoxContainer/Editors/InteractibleContainer"]
+layout_mode = 2
+
 [connection signal="resource_selected" from="MarginContainer/HSplitContainer/ResourceLoader" to="." method="_on_resource_loader_resource_selected"]
-[connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/Editors/MarginContainer/Actions/ActionButtonContainer/AddActionButton" to="MarginContainer/HSplitContainer/VBoxContainer/Editors/MarginContainer/Actions" method="_on_add_action_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/Editors/ActionsContainer/Actions/ActionButtonContainer/AddActionButton" to="MarginContainer/HSplitContainer/VBoxContainer/Editors/ActionsContainer/Actions" method="_on_add_action_button_pressed"]

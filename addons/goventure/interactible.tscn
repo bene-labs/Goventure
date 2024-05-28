@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dso86v3gb25l5"]
+
+[ext_resource type="Script" path="res://addons/goventure/interactible.gd" id="1_waks1"]
+
+[node name="Interactible" type="Node2D"]
+script = ExtResource("1_waks1")
+id = "Blue Lock"
