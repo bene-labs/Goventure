@@ -2,7 +2,7 @@ class_name GoventureInteractionsEditorProperty
 extends EditorProperty
 
 var interaction_editor_exe_path = ProjectSettings.globalize_path(\
-	"res://addons/goventure/bin/goventure_interaction_editor.console.exe")
+	"res://addons/goventure/bin/goventure_interaction_editor.exe")
 static var interaction_editor_pid := -1
 var property_control = Button.new()
 # An internal value of the property.

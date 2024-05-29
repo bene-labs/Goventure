@@ -1,17 +1,20 @@
 extends Control
 
-var save_file_path = "user://default_scene.save"
+var scene_name = "default_scene"
 
 
 func _ready():
+	if not Goventure.is_node_ready():
+		await Goventure.ready
 	_load()
 
 
 func _load():
-	if not FileAccess.file_exists(save_file_path):
+	var path = "%s/%s.save" %[Goventure.save_dir_path, scene_name]
+	if not FileAccess.file_exists(path):
 		return
 	
-	var save_data = FileAccess.open(save_file_path, FileAccess.READ).get_var(true)
+	var save_data = FileAccess.open(path, FileAccess.READ).get_var(true)
 	if save_data == null:
 		return
 	if "camera_configs" in save_data:
@@ -24,7 +27,8 @@ func _load():
 
 
 func _save():
-	var file = FileAccess.open(save_file_path, FileAccess.WRITE)
+	var path = "%s/%s.save" %[Goventure.save_dir_path, scene_name]
+	var file = FileAccess.open(path, FileAccess.WRITE)
 	
 	var save_dict = $VSNodes.serialize()
 	save_dict.merge(%Cables.serialize())
