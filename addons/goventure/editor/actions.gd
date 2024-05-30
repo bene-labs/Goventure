@@ -7,9 +7,10 @@ extends VBoxContainer
 func _ready():
 	if not Goventure.is_node_ready():
 		await Goventure.ready
-	for action in Goventure.actions:
+	for i in range(Goventure.actions.size()):
+		var action = Goventure.actions[i]
 		var new_action_edit = action_edit_scene.instantiate()
-		new_action_edit.setup(action.title, action.combination_type)
+		new_action_edit.setup(action.title, action.combination_type, i != 0)
 		print("Added action: '%s'" % action.title)
 		add_child(new_action_edit)
 	move_child($ActionButtonContainer, -1)

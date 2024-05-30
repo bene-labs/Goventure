@@ -4,9 +4,11 @@ extends HBoxContainer
 var interactible_name = ""
 
 
-func setup(name):
+func setup(name, deletable = true):
 	interactible_name = name
 	$NameEdit.text = name
+	if not deletable:
+		$DeleteButton.hide()
 
 
 func _on_name_edit_text_submitted(new_text):

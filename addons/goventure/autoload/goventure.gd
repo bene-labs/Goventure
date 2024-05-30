@@ -13,11 +13,8 @@ var save_dir_path = "res://addons/goventure/editor/resources"
 var command_mode := CommandModes.RUN_IN_DIALOGIC
 
 
-var actions := [
-	Action.new("use", Action.CombinationType.OPTIONAL),
-	Action.new("combine", Action.CombinationType.MANDTORY),
-	Action.new("examine", Action.CombinationType.NONE)]
-var interactibles := ["Red Key", "Blue Lock", "Red Lock", "Door", "Coin"]
+var actions := [Action.new("default action", Action.CombinationType.OPTIONAL)]
+var interactibles := ["default interactible"]
 
 var queued_commands := []
 

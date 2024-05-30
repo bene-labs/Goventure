@@ -1,9 +1,0 @@
-default action:
-	say "3"
-use with Red Key:
-	say "2"
-	say "3"
-use:
-	say "1"
-	say "2"
-	say "3"

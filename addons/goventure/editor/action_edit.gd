@@ -11,15 +11,12 @@ func _ready():
 	$ActionTypeSelections.selected = selected_type_idx
 
 
-func setup(name, selected_type_idx):
+func setup(name, selected_type_idx, deletable = true):
 	action_name = name
 	$NameEdit.text = name
 	self.selected_type_idx = selected_type_idx
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+	if not deletable:
+		$DeleteButton.disabled = true
 
 
 func _on_name_edit_text_submitted(new_text):
