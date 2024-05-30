@@ -27,8 +27,8 @@ func _on_edit_button_pressed():
 		interaction_editor_pid = OS.create_process(interaction_editor_exe_path, \
 			[
 				"--",
-				"--save_path=%s" % Goventure.save_dir_path,
-				"--resource_path=%s" % Goventure.resource_dir_path,
+				"--save_path=%s" % ProjectSettings.globalize_path(Goventure.save_dir_path),
+				"--resource_path=%s" % ProjectSettings.globalize_path(Goventure.resource_dir_path),
 			])
 		current_value = "close Editor"
 	else:
