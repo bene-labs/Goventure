@@ -3,8 +3,22 @@ extends EditorPlugin
 
 
 const MainPanel = preload("res://addons/goventure/editor/editor_main.tscn")
+const PLUGIN_NAME := "Goventure"
+const PLUGIN_HANDLER_PATH := "res://addons/goventure/autoload/goventure.gd"
 
 var main_panel_instance
+
+
+func _init() -> void:
+	self.name = "GoventurePlugin"
+
+
+func _enable_plugin():
+	add_autoload_singleton(PLUGIN_NAME, PLUGIN_HANDLER_PATH)
+
+
+func _disable_plugin():
+	remove_autoload_singleton(PLUGIN_NAME)
 
 func _enter_tree():
 	add_inspector_plugin(preload("res://addons/goventure/interactible/interactible_inspector_plugin.gd").new())
@@ -30,9 +44,8 @@ func _make_visible(visible):
 
 
 func _get_plugin_name():
-	return "Goventure"
+	return PLUGIN_NAME
 
 
 func _get_plugin_icon():
-	# Must return some kind of Texture for the icon.
 	return EditorInterface.get_editor_theme().get_icon("CharacterBody2D", "EditorIcons")

@@ -47,4 +47,4 @@ func _input(event):
 
 
 func _on_run_button_pressed():
-	Goventure.run_action_in_dialogic(action, selected_item1, selected_item2)
+	Goventure.run_action(action, selected_item1, selected_item2)

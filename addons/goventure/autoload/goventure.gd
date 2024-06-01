@@ -11,7 +11,7 @@ enum CommandModes {
 var resource_dir_path = "res://addons/goventure/resources/interaction_data/"
 var save_dir_path = "res://addons/goventure/editor/resources"
 var command_mode := CommandModes.RUN_IN_DIALOGIC
-
+var dialogic_handler = null
 
 var actions := [Action.new("default action", Action.CombinationType.OPTIONAL)]
 var interactibles := ["default interactible"]
@@ -20,6 +20,9 @@ var queued_commands := []
 
 
 func _ready():
+	if get_tree() != null and get_tree().root.has_node("Dialogic"):
+		dialogic_handler = load("res://addons/goventure/autoload/dialogic_handler.gd").new()
+		add_child(dialogic_handler)
 	var usr_args = OS.get_cmdline_user_args()
 	for usr_arg in usr_args:
 		print("usr_arg received: %s" % usr_arg)
@@ -77,7 +80,10 @@ func run_action(action: String, interactible1: String, interactible2 := ""):
 		CommandModes.EMIT_SIGNALS:
 			queue_action_commands(action, interactible1, interactible2)
 		CommandModes.RUN_IN_DIALOGIC:
-			run_action_in_dialogic(action, interactible1, interactible2)
+			if dialogic_handler == null:
+				push_error("Cannot run action with Dialogic: Dialogic Autoload not found. Ensure the plugin is propely installed.")
+				return
+			dialogic_handler.run_action_in_dialogic(action, interactible1, interactible2)
 
 
 func queue_action_commands(action: String, interactible1: String, interactible2 := "", overwrite_queue = false):
@@ -131,45 +137,6 @@ func get_sequence_command_path(sequence_command: BranchingCommandData):
 	var active_path = sequence_command.paths[sequence_command.value].path
 	sequence_command.value += 1
 	return active_path
-
-
-func run_action_in_dialogic(action: String, interactible1: String, interactible2 := ""):
-	if get_tree() == null or not get_tree().root.has_node("Dialogic"):
-		push_error("Dialogic Autoload not found. Ensure the plugin is propely installed.")
-		return
-	
-	var events : Array
-	var path = resource_dir_path + "/" + interactible1 + ".tres"
-	if not ResourceLoader.exists(path):
-		return
-	var interactionData : InteractionData = load(path)
-
-	var commands = interactionData.get_commands_by_action(action, interactible2)
-	var remaining_commands = commands.size()
-	var i = 0
-	while (i < remaining_commands):
-		var command = commands[i]
-		match command.type:
-			"say":
-				events.append(command.value)
-			"Random":
-				commands = get_random_command_path(command.paths)
-				i = -1
-				remaining_commands = commands.size()
-			"LoopSequence", "RepeatLastSequence", "StopSequence":
-				commands = get_sequence_command_path(command)
-				i = -1
-				remaining_commands = commands.size()
-			_:
-				push_error("Unkown command '%'", command.type)
-		i += 1
-	if events.size() == 0:
-		return
-
-	var timeline : DialogicTimeline = DialogicTimeline.new()
-	timeline.events = events
-	Dialogic.start(timeline)
-	ResourceSaver.save(interactionData, path)
 
 
 func _exit_tree():
