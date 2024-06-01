@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://5c0h6y1alh76"]
 
-[ext_resource type="Texture2D" uid="uid://b0i06u1rwuaii" path="res://addons/goventure/visual_scripting/sprites/abstract-horizontal-grid-lines-graph-style-graphic-design/sl_072622_51930_13.jpg" id="1"]
+[ext_resource type="Texture2D" uid="uid://b0i06u1rwuaii" path="res://addons/goventure/visual_scripting/sprites/background.jpg" id="1"]
 
 [node name="Background" type="Control"]
 layout_mode = 3

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcyo25exgqf7v"
-path="res://.godot/imported/six.png-0c4f5b40d7018da0e87541e53e6fb219.ctex"
+uid="uid://b0i06u1rwuaii"
+path="res://.godot/imported/background.jpg-dceed6b69de518238f40188269b92c5d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/goventure/visual_scripting/sprites/Digits/six.png"
-dest_files=["res://.godot/imported/six.png-0c4f5b40d7018da0e87541e53e6fb219.ctex"]
+source_file="res://addons/goventure/visual_scripting/sprites/background.jpg"
+dest_files=["res://.godot/imported/background.jpg-dceed6b69de518238f40188269b92c5d.ctex"]
 
 [params]
 
