@@ -94,8 +94,9 @@ This Node defines an interactible and provides all actions that are compatible w
 This node enables you to do an action from a base node with another interactible. You can choose with action you want to combine your action with by clicking the selection field in the middle of the node. 
 
 <figure> 
- <img width="300" alt="image" src="https://github.com/bene-labs/Goventure/assets/62158116/37c9b3ff-dfdb-42cb-856f-a4861dfdfce2"> 
- <h6><figcaption>Example: the key is used with a lock.</figcaption></h6> 
+  <img width="300" alt="image" src="https://github.com/bene-labs/Goventure/assets/62158116/37c9b3ff-dfdb-42cb-856f-a4861dfdfce2"> 
+  <div>
+  <figcaption> <span style="font-size:0.5em;">Example: The key is used with a lock.</span></figcaption></span> 
 </figure> 
 
 ##### Dialogue Node 
@@ -114,7 +115,7 @@ To adjust the liklehood that a certain output will be picked you can pres the ``
 <figure> 
  <img width="488" alt="image" src="https://github.com/bene-labs/Goventure/assets/62158116/197332ad-b0d5-411d-be68-8540786dc7db"> 
  <div> 
- <figcaption><h6> Example: using a can opener with a rock has a 5 in 11 chance to either result in the "I don't want to." or the "I'd rather not." dialogue. The "Great Idea" Dialogue will only trigger in 1 out of 11 times when doing the action.</h6></figcaption> 
+ <figcaption><span style="font-size:0.5em;"> Example: Using a can opener with a rock has a 5 in 11 chance to either result in the "I don't want to." or the "I'd rather not." dialogue. The "Great Idea" Dialogue will only trigger in 1 out of 11 times when doing the action.</span></figcaption> 
 </figure> 
 
 ##### Sequence Node 
@@ -126,7 +127,7 @@ Outputs can be added and removed the same way as the Random Node.
 <figure> 
  <img width="657" alt="image" src="https://github.com/bene-labs/Goventure/assets/62158116/523b01fe-0d88-4a41-9ac2-384a923bf5e2"> 
  <div> 
- <figcaption><h6> Example: repeatly trying to use a can opener with a rock result in increasingly annoyed responses.</h6></figcaption> 
+ <figcaption><span style="font-size:0.5em;"> Example: Repeatly trying to use a can opener with a rock result in increasingly annoyed responses. </span></figcaption> 
 </figure> 
 
 ### Running the Visual Script 
