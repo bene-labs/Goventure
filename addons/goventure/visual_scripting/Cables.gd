@@ -87,14 +87,14 @@ func show_available_connections(from : Connection):
 			continue
 		if connection.can_connect(from):
 			connection.set_active()
-			CursorCollision.add_to_whitelist(connection)
+			Goventure.CursorCollision.add_to_whitelist(connection)
 	searched_connections.clear()
 
 func hide_available_connections():
 	for connection in connections:
 		connection.set_inactive()
 	active_cable_value_changed.emit(false)
-	CursorCollision.clear_whitelist()
+	Goventure.CursorCollision.clear_whitelist()
 
 func create_new_cable(start_node):
 	if active_cable != null:
@@ -106,7 +106,7 @@ func create_new_cable(start_node):
 	#active_cable.outline.z_index = start_node.z_index - 1
 	active_start_connection = start_node
 	active_cable_value_changed.emit(true)
-	# CursorCollision.add_to_whitelist(input_script_path if is_input_required else output_script_path)
+	# Goventure.CursorCollision.add_to_whitelist(input_script_path if is_input_required else output_script_path)
 
 
 func _on_connection_released(over):
@@ -139,7 +139,7 @@ func add_cable_connection():
 	active_cable.connect_to(new_start_point)
 	register_connection(new_start_point)
 	
-	CursorCollision.put_in_front(new_start_point)
+	Goventure.CursorCollision.put_in_front(new_start_point)
 	active_cable = null
 	hide_available_connections()
 

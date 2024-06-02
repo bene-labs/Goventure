@@ -101,9 +101,6 @@ func update_move_rects():
 	right_collision.global_position = Vector2(max_pos.x - collision_width / 2, max_pos.y - view_size.y / 2)
 	right_collision.shape.extents = Vector2(collision_width, view_size.y)
 
-	#button_container.global_position = Vector2(min_pos.x + button_width * 0.025, min_pos.y + (view_size.y * (1.0 - relative_buttons_heigth)) / 2)
-	#button_container.size = Vector2(button_width, button_heigth)
-	#$vs_nodes.update_button_dimensions()
 
 func _on_Up_mouse_entered():
 	moving_up = true

@@ -28,7 +28,7 @@ var param = "None"
 
 
 func _ready():
-	CursorCollision.register(self)
+	Goventure.CursorCollision.register(self)
 	default_color = image.modulate
 
 	for output in %Outputs.get_children():
@@ -77,12 +77,12 @@ func _on_mouse_exited():
 
 func set_dragged():
 	is_dragged = true
-	CursorCollision.lock()
+	Goventure.CursorCollision.lock()
 
 
 func set_undragged():
 	is_dragged = false
-	CursorCollision.unlock()
+	Goventure.CursorCollision.unlock()
 
 
 func _input(event):
@@ -93,7 +93,7 @@ func _input(event):
 		return
 
 	if Input.is_action_just_pressed("destroy") and not is_dragged:
-		CursorCollision.unregister(self)
+		Goventure.CursorCollision.unregister(self)
 		emit_signal("destroy")
 		call_deferred("queue_free")
 	elif Input.is_action_just_pressed("vs_node") and not drag_mode_queded:

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://orv5ncqws73f"]
 
-[ext_resource type="FontFile" uid="uid://cfol7ig1l2b5" path="res://fonts/Ubuntu/Ubuntu-Bold.ttf" id="1_4m685"]
+[ext_resource type="FontFile" uid="uid://cfol7ig1l2b5" path="res://addons/goventure/fonts/Ubuntu/Ubuntu-Bold.ttf" id="1_4m685"]
 
 [node name="ActionLabel" type="Label"]
 mouse_filter = 1

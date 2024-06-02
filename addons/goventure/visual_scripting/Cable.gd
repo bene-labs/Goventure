@@ -19,7 +19,7 @@ var is_hovered := false
 
 
 func _ready():
-	CursorCollision.register(self)
+	Goventure.CursorCollision.register(self)
 
 func update_loose_point(position) -> bool:
 	if start_connection == null:
@@ -144,7 +144,7 @@ func destroy():
 
 
 func _exit_tree():
-	CursorCollision.unregister(self)
+	Goventure.CursorCollision.unregister(self)
 
 
 func restore_configs(configs: Dictionary, cable_service: CableService):

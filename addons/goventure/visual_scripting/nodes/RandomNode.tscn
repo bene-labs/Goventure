@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://addons/goventure/visual_scripting/nodes/random_node.gd" id="1_8hdln"]
 [ext_resource type="PackedScene" uid="uid://c6l2hhlrowooq" path="res://addons/goventure/visual_scripting/connections/random_output_option.tscn" id="3_7eiv1"]
-[ext_resource type="FontFile" uid="uid://cfol7ig1l2b5" path="res://fonts/Ubuntu/Ubuntu-Bold.ttf" id="4_4jleg"]
+[ext_resource type="FontFile" uid="uid://cfol7ig1l2b5" path="res://addons/goventure/fonts/Ubuntu/Ubuntu-Bold.ttf" id="4_4jleg"]
 [ext_resource type="PackedScene" uid="uid://b3qela1413318" path="res://addons/goventure/visual_scripting/connections/FlowOutput.tscn" id="4_t5dws"]
-[ext_resource type="FontFile" uid="uid://cc4xli25271fd" path="res://addons/dialogic/Example Assets/Fonts/Roboto-Bold.ttf" id="5_4y8iw"]
+[ext_resource type="FontFile" uid="uid://dhlb1snhqyl84" path="res://addons/goventure/fonts/Roboto/Roboto-Bold.ttf" id="5_4y8iw"]
 [ext_resource type="PackedScene" uid="uid://de1m4sv5oavl7" path="res://addons/goventure/visual_scripting/connections/Input.tscn" id="7_djv4s"]
 
 [node name="RandomNode" type="Control" groups=["Gate"]]

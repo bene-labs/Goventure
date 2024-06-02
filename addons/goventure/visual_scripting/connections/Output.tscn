@@ -1,16 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://cuas374ejpad6"]
 
-[ext_resource type="Texture2D" uid="uid://d2i02tnjucdwm" path="res://addons/goventure/visual_scripting/sprites/Pin_outline.png" id="1_wxek7"]
-[ext_resource type="Script" path="res://addons/goventure/visual_scripting/connections/Output.gd" id="2_pu7wa"]
-[ext_resource type="Texture2D" uid="uid://m55uahd2db8t" path="res://addons/goventure/visual_scripting/sprites/Pin_under.png" id="3_jo65q"]
+[ext_resource type="Texture2D" uid="uid://d2i02tnjucdwm" path="res://addons/goventure/visual_scripting/sprites/Pin_outline.png" id="1_55hut"]
+[ext_resource type="Script" path="res://addons/goventure/visual_scripting/connections/Output.gd" id="2_rxvhj"]
+[ext_resource type="Texture2D" uid="uid://m55uahd2db8t" path="res://addons/goventure/visual_scripting/sprites/Pin_under.png" id="3_cwefk"]
 
 [node name="Output" type="TextureRect" groups=["Output"]]
 offset_left = 42.0
 offset_top = -22.0
 offset_right = 90.0
 offset_bottom = 26.0
-texture = ExtResource("1_wxek7")
-script = ExtResource("2_pu7wa")
+texture = ExtResource("1_55hut")
+script = ExtResource("2_rxvhj")
 
 [node name="InteractionPoint" type="TextureRect" parent="."]
 unique_name_in_owner = true
@@ -22,7 +22,7 @@ offset_top = 6.0
 offset_right = 54.0
 offset_bottom = 54.0
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("3_jo65q")
+texture = ExtResource("3_cwefk")
 
 [node name="Wire" type="Control" parent="InteractionPoint"]
 show_behind_parent = true

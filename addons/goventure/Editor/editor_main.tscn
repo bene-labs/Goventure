@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://c0d2rgfddgckd"]
 
-[ext_resource type="Script" path="res://addons/goventure/Editor/editor_main.gd" id="1_gt0dq"]
-[ext_resource type="PackedScene" uid="uid://drhvyar4p35f" path="res://addons/goventure/Editor/resource_loader.tscn" id="2_xd8w4"]
+[ext_resource type="Script" path="res://addons/goventure/editor/editor_main.gd" id="1_gt0dq"]
+[ext_resource type="PackedScene" uid="uid://drhvyar4p35f" path="res://addons/goventure/editor/resource_loader.tscn" id="2_xd8w4"]
 [ext_resource type="Texture2D" uid="uid://b5xwnxdb7064n" path="res://addons/dialogic/Modules/Glossary/icon.svg" id="3_1vf0w"]
 [ext_resource type="PackedScene" uid="uid://dfuvpqb1vt30t" path="res://addons/goventure/editor/interactibles.tscn" id="5_1v8hg"]
 [ext_resource type="PackedScene" uid="uid://dbinot6x0ecx8" path="res://addons/goventure/editor/actions.tscn" id="5_ldfda"]

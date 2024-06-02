@@ -6,6 +6,7 @@ signal released_over(connection: Connection)
 signal position_changed(new_pos)
 signal destroyed(connection)
 
+
 enum ConnectionType {
 	ACTION,
 	FLOW
@@ -25,13 +26,7 @@ enum ConnectionType {
 @onready var interactionSprite : TextureRect = %InteractionPoint
 @onready var base_scale = interactionSprite.scale
 
-var id = 0 :
-	set(value):
-		id = value
-		id_text.text = str(id)
-	get:
-		return id
-
+var id = 0 
 var linked_connection_ids = []
 
 var collision_radius = 26.0
@@ -48,14 +43,11 @@ var value = null
 var is_dragged = false
 var drag_offset = Vector2.ZERO
 var is_mouse_movement = false
-var id_text = Label.new()
 
 func _ready():
-	id_text.self_modulate = Color.GRAY
-	add_child(id_text)
 	self_modulate = off_color
 	interactionSprite.self_modulate = inactive_color
-	CursorCollision.register(self)
+	Goventure.CursorCollision.register(self)
 	clicked.connect(_on_clicked)
 	released_over.connect(_on_released_over)
 
@@ -208,10 +200,10 @@ func _input(event):
 	elif is_standalone and Input.is_action_just_pressed("drag_connection"):
 		is_dragged = true
 		drag_offset = global_position - get_global_mouse_position()
-		CursorCollision.lock()
+		Goventure.CursorCollision.lock()
 	elif is_dragged and Input.is_action_just_released("drag_connection"):
 		is_dragged = false
-		CursorCollision.unlock()
+		Goventure.CursorCollision.unlock()
 
 func _process(delta):
 	if !is_dragged or !is_mouse_movement:
@@ -293,5 +285,5 @@ func _exit_tree():
 	clear_cables()
 	for linked_connection in linked_connections:
 		linked_connection.unlink(self)
-	CursorCollision.unregister(self)
+	Goventure.CursorCollision.unregister(self)
 	destroyed.emit(self)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c26fhm4hepdy2"]
 
-[ext_resource type="Script" path="res://addons/goventure/Editor/goventure_code_editor.gd" id="1_nltej"]
+[ext_resource type="Script" path="res://addons/goventure/editor/goventure_code_editor.gd" id="1_nltej"]
 
 [sub_resource type="CodeHighlighter" id="CodeHighlighter_biilt"]
 number_color = Color(1, 1, 1, 1)

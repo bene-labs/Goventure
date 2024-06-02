@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://addons/goventure/visual_scripting/nodes/sequence_node.gd" id="1_t8tqw"]
 [ext_resource type="PackedScene" uid="uid://b3qela1413318" path="res://addons/goventure/visual_scripting/connections/FlowOutput.tscn" id="2_3ekub"]
-[ext_resource type="FontFile" uid="uid://cfol7ig1l2b5" path="res://fonts/Ubuntu/Ubuntu-Bold.ttf" id="4_gx70i"]
-[ext_resource type="FontFile" uid="uid://cc4xli25271fd" path="res://addons/dialogic/Example Assets/Fonts/Roboto-Bold.ttf" id="5_eattu"]
+[ext_resource type="FontFile" uid="uid://cfol7ig1l2b5" path="res://addons/goventure/fonts/Ubuntu/Ubuntu-Bold.ttf" id="4_gx70i"]
+[ext_resource type="FontFile" uid="uid://dhlb1snhqyl84" path="res://addons/goventure/fonts/Roboto/Roboto-Bold.ttf" id="5_eattu"]
 [ext_resource type="PackedScene" uid="uid://orv5ncqws73f" path="res://addons/goventure/visual_scripting/action_label.tscn" id="5_p0wm7"]
 [ext_resource type="PackedScene" uid="uid://de1m4sv5oavl7" path="res://addons/goventure/visual_scripting/connections/Input.tscn" id="6_msyqi"]
 

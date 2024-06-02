@@ -10,5 +10,4 @@ func _input(event):
 		simulation_speed += 0.005
 	else:
 		return
-	print(simulation_speed)
 	simulation_speed = clamp(simulation_speed, 0.025, 1.0)

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://addons/goventure/visual_scripting/nodes/action_combination_node.gd" id="1_723ec"]
 [ext_resource type="PackedScene" uid="uid://de1m4sv5oavl7" path="res://addons/goventure/visual_scripting/connections/Input.tscn" id="3_kpaid"]
-[ext_resource type="FontFile" uid="uid://cfol7ig1l2b5" path="res://fonts/Ubuntu/Ubuntu-Bold.ttf" id="3_v56gc"]
+[ext_resource type="FontFile" uid="uid://cfol7ig1l2b5" path="res://addons/goventure/fonts/Ubuntu/Ubuntu-Bold.ttf" id="3_v56gc"]
 [ext_resource type="PackedScene" uid="uid://cuas374ejpad6" path="res://addons/goventure/visual_scripting/connections/Output.tscn" id="4_nl8gg"]
 
 [node name="ActionCombination" type="Control" groups=["Gate"]]
