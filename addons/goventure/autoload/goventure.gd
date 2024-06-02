@@ -11,7 +11,7 @@ enum CommandModes {
 var CursorCollision = preload("res://addons/goventure/visual_scripting/cursor_collision.gd").new()
 
 var resource_dir_path = "res://addons/goventure/resources/interaction_data/"
-var save_dir_path = "res://addons/goventure/editor/resources"
+var save_dir_path = "res://addons/goventure/resources"
 var command_mode := CommandModes.RUN_IN_DIALOGIC
 var dialogic_handler = null
 
