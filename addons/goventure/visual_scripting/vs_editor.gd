@@ -19,6 +19,7 @@ func _load():
 		return
 	if "camera_configs" in save_data:
 		$Camera.restore_configs(save_data["camera_configs"])
+	%Cables.connection_id = 1000
 	await $VSNodes.load_nodes(save_data["nodes"])
 	if "connections" in save_data:
 		await %Cables.load_connections(save_data["connections"])
