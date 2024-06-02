@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://5c0h6y1alh76"]
+
+[ext_resource type="Script" path="res://addons/goventure/visual_scripting/repeating_background.gd" id="1_fxljo"]
+[ext_resource type="PackedScene" uid="uid://dvwqe1bd5bygr" path="res://addons/goventure/visual_scripting/background.tscn" id="2_3h3nb"]
+
+[node name="RepeatingBackground" type="Control"]
+z_index = -4096
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_fxljo")
+background_scene = ExtResource("2_3h3nb")
+background_base_dimensions = Vector2(1750, 1000)

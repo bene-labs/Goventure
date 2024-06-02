@@ -1,12 +1,6 @@
 extends TextEdit
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("test"):
 		insert_text_at_caret("test")
@@ -57,7 +51,6 @@ func insert_tag(from_line, from_column, to_line, to_column, tag):
 	remove_secondary_carets()
 	insert_text_at_caret(open_tag, add_caret(from_line, from_column))
 	remove_secondary_carets()
-	
 
 
 func _on_gutter_added():

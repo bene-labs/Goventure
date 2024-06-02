@@ -2,6 +2,7 @@ class_name CableConnection extends Connection
 
 var started_from_input = false
 
+
 func _ready():
 	super._ready()
 	is_standalone = true
@@ -26,8 +27,6 @@ func _on_connections_changed():
 	
 	for type in ConnectionType.values():
 		lowest_types |= 1 << type
-	
-	
 	for connection in get_all_connections().filter(func(x): return not x.is_standalone and x is Output):
 		lowest_types = lowest_types & connection.connection_types
 		all_incompatible_types = all_incompatible_types | connection.incompatible_connection_types
@@ -60,6 +59,7 @@ func link(connection : Connection, cable: Cable = null):
 	if cable == null:
 		return
 	call_deferred("_on_connections_changed")
+
 
 func unlink(from: Connection):
 	super.unlink(from)

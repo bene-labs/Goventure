@@ -30,8 +30,10 @@ func update_loose_point(position) -> bool:
 		return false
 	return true
 
+
 func set_point(node):
 	set_start_point(node.global_position) if node is Output else set_end_point(node.global_position)
+
 
 func adjust_color(value):
 	if value:
@@ -40,6 +42,7 @@ func adjust_color(value):
 		self_modulate = off_color
 	else:
 		self_modulate = undefined_color
+
 
 func set_start_point(point : Vector2):
 	line.points[0] = point
@@ -86,35 +89,37 @@ func connect_to(connection):
 		start_connection.position_changed.connect(_on_start_position_changed)
 
 
-
 func _on_end_position_changed(new_pos):
 	set_end_point(new_pos)
+
 
 func _on_start_position_changed(new_pos):
 	set_start_point(new_pos)
 
+
 func get_end_point():
 	return line.points[1]
+
 
 @warning_ignore("native_method_override")
 func set_z_index(new_index):
 	outline.z_index = new_index
-#	if connected_input != null:
-#		connected_input.set_z_index(new_index + 1)
-#	if connected_output != null:
-#		connected_output.set_z_index(new_index + 1)
+
 
 @warning_ignore("native_method_override")
 func get_z_index():
 	return outline.z_index
 
+
 func _on_mouse_entered():
 	outline.default_color = hover_color
 	is_hovered = true
 
+
 func _on_mouse_exited():
 	outline.default_color = Color.BLACK
 	is_hovered = false
+
 
 func _input(event):
 	if not is_hovered:
@@ -122,22 +127,13 @@ func _input(event):
 	if Input.is_action_just_pressed("destroy"):
 		destroy()
 
+
 func destroy():
 	if start_connection != null:
-		#if connected_input != null and connected_output.is_standalone \
-		#and connected_output.get_connected_input_nodes().size() <= 1:
-			#connected_output.clear_cables()
-			#connected_output.queue_free()
-		#else:
 		start_connection.remove_cable(self)
 		start_connection.unlink(end_connection)
 	if end_connection == null:
 		return
-	#if connected_output != null and connected_input.is_standalone \
-	#and connected_input.get_connected_output_nodes().size() <= 1:
-		#connected_input.clear_cables()
-		#connected_input.queue_free()
-		#return
 	end_connection.remove_cable(self)
 	end_connection.unlink(start_connection)
 	queue_free()

@@ -74,7 +74,6 @@ func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST \
 		or what == NOTIFICATION_EDITOR_PRE_SAVE \
 		or what == NOTIFICATION_UNPARENTED:
-		print("Saving ACTIONS!")
 		_save()
 
 

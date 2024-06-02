@@ -7,6 +7,7 @@ func _ready():
 	active_color = Color("cd8715")
 	interactionSprite.self_modulate = inactive_color
 
+
 func set_value(value):
 	super.set_value(value)
 	for cable in connected_cables:

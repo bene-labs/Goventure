@@ -15,11 +15,6 @@ var is_mouse_movement = false
 
 
 func _ready():
-	#for vs_node in vs_nodes:
-		#vs_node.clicked.connect(_on_vs_node_clicked)
-		#vs_node.released.connect(_on_vs_node_released)
-		#vs_node.destroyed.connect(_on_vs_node_destroyed)
-	#call_deferred("apply_vs_node_z_index")
 	for button in button_rect.get_children():
 		buttons.append(button)
 
@@ -76,6 +71,7 @@ func spawn_vs_node(vs_node_scene: PackedScene):
 	for connection in new_vs_node.get_connections():
 		cables.register_connection(connection)
 	return new_vs_node
+
 
 func _on_connection_added(new_connection):
 	cables.register_connection(new_connection)

@@ -90,11 +90,13 @@ func show_available_connections(from : Connection):
 			Goventure.CursorCollision.add_to_whitelist(connection)
 	searched_connections.clear()
 
+
 func hide_available_connections():
 	for connection in connections:
 		connection.set_inactive()
 	active_cable_value_changed.emit(false)
 	Goventure.CursorCollision.clear_whitelist()
+
 
 func create_new_cable(start_node):
 	if active_cable != null:
@@ -103,10 +105,8 @@ func create_new_cable(start_node):
 	active_cable = cable_scene.instantiate()
 	add_child(active_cable)
 	active_cable.connect_to(start_node)
-	#active_cable.outline.z_index = start_node.z_index - 1
 	active_start_connection = start_node
 	active_cable_value_changed.emit(true)
-	# Goventure.CursorCollision.add_to_whitelist(input_script_path if is_input_required else output_script_path)
 
 
 func _on_connection_released(over):

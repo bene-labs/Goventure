@@ -44,6 +44,7 @@ var is_dragged = false
 var drag_offset = Vector2.ZERO
 var is_mouse_movement = false
 
+
 func _ready():
 	self_modulate = off_color
 	interactionSprite.self_modulate = inactive_color
@@ -112,7 +113,7 @@ func can_connect(other : Connection):
 			return true
 	return false
 
-#region mouse interaction
+
 func _on_mouse_entered():
 	interactionSprite.scale = base_scale * 1.25
 	is_hovered = true
@@ -202,6 +203,7 @@ func _input(event):
 	elif is_dragged and Input.is_action_just_released("drag_connection"):
 		is_dragged = false
 		Goventure.CursorCollision.unlock()
+
 
 func _process(delta):
 	if !is_dragged or !is_mouse_movement:

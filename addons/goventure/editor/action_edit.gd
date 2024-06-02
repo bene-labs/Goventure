@@ -39,6 +39,7 @@ func _on_name_edit_text_submitted(new_text):
 func _on_name_edit_text_changed(new_text):
 	_on_name_edit_text_submitted(new_text)
 
+
 func _on_action_type_selections_item_selected(index):
 	selected_type_idx = index
 	var matching_actions = Goventure.actions.filter(func(x): return x.title == action_name)
@@ -53,4 +54,3 @@ func _on_delete_button_pressed():
 		Goventure.actions.erase(action)
 	Goventure._save()
 	queue_free()
-

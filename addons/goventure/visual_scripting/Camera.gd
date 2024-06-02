@@ -34,7 +34,7 @@ var moving_right = false
 
 func _ready():
 	get_tree().get_root().size_changed.connect(update_move_rects)
-	#update_move_rects()
+
 
 func _input(event):
 	if event.is_action_pressed("zoom_in"):
@@ -54,8 +54,7 @@ func _input(event):
 		return
 	zoom.x = clamp(zoom.x, min_zoom, max_zoom)
 	zoom.y = clamp(zoom.y, min_zoom, max_zoom)
-	#update_move_rects()
-	
+
 
 func _process(delta):
 	if not (moving_up or moving_down or moving_left or moving_right) and \
@@ -74,7 +73,6 @@ func _process(delta):
 	elif moving_right or Input.is_action_pressed("camera_right"):
 		position.x += speed * delta
 	
-	#update_move_rects()
 	
 func update_move_rects():
 	var ctrans = get_canvas_transform()
@@ -105,23 +103,30 @@ func update_move_rects():
 func _on_Up_mouse_entered():
 	moving_up = true
 
+
 func _on_Up_mouse_exited():
 	moving_up = false
+
 
 func _on_Down_mouse_entered():
 	moving_down = true
 
+
 func _on_Down_mouse_exited():
 	moving_down = false
+
 
 func _on_Left_mouse_entered():
 	moving_left = true
 
+
 func _on_Left_mouse_exited():
 	moving_left = false
 
+
 func _on_Right_mouse_entered():
 	moving_right = true
+
 
 func _on_Right_mouse_exited():
 	moving_right = false
@@ -130,8 +135,10 @@ func _on_Right_mouse_exited():
 func _on_Cables_active_cable_value_changed(is_active):
 	set_edge_move_mode(is_active)
 
+
 func _on_vs_nodes_drag_toggled(value):
 	set_edge_move_mode(value)
+
 
 func set_edge_move_mode(active):
 	if active:
@@ -148,6 +155,7 @@ func restore_configs(configs: Dictionary):
 	global_position = configs["position"]
 	zoom = configs["zoom"]
 	zoom_scale = configs["zoom_scale"]
+
 
 func serialize() -> Dictionary:
 	return {

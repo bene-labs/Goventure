@@ -36,4 +36,3 @@ func _on_delete_button_pressed():
 	Goventure.interactables.erase(interactable_name)
 	Goventure._save()
 	queue_free()
-

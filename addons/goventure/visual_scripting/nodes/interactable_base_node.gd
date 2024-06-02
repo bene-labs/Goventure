@@ -3,6 +3,7 @@ extends VSNode
 @export var output_node : PackedScene
 @export var output_label : PackedScene
 
+
 func _ready():
 	%InteractableSelection.clear()
 	for interactable in Goventure.interactables:

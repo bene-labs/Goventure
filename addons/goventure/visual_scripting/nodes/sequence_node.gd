@@ -88,6 +88,7 @@ func restore_configs(configs: Dictionary):
 	await get_tree().process_frame
 	super.restore_configs(configs)
 
+
 func serialize() -> Dictionary:
 	var serial_data = super.serialize()
 	serial_data["configs"]["selected"] = %ModeSelection.selected

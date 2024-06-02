@@ -6,8 +6,8 @@ signal resource_selected(path: String)
 @export_dir var resource_folder_path
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
+
 	update_resource_list()
 
 func update_resource_list():

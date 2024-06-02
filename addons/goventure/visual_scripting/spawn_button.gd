@@ -1,13 +1,14 @@
 extends Button
 
-signal spwan_vs_node(vs_node_scene)
+signal spawn_vs_node(vs_node_scene)
 
 @export var vs_node_scene : PackedScene
-
 @onready var vs_nodes = $"../../.."
+
 
 func _ready():
 	button_down.connect(_on_button_down)
+
 
 func _on_button_down():
 	var ctrans = get_canvas_transform()
