@@ -1,18 +1,18 @@
 [gd_scene load_steps=7 format=3 uid="uid://dvoj03iivka44"]
 
-[ext_resource type="Script" path="res://addons/goventure/visual_scripting/nodes/sequence_node.gd" id="1_t8tqw"]
-[ext_resource type="PackedScene" uid="uid://b3qela1413318" path="res://addons/goventure/visual_scripting/connections/FlowOutput.tscn" id="2_3ekub"]
-[ext_resource type="FontFile" uid="uid://cfol7ig1l2b5" path="res://addons/goventure/fonts/Ubuntu/Ubuntu-Bold.ttf" id="4_gx70i"]
-[ext_resource type="FontFile" uid="uid://dhlb1snhqyl84" path="res://addons/goventure/fonts/Roboto/Roboto-Bold.ttf" id="5_eattu"]
-[ext_resource type="PackedScene" uid="uid://orv5ncqws73f" path="res://addons/goventure/visual_scripting/action_label.tscn" id="5_p0wm7"]
-[ext_resource type="PackedScene" uid="uid://de1m4sv5oavl7" path="res://addons/goventure/visual_scripting/connections/Input.tscn" id="6_msyqi"]
+[ext_resource type="Script" path="res://addons/goventure/visual_scripting/nodes/sequence_node.gd" id="1_up32p"]
+[ext_resource type="PackedScene" uid="uid://b3qela1413318" path="res://addons/goventure/visual_scripting/connections/flow_output.tscn" id="2_2nts5"]
+[ext_resource type="PackedScene" uid="uid://orv5ncqws73f" path="res://addons/goventure/visual_scripting/action_label.tscn" id="3_v54cc"]
+[ext_resource type="FontFile" uid="uid://cfol7ig1l2b5" path="res://fonts/Ubuntu/Ubuntu-Bold.ttf" id="4_qodcq"]
+[ext_resource type="FontFile" uid="uid://dhlb1snhqyl84" path="res://fonts/Roboto/Roboto-Bold.ttf" id="5_mr01l"]
+[ext_resource type="PackedScene" uid="uid://de1m4sv5oavl7" path="res://addons/goventure/visual_scripting/connections/input.tscn" id="6_byneo"]
 
 [node name="SequenceNode" type="Control" groups=["Gate"]]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_t8tqw")
-output_node_scene = ExtResource("2_3ekub")
-output_label_scene = ExtResource("5_p0wm7")
+script = ExtResource("1_up32p")
+output_node_scene = ExtResource("2_2nts5")
+output_label_scene = ExtResource("3_v54cc")
 
 [node name="Sprite" type="Node2D" parent="."]
 
@@ -42,7 +42,7 @@ offset_right = 217.0
 offset_bottom = 33.0
 mouse_filter = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_gx70i")
+theme_override_fonts/font = ExtResource("4_qodcq")
 theme_override_font_sizes/font_size = 26
 text = "Sequence Node"
 horizontal_alignment = 1
@@ -56,11 +56,11 @@ offset_right = 216.0
 offset_bottom = 117.0
 theme_override_constants/separation = 24
 
-[node name="ActionLabel" parent="Sprite/OutputLabel" instance=ExtResource("5_p0wm7")]
+[node name="ActionLabel" parent="Sprite/OutputLabel" instance=ExtResource("3_v54cc")]
 layout_mode = 2
 text = "1 "
 
-[node name="ActionLabel2" parent="Sprite/OutputLabel" instance=ExtResource("5_p0wm7")]
+[node name="ActionLabel2" parent="Sprite/OutputLabel" instance=ExtResource("3_v54cc")]
 layout_mode = 2
 text = "2 "
 
@@ -76,13 +76,13 @@ alignment = 2
 
 [node name="RemoveOutputButton" type="Button" parent="Sprite/OutputButtons"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_eattu")
+theme_override_fonts/font = ExtResource("5_mr01l")
 disabled = true
 text = " - "
 
 [node name="AddOutputButton" type="Button" parent="Sprite/OutputButtons"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_eattu")
+theme_override_fonts/font = ExtResource("5_mr01l")
 text = " + "
 
 [node name="Inputs" type="Control" parent="."]
@@ -95,7 +95,7 @@ offset_right = -64.0
 offset_bottom = 56.0
 scale = Vector2(2, 2)
 
-[node name="Input" parent="Inputs" instance=ExtResource("6_msyqi")]
+[node name="Input" parent="Inputs" instance=ExtResource("6_byneo")]
 show_behind_parent = true
 layout_mode = 0
 offset_left = -1.0
@@ -114,10 +114,10 @@ offset_top = 33.0
 offset_right = 306.0
 offset_bottom = 133.0
 
-[node name="Output" parent="Outputs" instance=ExtResource("2_3ekub")]
+[node name="Output" parent="Outputs" instance=ExtResource("2_2nts5")]
 layout_mode = 2
 
-[node name="Output2" parent="Outputs" instance=ExtResource("2_3ekub")]
+[node name="Output2" parent="Outputs" instance=ExtResource("2_2nts5")]
 layout_mode = 2
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -134,7 +134,7 @@ offset_top = 115.0
 offset_right = 124.0
 offset_bottom = 138.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("5_eattu")
+theme_override_fonts/font = ExtResource("5_mr01l")
 text = "On end reached:"
 
 [node name="ModeSelection" type="OptionButton" parent="."]
@@ -152,7 +152,7 @@ theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("5_eattu")
+theme_override_fonts/font = ExtResource("5_mr01l")
 theme_override_font_sizes/font_size = 17
 item_count = 3
 selected = 0

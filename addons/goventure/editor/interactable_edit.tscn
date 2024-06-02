@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://7c0dcfe0jhim"]
 
-[ext_resource type="Script" path="res://addons/goventure/editor/interactible_edit.gd" id="1_74fb3"]
+[ext_resource type="Script" path="res://addons/goventure/editor/interactable_edit.gd" id="1_74fb3"]
 [ext_resource type="Texture2D" uid="uid://dklm342430sre" path="res://addons/goventure/editor/icons/delete.png" id="2_ts6a3"]
 
-[node name="InteractibleEdit" type="HBoxContainer"]
+[node name="InteractableEdit" type="HBoxContainer"]
 script = ExtResource("1_74fb3")
 
 [node name="NameEdit" type="LineEdit" parent="."]

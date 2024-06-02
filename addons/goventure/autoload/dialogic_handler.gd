@@ -1,18 +1,18 @@
 extends Node
 
 
-func run_action_in_dialogic(action: String, interactible1: String, interactible2 := ""):
+func run_action_in_dialogic(action: String, interactable1: String, interactable2 := ""):
 	if get_tree() == null or not get_tree().root.has_node("Dialogic"):
 		push_error("Dialogic Autoload not found. Ensure the plugin is propely installed.")
 		return
 	
 	var events : Array
-	var path = Goventure.resource_dir_path + "/" + interactible1 + ".tres"
+	var path = Goventure.resource_dir_path + "/" + interactable1 + ".tres"
 	if not ResourceLoader.exists(path):
 		return
 	var interactionData : InteractionData = load(path)
 
-	var commands = interactionData.get_commands_by_action(action, interactible2)
+	var commands = interactionData.get_commands_by_action(action, interactable2)
 	var remaining_commands = commands.size()
 	var i = 0
 	while (i < remaining_commands):

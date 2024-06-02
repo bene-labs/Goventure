@@ -1,16 +1,16 @@
 [gd_scene load_steps=5 format=3 uid="uid://cr5x5uinj6cpv"]
 
-[ext_resource type="Script" path="res://addons/goventure/visual_scripting/nodes/InteractibleBaseNode.gd" id="1_6k8mp"]
-[ext_resource type="PackedScene" uid="uid://bjavrs267kt0p" path="res://addons/goventure/visual_scripting/connections/ActionOutput.tscn" id="2_xbf4y"]
-[ext_resource type="FontFile" uid="uid://cfol7ig1l2b5" path="res://addons/goventure/fonts/Ubuntu/Ubuntu-Bold.ttf" id="3_6t1mn"]
-[ext_resource type="PackedScene" uid="uid://orv5ncqws73f" path="res://addons/goventure/visual_scripting/action_label.tscn" id="4_kw8hq"]
+[ext_resource type="Script" path="res://addons/goventure/visual_scripting/nodes/interactable_base_node.gd" id="1_sopom"]
+[ext_resource type="PackedScene" uid="uid://bjavrs267kt0p" path="res://addons/goventure/visual_scripting/connections/action_output.tscn" id="2_clw0k"]
+[ext_resource type="PackedScene" uid="uid://orv5ncqws73f" path="res://addons/goventure/visual_scripting/action_label.tscn" id="3_wwxh7"]
+[ext_resource type="FontFile" uid="uid://cfol7ig1l2b5" path="res://fonts/Ubuntu/Ubuntu-Bold.ttf" id="4_ir74d"]
 
-[node name="InteractibleBaseNode" type="Control" groups=["Gate"]]
+[node name="InteractableBaseNode" type="Control" groups=["Gate"]]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_6k8mp")
-output_node = ExtResource("2_xbf4y")
-output_label = ExtResource("4_kw8hq")
+script = ExtResource("1_sopom")
+output_node = ExtResource("2_clw0k")
+output_label = ExtResource("3_wwxh7")
 
 [node name="Sprite" type="Node2D" parent="."]
 
@@ -31,7 +31,7 @@ offset_right = 218.0
 offset_bottom = 38.0
 mouse_filter = 2
 
-[node name="InteractibleSelection" type="OptionButton" parent="Sprite"]
+[node name="InteractableSelection" type="OptionButton" parent="Sprite"]
 unique_name_in_owner = true
 z_index = 1000
 offset_left = 3.0
@@ -40,8 +40,11 @@ offset_right = 178.0
 offset_bottom = 31.0
 mouse_filter = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_6t1mn")
+theme_override_fonts/font = ExtResource("4_ir74d")
 theme_override_font_sizes/font_size = 26
+text_overrun_behavior = 1
+clip_text = true
+fit_to_longest_item = false
 
 [node name="OutputLabels" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
@@ -67,4 +70,4 @@ offset_bottom = 81.0
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(0, 0, 220, 0, 220, 40, 1, 40)
 
-[connection signal="item_selected" from="Sprite/InteractibleSelection" to="." method="_on_interactible_selection_item_selected"]
+[connection signal="item_selected" from="Sprite/InteractableSelection" to="." method="_on_interactable_selection_item_selected"]

@@ -1,18 +1,18 @@
 [gd_scene load_steps=7 format=3 uid="uid://dleua5pjmhsky"]
 
-[ext_resource type="Script" path="res://addons/goventure/visual_scripting/nodes/random_node.gd" id="1_8hdln"]
-[ext_resource type="PackedScene" uid="uid://c6l2hhlrowooq" path="res://addons/goventure/visual_scripting/connections/random_output_option.tscn" id="3_7eiv1"]
-[ext_resource type="FontFile" uid="uid://cfol7ig1l2b5" path="res://addons/goventure/fonts/Ubuntu/Ubuntu-Bold.ttf" id="4_4jleg"]
-[ext_resource type="PackedScene" uid="uid://b3qela1413318" path="res://addons/goventure/visual_scripting/connections/FlowOutput.tscn" id="4_t5dws"]
-[ext_resource type="FontFile" uid="uid://dhlb1snhqyl84" path="res://addons/goventure/fonts/Roboto/Roboto-Bold.ttf" id="5_4y8iw"]
-[ext_resource type="PackedScene" uid="uid://de1m4sv5oavl7" path="res://addons/goventure/visual_scripting/connections/Input.tscn" id="7_djv4s"]
+[ext_resource type="Script" path="res://addons/goventure/visual_scripting/nodes/random_node.gd" id="1_v2wop"]
+[ext_resource type="PackedScene" uid="uid://b3qela1413318" path="res://addons/goventure/visual_scripting/connections/flow_output.tscn" id="2_2go20"]
+[ext_resource type="PackedScene" uid="uid://c6l2hhlrowooq" path="res://addons/goventure/visual_scripting/connections/random_output_option.tscn" id="3_vdwle"]
+[ext_resource type="FontFile" uid="uid://cfol7ig1l2b5" path="res://fonts/Ubuntu/Ubuntu-Bold.ttf" id="4_ysty4"]
+[ext_resource type="FontFile" uid="uid://dhlb1snhqyl84" path="res://fonts/Roboto/Roboto-Bold.ttf" id="5_bl16r"]
+[ext_resource type="PackedScene" uid="uid://de1m4sv5oavl7" path="res://addons/goventure/visual_scripting/connections/input.tscn" id="6_gnpr3"]
 
 [node name="RandomNode" type="Control" groups=["Gate"]]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_8hdln")
-output_node_scene = ExtResource("4_t5dws")
-output_option_scene = ExtResource("3_7eiv1")
+script = ExtResource("1_v2wop")
+output_node_scene = ExtResource("2_2go20")
+output_option_scene = ExtResource("3_vdwle")
 
 [node name="Sprite" type="Node2D" parent="."]
 
@@ -42,7 +42,7 @@ offset_right = 216.0
 offset_bottom = 33.0
 mouse_filter = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_4jleg")
+theme_override_fonts/font = ExtResource("4_ysty4")
 theme_override_font_sizes/font_size = 26
 text = "Random Node"
 horizontal_alignment = 1
@@ -56,10 +56,10 @@ offset_right = 216.0
 offset_bottom = 122.0
 theme_override_constants/separation = 25
 
-[node name="RandomOutputOption" parent="Sprite/OutputOptions" instance=ExtResource("3_7eiv1")]
+[node name="RandomOutputOption" parent="Sprite/OutputOptions" instance=ExtResource("3_vdwle")]
 layout_mode = 2
 
-[node name="RandomOutputOption2" parent="Sprite/OutputOptions" instance=ExtResource("3_7eiv1")]
+[node name="RandomOutputOption2" parent="Sprite/OutputOptions" instance=ExtResource("3_vdwle")]
 layout_mode = 2
 
 [node name="OutputButtons" type="HBoxContainer" parent="Sprite"]
@@ -74,13 +74,13 @@ alignment = 2
 
 [node name="RemoveOutputButton" type="Button" parent="Sprite/OutputButtons"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_4y8iw")
+theme_override_fonts/font = ExtResource("5_bl16r")
 disabled = true
 text = " - "
 
 [node name="AddOutputButton" type="Button" parent="Sprite/OutputButtons"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_4y8iw")
+theme_override_fonts/font = ExtResource("5_bl16r")
 text = " + "
 
 [node name="Inputs" type="Control" parent="."]
@@ -93,7 +93,7 @@ offset_right = -64.0
 offset_bottom = 56.0
 scale = Vector2(2, 2)
 
-[node name="Input" parent="Inputs" instance=ExtResource("7_djv4s")]
+[node name="Input" parent="Inputs" instance=ExtResource("6_gnpr3")]
 show_behind_parent = true
 layout_mode = 0
 offset_left = -1.0
@@ -112,10 +112,10 @@ offset_top = 33.0
 offset_right = 306.0
 offset_bottom = 133.0
 
-[node name="Output" parent="Outputs" instance=ExtResource("4_t5dws")]
+[node name="Output" parent="Outputs" instance=ExtResource("2_2go20")]
 layout_mode = 2
 
-[node name="Output2" parent="Outputs" instance=ExtResource("4_t5dws")]
+[node name="Output2" parent="Outputs" instance=ExtResource("2_2go20")]
 layout_mode = 2
 
 [node name="Area2D" type="Area2D" parent="."]

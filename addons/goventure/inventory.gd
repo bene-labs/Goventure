@@ -17,7 +17,7 @@ func _ready():
 		new_button.name = action.title
 		new_button.text = action.title
 		action_buttons.add_child(new_button)
-	for item in Goventure.interactibles:
+	for item in Goventure.interactables:
 		var new_button = button.instantiate()
 		new_button.name = item
 		new_button.text = item

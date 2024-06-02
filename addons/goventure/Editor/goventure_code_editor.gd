@@ -15,13 +15,6 @@ func _enter_tree():
 	code_highlighting.number_color = Color.WHITE
 	code_highlighting.function_color = Color.WHITE
 	syntax_highlighter = code_highlighting
-	
-	#for action in Goventure.actions:
-		#code_highlighting.add_keyword_color(action, Color.SKY_BLUE)
-	#for interactible in Goventure.interactibles:
-		#code_highlighting.add_keyword_color(interactible, Color.SKY_BLUE)
-		
-	
 
 
 func _notification(what):
@@ -33,6 +26,7 @@ func save_current_file():
 	if current_file == null:
 		return
 	current_file.store_string(text)
+
 
 func open_new_file(path: String) -> bool:
 	if !FileAccess.file_exists(path):

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfuvpqb1vt30t"]
+
+[ext_resource type="Script" path="res://addons/goventure/editor/interactable_service.gd" id="1_jcmfa"]
+[ext_resource type="PackedScene" uid="uid://7c0dcfe0jhim" path="res://addons/goventure/editor/interactable_edit.tscn" id="2_1pmfm"]
+
+[node name="Interactables" type="VBoxContainer"]
+script = ExtResource("1_jcmfa")
+interactable_edit_scene = ExtResource("2_1pmfm")
+
+[node name="AddButtonContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_top = 21
+
+[node name="AddInteractableButton" type="Button" parent="AddButtonContainer"]
+layout_mode = 2
+text = "Add New Interactable"
+
+[connection signal="pressed" from="AddButtonContainer/AddInteractableButton" to="." method="_on_add_action_button_pressed"]

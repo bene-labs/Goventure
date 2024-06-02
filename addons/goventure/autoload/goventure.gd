@@ -8,7 +8,7 @@ enum CommandModes {
 	RUN_IN_DIALOGIC
 }
 
-var CursorCollision = preload("res://addons/goventure/visual_scripting/CursorCollision.gd").new()
+var CursorCollision = preload("res://addons/goventure/visual_scripting/cursor_collision.gd").new()
 
 var resource_dir_path = "res://addons/goventure/resources/interaction_data/"
 var save_dir_path = "res://addons/goventure/editor/resources"
@@ -16,12 +16,13 @@ var command_mode := CommandModes.RUN_IN_DIALOGIC
 var dialogic_handler = null
 
 var actions := [Action.new("default action", Action.CombinationType.OPTIONAL)]
-var interactibles := ["default interactible"]
+var interactables := ["default interactable"]
 
 var queued_commands := []
 
 
 func _ready():
+	add_child(CursorCollision)
 	if get_tree() != null and get_tree().root.has_node("Dialogic"):
 		dialogic_handler = load("res://addons/goventure/autoload/dialogic_handler.gd").new()
 		add_child(dialogic_handler)
@@ -49,7 +50,7 @@ func _save():
 	save_file.store_var({
 		"actions_titles": actions.map(func(x): return x.title),
 		"actions_types": actions.map(func(x): return x.combination_type),
-		"interactibles": interactibles
+		"interactables": interactables
 	}, true)
 
 
@@ -62,9 +63,9 @@ func _load():
 	var save_dict = save_file.get_var(true)
 	if save_dict == null:
 		return
-	interactibles.clear()
+	interactables.clear()
 	actions.clear()
-	interactibles = save_dict["interactibles"]
+	interactables = save_dict["interactables"]
 	for i in range(save_dict["actions_titles"].size()):
 		actions.push_back(Action.new(save_dict["actions_titles"][i], save_dict["actions_types"][i]))
 
@@ -77,26 +78,26 @@ func _notification(what):
 		_save()
 
 
-func run_action(action: String, interactible1: String, interactible2 := ""):
+func run_action(action: String, interactable1: String, interactable2 := ""):
 	match command_mode:
 		CommandModes.EMIT_SIGNALS:
-			queue_action_commands(action, interactible1, interactible2)
+			queue_action_commands(action, interactable1, interactable2)
 		CommandModes.RUN_IN_DIALOGIC:
 			if dialogic_handler == null:
 				push_error("Cannot run action with Dialogic: Dialogic Autoload not found. Ensure the plugin is propely installed.")
 				return
-			dialogic_handler.run_action_in_dialogic(action, interactible1, interactible2)
+			dialogic_handler.run_action_in_dialogic(action, interactable1, interactable2)
 
 
-func queue_action_commands(action: String, interactible1: String, interactible2 := "", overwrite_queue = false):
-	var path = resource_dir_path + "/" + interactible1 + ".tres"
+func queue_action_commands(action: String, interactable1: String, interactable2 := "", overwrite_queue = false):
+	var path = resource_dir_path + "/" + interactable1 + ".tres"
 	if not ResourceLoader.exists(path):
 		return
 	var interactionData : InteractionData = load(path)
 	
 	if overwrite_queue:
 		queued_commands.clear()
-	queued_commands += interactionData.get_commands_by_action(action, interactible2)
+	queued_commands += interactionData.get_commands_by_action(action, interactable2)
 
 
 func is_command_queued() -> bool:

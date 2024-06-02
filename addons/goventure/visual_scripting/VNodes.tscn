@@ -1,12 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://rnlqp6h5t4ig"]
+[gd_scene load_steps=8 format=3 uid="uid://udt8d32745ne"]
 
 [ext_resource type="Script" path="res://addons/goventure/visual_scripting/vs_nodes.gd" id="1_a5j1v"]
-[ext_resource type="PackedScene" uid="uid://cr5x5uinj6cpv" path="res://addons/goventure/visual_scripting/nodes/InteractibleBaseNode.tscn" id="3_08eg1"]
-[ext_resource type="Script" path="res://addons/goventure/visual_scripting/SpawnButton.gd" id="3_djy8a"]
-[ext_resource type="PackedScene" uid="uid://dkydwulkc34i0" path="res://addons/goventure/visual_scripting/nodes/ActionCombinationNode.tscn" id="4_2metv"]
+[ext_resource type="PackedScene" uid="uid://cr5x5uinj6cpv" path="res://addons/goventure/visual_scripting/nodes/InteractableBaseNode.tscn" id="3_08eg1"]
+[ext_resource type="Script" path="res://addons/goventure/visual_scripting/spawn_button.gd" id="3_djy8a"]
+[ext_resource type="PackedScene" uid="uid://dkydwulkc34i0" path="res://addons/goventure/visual_scripting/nodes/action_combination_node.tscn" id="4_2metv"]
 [ext_resource type="PackedScene" uid="uid://d3nngfpospx70" path="res://addons/goventure/visual_scripting/nodes/dialogue_node.tscn" id="5_0flov"]
-[ext_resource type="PackedScene" uid="uid://dleua5pjmhsky" path="res://addons/goventure/visual_scripting/nodes/RandomNode.tscn" id="6_h8asd"]
-[ext_resource type="PackedScene" uid="uid://dvoj03iivka44" path="res://addons/goventure/visual_scripting/nodes/SequenceNode.tscn" id="7_et8xa"]
+[ext_resource type="PackedScene" uid="uid://dleua5pjmhsky" path="res://addons/goventure/visual_scripting/nodes/random_node.tscn" id="6_h8asd"]
+[ext_resource type="PackedScene" uid="uid://dvoj03iivka44" path="res://addons/goventure/visual_scripting/nodes/sequence_node.tscn" id="7_et8xa"]
 
 [node name="VSNodes" type="Control"]
 z_index = 4096

@@ -7,8 +7,8 @@ var updating = false
 
 
 func _init():
-	for interactible in Goventure.interactibles:
-		property_control.add_item(interactible)
+	for interactable in Goventure.interactables:
+		property_control.add_item(interactable)
 	if property_control.item_count > 0:
 		current_value = property_control.get_item_text(0)
 		

@@ -21,7 +21,7 @@ func _disable_plugin():
 	remove_autoload_singleton(PLUGIN_NAME)
 
 func _enter_tree():
-	add_inspector_plugin(preload("res://addons/goventure/interactible/interactible_inspector_plugin.gd").new())
+	add_inspector_plugin(preload("res://addons/goventure/interactable/interactable_inspector_plugin.gd").new())
 	main_panel_instance = MainPanel.instantiate()
 	# Add the main panel to the editor's main viewport.
 	EditorInterface.get_editor_main_screen().add_child(main_panel_instance)

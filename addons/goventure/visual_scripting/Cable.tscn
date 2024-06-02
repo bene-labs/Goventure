@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d3e0ircf87vvo"]
 
-[ext_resource type="Script" path="res://addons/goventure/visual_scripting/Cable.gd" id="1_wg4og"]
+[ext_resource type="Script" path="res://addons/goventure/visual_scripting/cable.gd" id="1_wg4og"]
 
 [node name="Cable" type="Control"]
 z_index = -1

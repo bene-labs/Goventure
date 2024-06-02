@@ -4,11 +4,11 @@ extends VSNode
 @export var output_label : PackedScene
 
 func _ready():
-	%InteractibleSelection.clear()
-	for interactible in Goventure.interactibles:
-		%InteractibleSelection.add_item(interactible)
-	%InteractibleSelection.selected = 0
-	title = %InteractibleSelection.get_item_text(%InteractibleSelection.selected)
+	%InteractableSelection.clear()
+	for interactable in Goventure.interactables:
+		%InteractableSelection.add_item(interactable)
+	%InteractableSelection.selected = 0
+	title = %InteractableSelection.get_item_text(%InteractableSelection.selected)
 
 	var colision_polygon = $Area2D/CollisionPolygon2D.polygon
 	for action in Goventure.actions:
@@ -97,18 +97,18 @@ func save():
 	ResourceSaver.save(interaction_data, "%s/%s.tres" % [Goventure.resource_dir_path, title])
 
 
-func _on_interactible_selection_item_selected(index):
-	title = %InteractibleSelection.get_item_text(index)
+func _on_interactable_selection_item_selected(index):
+	title = %InteractableSelection.get_item_text(index)
 
 
 func restore_configs(configs: Dictionary):
 	super.restore_configs(configs)
-	if configs["selected"] < %InteractibleSelection.item_count:
-		%InteractibleSelection.selected = configs["selected"]
-	title = %InteractibleSelection.get_item_text(%InteractibleSelection.selected)
+	if configs["selected"] < %InteractableSelection.item_count:
+		%InteractableSelection.selected = configs["selected"]
+	title = %InteractableSelection.get_item_text(%InteractableSelection.selected)
 
 
 func serialize() -> Dictionary:
 	var serial_data = super.serialize()
-	serial_data["configs"]["selected"] = %InteractibleSelection.selected
+	serial_data["configs"]["selected"] = %InteractableSelection.selected
 	return serial_data

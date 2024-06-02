@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b86inyphjxolg"]
 
-[ext_resource type="Script" path="res://addons/goventure/visual_scripting/Camera.gd" id="1_4onb7"]
+[ext_resource type="Script" path="res://addons/goventure/visual_scripting/camera.gd" id="1_4onb7"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(1022, 19.5)

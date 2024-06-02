@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Goventure"
 config/version="0.1"
-run/main_scene="res://addons/goventure/visual_scripting/InteractionEditor.tscn"
+run/main_scene="res://addons/goventure/visual_scripting/interaction_editor.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 

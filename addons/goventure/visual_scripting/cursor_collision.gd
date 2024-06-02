@@ -9,10 +9,6 @@ var is_locked = false
 var whitelist : Array
 
 
-func _ready():
-	pass
-
-
 func add_to_whitelist(element):
 	if element in whitelist:
 		return
@@ -46,8 +42,6 @@ func get_global_z_index(element):
 func compare_z_index(elem1, elem2) -> bool:
 	var z_index1 = get_global_z_index(elem1)
 	var z_index2 = get_global_z_index(elem2) 
-
-	#print(elem1.name, ": ", z_index1, " | ", elem2.name, ": ", z_index2)
 
 	return z_index1 > z_index2
 

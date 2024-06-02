@@ -79,8 +79,6 @@ func link(connection : Connection, cable: Cable = null):
 	connected_cables.append(cable)
 	for connected_cable in connected_cables:
 		connected_cable.adjust_color(value)
-	#if is_standalone and not is_multiple_connection_allowed:
-		#_on_new_cable(connection)
 
 
 func unlink(from: Connection):
