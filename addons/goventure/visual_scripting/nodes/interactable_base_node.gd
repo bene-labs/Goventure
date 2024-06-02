@@ -1,3 +1,4 @@
+class_name InteractableBaseNode
 extends VSNode
 
 @export var output_node : PackedScene

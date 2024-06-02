@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://addons/goventure/visual_scripting/vs_node_service.gd" id="1_tq51d"]
 [ext_resource type="Script" path="res://addons/goventure/visual_scripting/spawn_button.gd" id="2_df43p"]
-[ext_resource type="PackedScene" uid="uid://cr5x5uinj6cpv" path="res://addons/goventure/visual_scripting/nodes/InteractableBaseNode.tscn" id="3_kksci"]
+[ext_resource type="PackedScene" uid="uid://cr5x5uinj6cpv" path="res://addons/goventure/visual_scripting/nodes/interactable_base_node.tscn" id="3_kksci"]
 [ext_resource type="PackedScene" uid="uid://dkydwulkc34i0" path="res://addons/goventure/visual_scripting/nodes/action_combination_node.tscn" id="4_h57bn"]
 [ext_resource type="PackedScene" uid="uid://d3nngfpospx70" path="res://addons/goventure/visual_scripting/nodes/dialogue_node.tscn" id="5_h2byk"]
 [ext_resource type="PackedScene" uid="uid://dleua5pjmhsky" path="res://addons/goventure/visual_scripting/nodes/random_node.tscn" id="6_ima2e"]

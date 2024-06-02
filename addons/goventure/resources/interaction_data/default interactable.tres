@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="InteractionData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://addons/goventure/command_data.gd" id="1_k5c8j"]
+[ext_resource type="Script" path="res://addons/goventure/interaction_data.gd" id="2_fnhse"]
+
+[sub_resource type="Resource" id="Resource_sefnn"]
+script = ExtResource("1_k5c8j")
+type = "say"
+value = ""
+
+[sub_resource type="Resource" id="Resource_qlav5"]
+script = ExtResource("1_k5c8j")
+type = "say"
+value = ""
+
+[resource]
+script = ExtResource("2_fnhse")
+command_lookup = {
+"default action": [SubResource("Resource_sefnn"), SubResource("Resource_qlav5")]
+}

@@ -24,4 +24,15 @@ func can_connect(other: Connection) -> bool:
 			return false
 		if other.incompatible_connection_types & type and connection_types & type:
 			return false
+	if other.is_standalone:
+		for output in other.get_all_connections(). \
+			filter(func(x): return x is Output and x.parent_node is InteractableBaseNode):
+			if output.connection_types & (1 << ConnectionType.ACTION) == 0 and output.get_all_connections() \
+			.filter(func(x): return x is InputConnection and x.connection_types & (1 << ConnectionType.ACTION) == 0).size() > 0:
+				return false
+	else:
+		if other.parent_node is InteractableBaseNode and \
+			connection_types & (1 << ConnectionType.ACTION) == 0 and other.get_all_connections() \
+			.filter(func(x): return x is InputConnection and x.connection_types & (1 << ConnectionType.ACTION) == 0).size() > 0:
+			return false
 	return true
