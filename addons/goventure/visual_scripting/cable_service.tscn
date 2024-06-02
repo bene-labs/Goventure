@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://crca0b4if23s0"]
 
-[ext_resource type="Script" path="res://addons/goventure/visual_scripting/cables.gd" id="1_lskdm"]
+[ext_resource type="Script" path="res://addons/goventure/visual_scripting/cable_service.gd" id="1_lskdm"]
 
 [node name="Cables" type="Control" groups=["Cables"]]
 layout_mode = 3
