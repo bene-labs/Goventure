@@ -62,8 +62,8 @@ func get_command_paths(outputs: Array) -> Array:
 
 func get_commands(output: Output) -> Array:
 	var commands := []
-	while output.get_connected_input_nodes().size() != 0:
-		var node = output.get_connected_input_nodes()[0]
+	while output.get_connected_input_nodes().filter(func(x): return not x is ActionCombinationNode).size() != 0:
+		var node = output.get_connected_input_nodes().filter(func(x): return not x is ActionCombinationNode)[0]
 		var new_command = CommandData.new()
 		var outputs = node.get_outputs().filter(func(x): return x != output)
 		new_command.type = node.title

@@ -29,7 +29,7 @@ func run_action_in_dialogic(action: String, interactable1: String, interactable2
 				i = -1
 				remaining_commands = commands.size()
 			_:
-				push_error("Unkown command '%'", command.type)
+				push_error("Unkown command '%s'" % command.type)
 		i += 1
 	if events.size() == 0:
 		return
